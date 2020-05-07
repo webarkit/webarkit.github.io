@@ -13,6 +13,6 @@ sdk especially designed for javascript.
 We like the idea to augment almost any image you want, for this reason we will start by image tracking with **NFT** technology to face tracking, hand tracking and other technologies.
 
 With the **WebARStudio** editor will be possible in few clicks of the mouse share a full WebAR app, this is our main idea and goal.
-if you are a web developer, **AR** lover or a visual artist follow us in the development of our open source project, we will regularly share our progress on this page and on our Twitter account.
+if you are a web developer, **AR** lover or a visual artist follow us in the development of our open source project, we will regularly share our progress on this page and on our Twitter account [@WebarkitO](https://twitter.com/WebarkitO).
 
 More to come...
