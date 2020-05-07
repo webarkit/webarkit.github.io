@@ -27,6 +27,9 @@ url: "https://webarkit.github.io/" # the base hostname & protocol for your site,
 twitter_username: WebarkitO
 github_username:  webarkit
 
+github:
+  is_project_page: true
+
 # Build settings
 theme: jekyll-theme-cayman
 plugins:
