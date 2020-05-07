@@ -14,5 +14,6 @@ We like the idea to augment almost any image you want, for this reason we will s
 
 With the **WebARStudio** editor will be possible in few clicks of the mouse share a full WebAR app, this is our main idea and goal.
 if you are a web developer, **AR** lover or a visual artist follow us in the development of our open source project, we will regularly share our progress on this page and on our Twitter account [@WebarkitO](https://twitter.com/WebarkitO).
+If you are interested to contribute to the project join the group in the [slack channel.](https://join.slack.com/t/webarkit/shared_invite/zt-ecq9duuo-hNBNqXVfp6DRDU_5QwI~XA)
 
 More to come...
