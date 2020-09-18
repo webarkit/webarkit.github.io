@@ -27,6 +27,15 @@ url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: WebarkitO
 github_username:  webarkit
 
+pagination:
+  enabled: true
+  per_page: 5
+  offset: 0
+  title: ':title - page :num of :max'
+  limit: 0
+  sort_field: 'date'
+  sort_reverse: true
+
 github:
   is_project_page: true
   repository_url: "https://github.com/webarkit/"
