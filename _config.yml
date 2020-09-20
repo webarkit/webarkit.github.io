@@ -36,6 +36,8 @@ pagination:
   sort_field: 'date'
   sort_reverse: true
 
+permalink: /blog/:year/:month/:day/:title/
+
 github:
   is_project_page: true
   repository_url: "https://github.com/webarkit/"
