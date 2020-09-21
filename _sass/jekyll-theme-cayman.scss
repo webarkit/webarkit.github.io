@@ -55,7 +55,7 @@ a {
   }
 }
 
-.logo > img {
+.logo > a > img {
   width: 100%;
   height: 100%;
   max-width: 300px;
@@ -67,7 +67,7 @@ a {
 }
 
 @media (max-width: 650px) {
-  .logo > img {
+  .logo > a  > img {
     margin: 0 auto;
   }
 }
