@@ -22,6 +22,8 @@
 }
 
 * {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
@@ -40,6 +42,31 @@ a {
 
   &:hover {
     text-decoration: underline;
+  }
+}
+
+li {
+  list-style: none;
+}
+
+#page-wrapper {
+  position: relative;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  min-height: 75px;
+  padding: 0px 20px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #eee;
+}
+
+@media (max-width: 600px) {
+  header {
+    flex-wrap: wrap;
   }
 }
 
@@ -70,6 +97,57 @@ a {
   .logo > a  > img {
     margin: 0 auto;
   }
+}
+
+nav {
+  font-weight: 400;
+}
+
+@media (max-width: 650px) {
+  nav {
+    margin-top: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 0 50px;
+  }
+  nav li {
+    padding-bottom: 5px;
+  }
+}
+
+nav > ul {
+  width: 35vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+@media (max-width: 650px) {
+  nav > ul {
+    flex-direction: column;
+  }
+}
+
+#hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 400px;
+  margin-top: 220px;
+}
+
+#hero > h2 {
+  margin-bottom: 20px;
+  word-wrap: break-word;
+}
+
+#hero > div {
+  max-width: 80%;
+  text-align: left;
 }
 
 .btn {
