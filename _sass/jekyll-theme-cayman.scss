@@ -61,7 +61,8 @@ header {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: #eee;
+  background-color: #fffaff40;
+  text-transform: uppercase;
 }
 
 @media (max-width: 600px) {
@@ -123,6 +124,15 @@ nav > ul {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+}
+
+nav > ul > li > a {
+  color: #24262f;
+}
+
+nav > ul > li > a:hover {
+  color: #fed613;
+  text-decoration: none;
 }
 
 @media (max-width: 650px) {
