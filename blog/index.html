@@ -6,8 +6,6 @@ seo:
    type: BlogPosting
    author: Walter Perdan
    datePublished: date
-pagination:
-  enabled: true
 ---
 <main class="content" role="main">
 
@@ -15,45 +13,26 @@ pagination:
       <h1 class="blog-title">{{ site.title }}</h1>
       <h2 class="blog-description">{{ site.description }}</h2>
       <h3><small>{{ page.title }}</small></h3>
-      <h4><small>{{ page.date }} </small></h4>
-      <p>
-        Number of blog posts: {{ paginator.total_posts }}
-      </p>
+      <h4><small>{{ page.date }}</small></h4>
   </header>
 
-  <div class="cf frame">
-    {% for post in paginator.posts %}
-      <article class="post">
-        <div class="article-item">
-          <header class="post-header">
-            <h2 class="post-title" itemprop="name"><a href="{{ site.baseurl }}{{ post.url }}" itemprop="url">{{ post.title }}</a></h2>
-          </header>
-          <section class="post-excerpt" itemprop="description">
-            <p>{{ post.intro_paragraph |  markdownify | truncatewords: 50 }}</p>
-          </section>
-          <div class="post-meta">
-            <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date_to_long_string }}</time>
-          </div>
-        </div>
-      </article>
-    {% endfor %}
-  </div>
+  <div class="posts">
+  {% for post in site.posts %}
+    <article class="post">
+      <h2 class="post-title" itemprop="name"><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h2>
+     <section class="post-excerpt" itemprop="description">
+       <p>{{ post.intro_paragraph |  markdownify | truncatewords: 50 }}</p>
+     </section>
+      <div class="entry">
+        {{ post.excerpt }}
+      </div>
+      <div class="post-meta">
+        <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date_to_long_string }}</time>
+      </div>
 
-  <nav class="pagination" role="navigation">
-    {% if paginator.total_pages > 1 %}
-      <ul class="pager">
-          {% if paginator.previous_page %}
-          <li class="previous">
-              <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&larr; Newer Posts</a>
-          </li>
-          {% endif %}
-          {% if paginator.next_page %}
-          <li class="next">
-              <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Older Posts &rarr;</a>
-          </li>
-          {% endif %}
-      </ul>
-      {% endif %}
-  </nav>
+      <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Continue reading</a>
+    </article>
+  {% endfor %}
+</div>
 
 </main>
