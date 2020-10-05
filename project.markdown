@@ -1,6 +1,7 @@
 ---
 layout: about
 title: About the project
+description: An introduction on the webarkit org project, our proposals and plans for the future of WebAR.
 permalink: /project/
 ---
 
