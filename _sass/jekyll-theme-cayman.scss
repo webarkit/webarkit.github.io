@@ -131,8 +131,19 @@ nav > ul > li > a {
 }
 
 nav > ul > li > a:hover {
-  color: #fed613;
   text-decoration: none;
+}
+
+#yellow-link:hover {
+  color: #fed613;
+}
+
+#green-link:hover {
+  color: #a8f329;
+}
+
+#red-link:hover {
+  color: #f6315a;
 }
 
 @media (max-width: 650px) {
