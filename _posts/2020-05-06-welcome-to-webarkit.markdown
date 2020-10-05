@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: blog
 title:  "Welcome to WebARkit!"
 date:   2020-05-06 19:58:55 +0200
 ---

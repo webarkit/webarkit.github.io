@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: blog
 title:  "Welcome to WebARkit! - test"
 date:   2020-05-06 20:02:45
 ---
