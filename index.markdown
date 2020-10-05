@@ -3,6 +3,7 @@
 # To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
 
 layout: home
+image: ./resources/webarkit-logo-social.jpg
 ---
 ## A vision for the future for open source WebAR
 
