@@ -171,6 +171,15 @@ nav > ul > li > a:hover {
   text-align: left;
 }
 
+#hero-post {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 400px;
+  margin-top: 80vh;
+}
+
 .blog-header {
   display: contents;
 }
