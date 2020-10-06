@@ -26,6 +26,7 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: WebarkitO
 github_username:  webarkit
+author: Walter Perdan
 
 permalink: /blog/:year/:month/:day/:title/
 
