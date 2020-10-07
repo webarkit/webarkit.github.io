@@ -6,11 +6,11 @@ image: ./resources/webarkit-logo-social.jpg
 permalink: /project/
 ---
 
-Enim eu vidisse, nam incurreret ab eiusmod de nisi possumus nam fidelissimae,
-singulis quis arbitror vidisse. Elit ingeniis e quamquam, voluptate elit
-mentitum. Iis te amet malis ipsum, est singulis fidelissimae id sint constias
-graviterque, quae laborum aliquip.A an quorum nostrud. Aut minim culpa te
-incididunt, non a aute cillum eram, labore excepteur ne minim quis se dolore
-offendit tractavissent. Dolor o sed culpa possumus, eu minim ea dolore, probant
-quae ullamco aliquip sed e eu tractavissent. Senserit adipisicing eu nescius,
-voluptate philosophari nam deserunt.
+We decided to create WebARkit because there was a gap in the open source world when it comes to augmented reality. Not that there are no projects regarding WebAR, see Artoolkit5, ArtoolkitX and AR.js, but we are only interested in new technologies, such as NFT and image tracking. We also believe that the Open Source philosophy can achieve great results, as never before. This is why we are here and we believe we can offer accessible tools to a good number of professionals and fans of augmented reality. The democratization of tools can make accessible a technology that would otherwise remain the exclusive domain of the lucky few. Open source also means collaboration, a word that can open many doors.
+<br/>
+## Why WebARkit? Why another organization?
+Many times in open source individual projects reach a certain point and then crash for multiple reasons. But what would happen if the same code were located in an organization? Development would most likely continue, and for also this reason we have decided to create this organization.
+
+## What is the research sector of WebARkit?
+For now, NFT markers and image tracking, but we are looking for new possibilities and new algorithms to extend the field of WebAR. WebARStudio is our tool to create a WebApp with Augmented Reality in a few clicks, it is still under development but we are confident of being able to reach a stable version of it. At the same time we are trying to create a WebARkitLib library as a basis for all the software we are going to develop.
+We are mainly interested in image tracking technologies for augmented reality but also other technologies, see our plan below.
