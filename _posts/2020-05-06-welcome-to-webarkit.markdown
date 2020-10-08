@@ -1,23 +1,22 @@
 ---
 layout: post
-title:  "Welcome to WebARKit Blog! | The official blog of WebARkit"
+title:  "Welcome to WebAR Kit Blog! | The official blog of WebAR Kit"
 date:   2020-05-06 19:58:55 +0200
 description: The welcome article of webarkit.org blog
 author: Walter Perdan
 image: ./resources/webarkit-logo-social.jpg
 ---
-# Welcome to WebARKit Blog!
+# Welcome to WebAR Kit Blog!
 ## News about the development
 
-We are pleased to present our new **WebARKit** Blog page. In this blog we will keep you updated on the news that have happened within the WebARKit community. We will generally publish at least one article every three months and if possible more often to keep you updated.
+We are pleased to present our new **WebAR Kit** Blog page. In this blog we will keep you updated on the news that have happened within the WebARKit community. We will generally publish at least one article every three months and if possible more often to keep you updated.
 
-What has happened so far in the **WebARKit** community?
+What has happened so far in the **WebAR Kit** community?
 
 I personally started creating a simplified version of Artoolkit with only NFT support, it's called [WebARKitLib](https://github.com/webarkit/WebARKitLib). The code is pretty much the same but it's very light because all unnecessary parts for **N**atural **F**eature **T**racking have been removed. That is, all the code for the old marker style was stripped away. The final code is only 19.7 mb against the almost 500 mb of the old repository. I have used this library with [JsartoolkitNFT](https://github.com/webarkit/jsartoolkitNFT) and [ARnft](https://github.com/webarkit/ARnft) with excellent results.
 Thosten Bux instead added partial support for NFT markers and 2d tracking to the ArtoolkitX.js project, it is essential to complete the implementation for the NFT but we are on the right track.
 
-Worth noting is the great work that Thorsten Bux and Daniel Fernandes have done for the online Web Service version of the [NFT-creator-WS](https://github.com/webarkit/NFT-Creator-WS)(repository of the code): [NFT-creator-WS](http://nftcreator.tripod-digital.co.nz/) a very useful tool for those who want to work with this type of markers.
-[NFT-creator-WS](https://github.com/webarkit/NFT-Creator-WS)(repository of the code): [NFT-creator-WS](http://nftcreator.tripod-digital.co.nz/)  a very useful tool for those who want to work with this type of markers.
+Worth noting is the great work that Thorsten Bux and Daniel Fernandes have done for the online Web Service version of the [NFT-creator-WS](http://nftcreator.tripod-digital.co.nz/) [(here the repository of the code)](https://github.com/webarkit/NFT-Creator-WS) a very useful tool for those who want to work with this type of markers.
 
 Unfortunately as regards **WebARStudio**, some improvements have been made but not yet for the NFT markers, it is in fact necessary to develop the part of the code to support the version with Web Worker required for Mobile devices. I hope to accomplish this upgrade in a timely, because it is a long awaited feature…
 

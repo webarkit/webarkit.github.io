@@ -1,13 +1,10 @@
 ---
-# Feel free to add content and custom Front Matter to this file.
-# To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
-
 layout: home
 image: ./resources/webarkit-logo-social.jpg
 ---
 ## A vision for the future for open source WebAR
 
-**WebARkit** was born because we wants take the best from the open source WebAR and push it to a new level.
+**WebAR Kit** was born because we wants take the best from the open source WebAR and push it to a new level.
 Actually the **ARtoolkit** project is dead, and his successor **ARtoolkitX** is not so much web friendly: **Jsartoolkit5** is the javascript port of ARtoolkit and **ARtoolkitX.js** the corresponding version for ARtoolkitX. We want to develop a newer version derived from the two in a smarter
 sdk especially designed for javascript.
 
