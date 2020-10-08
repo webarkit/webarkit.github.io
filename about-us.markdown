@@ -11,8 +11,14 @@ We are a group of developers with different backgrounds but in common a passion 
 ##  Thorsten Bux
 Founder of WebARkit. Software engineer with many years of experience, co-founder of ArtoolkitX, he developed the javascript version ArtoolkitX.js and the image 2d tracking.
 
+website: [augmentmy.world/](http://augmentmy.world/) github: [ThorstenBux](https://github.com/ThorstenBux)
+
 ## Walter Perdan
 co-founder of WebARkit. Visual artist but higly involved in the AR world. He likes to develop WebAR for his artworks. He helped to implement NFT into jsartoolkit5 and AR.js.
 
+website: [kalwaltart.com](https://www.kalwaltart.com) github: [kalwalt](https://github.com/kalwalt)
+
 ## Daniel Fernandes
 Software engineer with a special interest in CAD technology and AR. He developed the NFT-Marker-Creator a very useful tool for the creation of NFT markers.
+
+website: [carnaux.github.io/](https://carnaux.github.io/) github: [Carnaux](https://github.com/Carnaux)
