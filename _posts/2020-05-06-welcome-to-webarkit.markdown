@@ -20,7 +20,7 @@ Worth noting is the great work that Thorsten Bux and Daniel Fernandes have done 
 
 Unfortunately as regards **WebARStudio**, some improvements have been made but not yet for the NFT markers, it is in fact necessary to develop the part of the code to support the version with Web Worker required for Mobile devices. I hope to accomplish this upgrade in a timely, because it is a long awaited feature…
 
-An interesting mention should be made for the code developed by Itamayo for the rotation of the camera and a renderer for graphic objects developed by Daniel Fernandes based on CSS3D rendering by Threejs, many interesting possibilities open up with these two projects !!
+An interesting mention should be made for the CSS renderer developed by Daniel Fernandes based on the Threejs CSS3D renderer, many interesting possibilities open up with this project !!
 
 Finally, the icing on the cake is the incredible work done by hiukim [mind-ar-js](https://github.com/webarkit/mind-ar-js), he has in fact translated the Artoolkit code concerning the NFT with gpu.js, creating a version completely made for the GPU!! For sure this will be the future of augmented reality... Obviously the code needs to be improved and most likely the algorithm needs to be changed. But in the meantime: good hiukim! Great!
 If you are interested, follow us and subscribe to our web page or follow our Twitter profile, and if you want to get in touch with us to participate and contribute to the project, let's meet in our [slack channel](https://join.slack.com/t/webarkit/shared_invite/zt-ecq9duuo-hNBNqXVfp6DRDU_5QwI~XA), we are open for collaborations.
