@@ -9,7 +9,7 @@ image: ./resources/webarkit-logo-social.jpg
 # Welcome to WebAR Kit Blog!
 ## News about the development
 
-We are pleased to present our new **WebAR Kit** Blog page. In this blog we will keep you updated on the news that have happened within the WebARKit community. We will generally publish at least one article every three months and if possible more often to keep you updated.
+We are pleased to present our new **WebAR Kit** Blog page. In this blog we will keep you updated on the news that have happened within the **WebAR Kit** community. We will generally publish at least one article every three months and if possible more often to keep you updated.
 
 What has happened so far in the **WebAR Kit** community?
 
