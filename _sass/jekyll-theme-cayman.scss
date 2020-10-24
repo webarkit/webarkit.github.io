@@ -189,6 +189,15 @@ nav > ul > li > a:hover {
   margin-top: 90vh;
 }
 
+#hero-contact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 300px;
+  margin-top: 40vh;
+}
+
 .blog-header {
   display: contents;
 }
@@ -493,4 +502,36 @@ nav > ul > li > a:hover {
 
 .site-footer-credits {
   color: $blockquote-text-color;
+}
+
+.form-section {
+  max-width: 164rem;
+}
+
+.container-form{
+  display: grid;
+  grid-template-columns: auto;
+  grid-gap: 10px;
+  background-color: #ffff;
+  padding: 10px;
+}
+#subject{
+  width:80%;
+}
+form{
+  	vertical-align: baseline;
+}
+input,
+textarea {
+	border: 0.05em solid #2196F3;
+	&:focus {
+		border: 0.05em solid white;
+  width: auto;
+	}
+}
+
+textarea {
+  vertical-align: top;
+	resize: vertical;
+	max-width: none;
 }
