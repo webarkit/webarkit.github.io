@@ -6,6 +6,6 @@ image: ./resources/webarkit-logo-social.jpg
 permalink: /contact/
 ---
 
-# Contact US!
+# Contact us!
 
-We are glad if you send a message, with your thinking
+We are glad if you send a message...
