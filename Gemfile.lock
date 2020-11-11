@@ -265,7 +265,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bulma-clean-theme (= 0.10.2)
+  bulma-clean-theme
   github-pages
   jekyll-feed (~> 0.12)
   jekyll-sitemap
