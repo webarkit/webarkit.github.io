@@ -1,5 +1,5 @@
 ---
-layout: about
+layout: page
 title: About the project
 description: An introduction on the webarkit.org project, our proposals and plans for the future of WebAR.
 image: ./resources/webarkit-logo-social.jpg
