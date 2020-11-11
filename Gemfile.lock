@@ -267,7 +267,6 @@ PLATFORMS
 DEPENDENCIES
   bulma-clean-theme (= 0.10.2)
   github-pages
-  jekyll (~> 3.9.0)
   jekyll-feed (~> 0.12)
   jekyll-sitemap
   tzinfo (~> 1.2)
