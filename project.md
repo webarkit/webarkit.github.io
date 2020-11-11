@@ -1,6 +1,7 @@
 ---
 layout: page
 title: About the project
+subtitle: Our vision for WebAR, our project for the future.
 description: An introduction on the webarkit.org project, our proposals and plans for the future of WebAR.
 image: ./resources/webarkit-logo-social.jpg
 permalink: /project/
