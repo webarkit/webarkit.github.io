@@ -1,6 +1,6 @@
 ---
-layout: about
-title: About
+layout: page
+title: About us
 description: On this page we introduce ourselves and explain our work, our interests and the reason why we are part of WebAR Kit.
 image: ./resources/webarkit-logo-social.jpg
 permalink: /about-us/

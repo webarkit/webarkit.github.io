@@ -28,7 +28,12 @@ url: "https://www.webarkit.org" # the base hostname & protocol for your site, e.
 twitter_username: WebarkitO
 github_username:  webarkit
 author: Walter Perdan
+google_analytics: UA-00000000-0
+favicon: /favicon.ico
 
+# Pagination settings
+paginate: 6
+paginate_path: "/blog/page:num"
 permalink: /blog/:year/:month/:day/:title/
 
 github:
@@ -36,10 +41,22 @@ github:
   repository_url: "https://github.com/webarkit/"
 
 # Build settings
-theme: jekyll-theme-cayman
+markdown: kramdown
+
+footer_menu: footer_menu
+
+sass:
+  style: compressed
+
+# Build settings
+theme: bulma-clean-theme
+#remote_theme: chrisrhymes/bulma-clean-theme
+
 plugins:
   - jekyll-feed
   - jekyll-sitemap
+  - jekyll-paginate
+  - github-pages
 
 # Exclude from processing.
 # The following items will not be processed, by default.

@@ -4,7 +4,7 @@ title:  "Welcome to WebAR Kit Blog! | The official blog of WebAR Kit"
 date:   2020-05-06 19:58:55 +0200
 description: The welcome article of webarkit.org blog
 author: Walter Perdan
-image: ./resources/webarkit-logo-social.jpg
+image: /resources/webarkit-logo-social.jpg
 ---
 # Welcome to WebAR Kit Blog!
 ## News about the development

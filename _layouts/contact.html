@@ -1,29 +1,22 @@
 ---
 layout: default
 ---
-{% include header.html %}
-<main class="" role="main" id="hero-contact">
-    <section class="form-section">
-      {{ content }}
-      <form
-        class="container-form"
-        action="https://formspree.io/f/maylovzq"
-        method="POST"
-       >
-        <label>
-          Your email:
-          <input type="text" name="_replyto" placeholder="Your email address">
-        </label>
-        <label>
-          Your message:
-          <textarea name="message" placeholder="Write something..." ></textarea>
-        </label>
+  {{ content }}
 
-        <!-- your other form fields go here -->
-
-        <button type="submit">Send</button>
-      </form>
-      {% include footer.html %}
-    </section>
-
-</main>
+<div class="box">
+  <form
+    action="https://formspree.io/f/maylovzq"
+    method="POST"
+  >
+    <label class="label">
+      Your email:
+      <input class="input" type="text" name="_replyto" placeholder="Your email address">
+    </label>
+    <label class="label">
+      Your message:
+      <textarea class="input" name="message" placeholder="Write something..." ></textarea>
+    </label>
+      <!-- your other form fields go here -->
+      <button class="button" type="submit">Send</button>
+  </form>
+</div>
