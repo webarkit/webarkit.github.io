@@ -26,7 +26,7 @@ We have this plan for the future of WebAR Kit:
  - Publish a roadmap
  - Get it under the umbrella of big OpenSource consortiums to broaden the audience
  - A business plan that supports OpenSource
-   > - Consulting
-   > - Dev support
-   > - Premium features
-   > - Visual AR-Editor
+   - Consulting
+   - Dev support
+   - Premium features
+   - Visual AR-Editor
