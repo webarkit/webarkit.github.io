@@ -1,6 +1,7 @@
 ---
 layout: page
 title: About us
+subtitle: Some words about us and... WebAR Kit.
 description: On this page we introduce ourselves and explain our work, our interests and the reason why we are part of WebAR Kit.
 image: ./resources/webarkit-logo-social.jpg
 permalink: /about-us/
