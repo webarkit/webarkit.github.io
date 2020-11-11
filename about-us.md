@@ -8,17 +8,23 @@ permalink: /about-us/
 # About us
 We are a group of developers with different backgrounds but in common a passion for WebAr and the interaction world. Discover us in these few lines!
 
-##  Thorsten Bux
-Founder of WebAR Kit. Software engineer with many years of experience, co-founder of ArtoolkitX, he developed the javascript version ArtoolkitX.js and the image 2d tracking.
+<div class="box">
+  <h2 class="title">Thorsten Bux</h2>
+  <p class="block">Founder of WebAR Kit. Software engineer with many years of experience, co-founder of ArtoolkitX, he developed the javascript version ArtoolkitX.js and the image 2d tracking.</p>
 
-website: [augmentmy.world/](http://augmentmy.world/) github: [ThorstenBux](https://github.com/ThorstenBux)
+  <p class="block">website: <a href="http://augmentmy.world/">augmentmy.world</a> github:<a href="https://github.com/ThorstenBux">ThorstenBux</a></p>
+</div>
 
-## Walter Perdan
-Co-founder of WebAR Kit. Visual artist but higly involved in the AR world. He likes to develop WebAR for his artworks. He helped to implement NFT into jsartoolkit5 and AR.js.
+<div class="box">
+  <h2 class="title">Walter Perdan</h2>
+  <p class="block">Co-founder of WebAR Kit. Visual artist but higly involved in the AR world. He likes to develop WebAR for his artworks. He helped to implement NFT into jsartoolkit5 and AR.js.</p>
 
-website: [kalwaltart.com](https://www.kalwaltart.com) github: [kalwalt](https://github.com/kalwalt)
+  <p class="block">website: <a href="https://www.kalwaltart.com">kalwaltart.com</a> github:<a href="https://github.com/kalwalt">kalwalt</a></p>
+</div>
 
-## Daniel Fernandes
-Software engineer with a special interest in CAD technology and AR. He developed the NFT-Marker-Creator a very useful tool for the creation of NFT markers.
+<div class="box">
+  <h2 class="title">Daniel Fernandes</h2>
+  <p class="block">Software engineer with a special interest in CAD technology and AR. He developed the NFT-Marker-Creator a very useful tool for the creation of NFT markers.</p>
 
-website: [carnaux.github.io/](https://carnaux.github.io/) github: [Carnaux](https://github.com/Carnaux)
+  <p class="block">website: <a href="https://carnaux.github.io/">carnaux.github.io/</a> github:<a href="https://github.com/Carnaux">Carnaux</a></p>
+</div>
