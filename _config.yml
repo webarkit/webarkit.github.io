@@ -52,7 +52,6 @@ sass:
 remote_theme: chrisrhymes/bulma-clean-theme
 
 plugins:
-  - jekyll-feed
   - jekyll-sitemap
   - jekyll-paginate
   - github-pages
