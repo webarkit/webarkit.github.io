@@ -49,14 +49,13 @@ sass:
   style: compressed
 
 # Build settings
-# theme: bulma-clean-theme
-remote_theme: chrisrhymes/bulma-clean-theme
+theme: bulma-clean-theme
+# remote_theme: chrisrhymes/bulma-clean-theme
 
 plugins:
-  - jekyll-feed
   - jekyll-sitemap
   - jekyll-paginate
-  - github-pages
+#  - github-pages
 
 # Exclude from processing.
 # The following items will not be processed, by default.
