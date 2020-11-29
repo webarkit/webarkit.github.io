@@ -1,0 +1,62 @@
+---
+layout: page
+title: NFT Marker Creator
+subtitle: Create your own NFT marker
+content_width: is-full
+---
+
+<div class="box">
+  <h2 class="title has-text-centered" id="title" href="#confidenceLevel">NFT Marker Creator</h2>
+    <div class="section">
+      <input class="input is-hidden" type="file" id="imageLoader" name="imageLoader"/>
+      <button class="button is-primary is-outlined is-fullwidth" id="uploadBt" onclick="document.getElementById('imageLoader').click();">Upload Image</button>
+      <button class="button is-fullwidth" id="generateBt" onclick="generate()" disabled>Generate</button>
+    </div>
+    <div class="tile is-ancestor"  id="wrapper">
+        <canvas class="tile" id="imageCanvas" style="width: auto; height: 120rem"></canvas>
+        <div class="spinner-container">
+            <div class="spinner"></div>
+        </div>
+        <div class="checkmark-cover">
+            <div class="tasks-list-mark"></div>
+        </div>
+    </div>
+    <canvas id="hideCanvas"></canvas>
+
+    <div id="confidenceLevel" class="section columns">
+        <p class="subtitle column is-3">Confidence: </p>
+        <div class="content column is-4">
+          <img class="icon is-small confidenceEl" src="./icons/star2.svg"></img>
+          <img class="icon is-small confidenceEl" src="./icons/star2.svg"></img>
+          <img class="icon is-small confidenceEl" src="./icons/star2.svg"></img>
+          <img class="icon is-small confidenceEl" src="./icons/star2.svg"></img>
+          <img class="icon is-small confidenceEl" src="./icons/star2.svg"></img>
+        </div>
+    </div>
+    <p id="warning"><span style="color: red">Warning:</span>
+        Images with width and/or height above 1000px might take 20min+ to generate.<br>
+        For a more efficient Marker generator, please use the Node script version:
+        <a href="https://github.com/webarkit/NFT-Marker-Creator">https://github.com/webarkit/NFT-Marker-Creator</a><br>
+    </p>
+
+</div>
+
+
+<!-- <button onclick="downloadIset()">download</button> -->
+
+<div id="modal">
+    <div id="modalBody">
+        <p id="modalTitle">No "Number of Channels" found!</p>
+        <p id="modalTxt">Inform the number of channels(nc):<br>(black and white images have NC=1, colored images have NC=3)</p>
+        <input id="modalInput" type="number"  value="3">
+        <button id="cancelBt" class="button" onclick="closeModal()">Cancel</button>
+        <button id="confirmBt" class="button" onclick="setValueFromModal()">Confirm</button>
+    </div>
+</div>
+
+<script src="exif.js"></script>
+<script type='text/javascript'>
+      var artoolkit_wasm_url = './wasm/NftMarkerCreator_wasm.wasm';
+</script>
+<script async type="text/javascript" src="./wasm/NftMarkerCreator_wasm.js"></script>
+<script src="index.js"></script>

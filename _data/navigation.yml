@@ -1,5 +1,7 @@
 - name: Blog
   link: /blog/
+- name: Tools
+  link: /tools/
 - name: Examples
   link: /examples
 - name: Project
