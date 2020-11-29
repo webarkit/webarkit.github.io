@@ -1,0 +1,12 @@
+---
+---
+$primary: #1E2A78;
+$navbar-background-color: #fff !important;
+$navbar-item-color: #666 !important;
+$navbar-item-active-color: #fff !important;
+// Import Main CSS file from theme
+@import "main";
+
+.hero-body {
+  background-image: linear-gradient(120deg, #1E6878, #1E2A78);
+}

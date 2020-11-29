@@ -1,40 +1,12 @@
 ---
 layout: blog
 title: WebARkit org Blog index | The official blog of WebARkit
+subtitle: WebAR articles and all about Augmented Reality
 date: 2020-09-18
-description: blog index page
+description: WebARkit blog index page; we present our articles about WebARKit and WebAR, and the news around these topics.
 image: ./resources/webarkit-logo-social.jpg
 seo:
    type: BlogPosting
    author: Walter Perdan
    datePublished: date
 ---
-<main class="content" role="main">
-
-  <header class="blog-header">
-      <h1 class="blog-title">{{ site.title }}</h1>
-      <h2 class="blog-description">{{ site.description }}</h2>
-      <h3><small>{{ page.title }}</small></h3>
-      <h4><small>{{ page.date }}</small></h4>
-  </header>
-
-  <div class="posts">
-  {% for post in site.posts %}
-    <article class="post">
-      <h2 class="post-title" itemprop="name"><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h2>
-     <section class="post-excerpt" itemprop="description">
-       <p>{{ post.intro_paragraph |  markdownify | truncatewords: 50 }}</p>
-     </section>
-      <div class="entry">
-        {{ post.excerpt }}
-      </div>
-      <div class="post-meta">
-        <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date_to_long_string }}</time>
-      </div>
-
-      <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Continue reading</a>
-    </article>
-  {% endfor %}
-</div>
-
-</main>

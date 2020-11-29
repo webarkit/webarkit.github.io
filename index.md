@@ -1,6 +1,10 @@
 ---
-layout: home
+layout: page
 image: ./resources/webarkit-logo-social.jpg
+title: WebARkit org official website
+subtitle: A new dimension for the OpenSource WebAR
+show_sidebar: true
+permalink: /
 ---
 ## A vision for the future for open source WebAR
 

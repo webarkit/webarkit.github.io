@@ -1,16 +1,51 @@
-<header id="header">
-  <div class="logo">
-    <a href="/">
-      <img id="header-img" src="{{site.url}}/resources/webarkit-logo-social.jpg" alt="WebAR Kit logo" title="webarkit.org home"/>
-    </a>
-  </div>
-  <nav id="nav-bar">
-      <ul>
-        <li><a class="nav-link" href="/blog" id="red-link">Blog</a></li>
-        <li><a class="nav-link" href="/examples" id="yellow-link">Examples</a></li>
-        <li><a class="nav-link" href="/project" id="green-link">The project</a></li>
-        <li><a class="nav-link" href="/about-us" id="red-link">About us</a></li>
-        <li><a class="nav-link" href="/contact" id="green-link">Contact us</a></li>
-      </ul>
-    </nav>
-</header>
+<nav class="navbar is-primary" >
+    <div class="container">
+        <div class="navbar-brand">
+            <a href="{{ site.baseurl }}/" class="navbar-item" style="padding: 0">
+              <img id="header-img" style="max-height: 4rem" src="{{site.url}}/resources/webarkit-logo-social.jpg" alt="WebAR Kit logo" title="webarkit.org home"/>
+            </a>
+            <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navMenu">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+        <div class="navbar-menu" id="navMenu">
+            <div class="navbar-start">
+                <a href="{{ site.baseurl }}/" class="navbar-item {% if page.url == "/" %}is-active{% endif %}">Home</a>
+                {% if site.data.navigation %}
+                {% for item in site.data.navigation %}
+                    {% if item.dropdown %}
+                    <div class="navbar-item has-dropdown is-hoverable">
+                        <a href="{{ item.link | relative_url }}" class="navbar-link {% if item.link == page.url %}is-active{% endif %}">{{ item.name }}</a>
+                        <div class="navbar-dropdown">
+                            {% for subitem in item.dropdown %}
+                            <a href="{{ subitem.link | relative_url }}" class="navbar-item {% if subitem.link == page.url %}is-active{% endif %}">{{ subitem.name }}</a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% else %}
+                    <a href="{{ item.link | relative_url }}" class="navbar-item {% if item.link == page.url %}is-active{% endif %}">{{ item.name }}</a>
+                    {% endif %}
+                {% endfor %}
+                {% endif %}
+            </div>
+
+            <div class="navbar-end">
+                {% if site.github.is_project_page %}
+                  <a class="navbar-item" href="{{ site.github.repository_url }}">
+                    <span class="icon is-large"><i class="fab fa-2x fa-github"></i></span>
+                    <span>View on GitHub</span>
+                  </a>
+                {% endif %}
+                {% if site.gh_sponsor %}
+                <a class="navbar-item" href="https://github.com/sponsors/{{ site.gh_sponsor }}">
+                    <span class="icon gh-sponsor"><i class="fas fa-heart"></i></span>
+                    <span>Sponsor</span>
+                </a>
+                {% endif %}
+            </div>
+
+        </div>
+    </div>
+</nav>
