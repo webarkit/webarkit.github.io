@@ -5,6 +5,10 @@ date:   2020-12-04 14:42:32 +0200
 description: Latest news about WebAR Kit and its ecosystem and community. Arnft and JsartoolkitNFT are part of WebARKit now and new examples, tools page in the website with the new Bulma theme.
 author: Walter Perdan
 image: /resources/webarkit-logo-social.jpg
+seo:
+   type: BlogPosting
+   author: Walter Perdan
+   datePublished: date
 ---
 
 # ARnft and JsartoolkitNFT under the WebARKit organization
