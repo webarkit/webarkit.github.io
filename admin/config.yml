@@ -37,7 +37,7 @@ collections: # A list of collections the CMS should be able to edit
         widget: "select"
         options:
           - { label: "Walter Perdan", value: "Walter Perdan" }
-      - {label: "Publish Date", name: "date", widget: "datetime", format: "YYYY-MM-DD HH:MM:SS"}
+      - {label: "Publish Date", name: "date", widget: "datetime", format: "YYYY-MM-DD HH:MM"}
       - {label: "Language", name: "lang", widget: "text", default: "en"}
       - label: "Seo"
         name: "seo"
