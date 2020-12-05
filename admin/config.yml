@@ -1,0 +1,54 @@
+# Everything you need to know about configuring the CMS can be found here:-
+# https://www.netlifycms.org/docs/configuration-options/
+
+backend:
+  name: git-gateway # Netlify’s Git Gateway connects to Git provider’s API
+  branch: master # Branch to update (master by default)
+
+# media_folder: "assets/images/uploads" # Folder where user uploaded files should go
+
+publish_mode: editorial_workflow # Enable drafts
+
+slug:
+  encoding: "ascii"
+  clean_accents: true
+
+collections: # A list of collections the CMS should be able to edit
+  # POSTS
+  - name: "post" # Used in routes, ie.: /admin/collections/:slug/edit
+    label: "Post" # Used in the UI, ie.: "New Post"
+    folder: "_posts" # The path to the folder where the documents are stored
+    sort: "date:desc" # Default is title:asc
+    create: true # Allow users to create new documents in this collection
+    slug: "{{year}}-{{month}}-{{day}}-{{fields.slug}}"
+    fields: # The fields each document in this collection have
+      - {label: "Layout", name: "layout", widget: "hidden", default: "post"}
+      - {label: "Slug", name: "slug", widget: "string"}
+      - {label: "Title", name: "title", widget: "string", tagname: "h1"}
+      - {label: "Description", name: "description", widget: "text"}
+      - label: "Author"
+        name: "author"
+        widget: "select"
+        options:
+          - { label: "Walter Perdan", value: "Walter Perdan" }
+      - {label: "Publish Date", name: "date", widget: "datetime", format: "YYYY-MM-DD HH:MM:SS"}
+      - {label: "Language", name: "lang", widget: "text", default: "en"}
+      - label: "Seo"
+        name: "seo"
+        widget: "object"
+        fields:
+          - label: "Type"
+            name: "type"
+            widget: "select"
+            options:
+              - { label: "BlogPosting", value: "BlogPosting"}
+              - { label: "NewsArticle", value: "NewsArticle"}
+          - label: "Author"
+            name: "author"
+            widget: "select"
+            options:
+              - { label: "Walter Perdan", value: "Walter Perdan" }
+          - {label: "Date_Published", name: "datePublished", widget: "date", format: "YYYY-MM-DD"}
+      - {label: "Image_path", name: "image", widget: "string"}
+      - {label: "Intro Paragraph", name: "intro_paragraph", widget: "markdown", required: false}
+      - {label: "Body", name: "body", widget: "markdown", required: false}
