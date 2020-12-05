@@ -5,7 +5,13 @@ backend:
   name: git-gateway # Netlify’s Git Gateway connects to Git provider’s API
   branch: master # Branch to update (master by default)
 
-# media_folder: "assets/images/uploads" # Folder where user uploaded files should go
+media_folder: "assets/images/uploads" # Folder where user uploaded files should go
+
+media_library:
+  name: ""
+  config:
+    publicKey: ""
+
 
 publish_mode: editorial_workflow # Enable drafts
 
