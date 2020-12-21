@@ -3,4 +3,5 @@
 # WebARkit.github.io
 
 Official WebARkit org website.
-Join us at the [slack channel.](https://join.slack.com/t/webarkit/shared_invite/zt-eupovakz-7e2spEifwn~rOHC0vpaWhw) or follw us on Twitter: [@WebarkitO](https://twitter.com/WebarkitO)
+The website www.webarkit.org is hosted on [Netlify.com](https://www.netlify.com/).
+Join us at the [slack channel.](https://join.slack.com/t/webarkit/shared_invite/zt-eupovakz-7e2spEifwn~rOHC0vpaWhw) or follow us on Twitter: [@WebarkitO](https://twitter.com/WebarkitO) or Facebook: [webarkit](https://www.facebook.com/webarkit)
