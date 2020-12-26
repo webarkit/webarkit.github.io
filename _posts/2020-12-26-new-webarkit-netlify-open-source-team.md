@@ -29,6 +29,6 @@ Recently i have also relased a new ARnft version with some nice features see thi
 
 About Arnft: our idea is to make ARnft more agnostic in rispect to every rendering engine. Our plan is to evolve it to a modular system in which the developer may choose his preferred render engine (Three.js, Babylonjs....) without any constrictions. For doing this we will switch to a typed script version of the library, that will let us more freedom and will add more flexibility. 
 
-If you want partecipate to the discussion, join us on the discussions board see this topic: [The Future of ARnft and WebARKit ](<The Future of ARnft and WebARKit>)
+If you want partecipate to the discussion, join us on the discussions board see this topic: [The Future of ARnft and WebARKit](https://github.com/webarkit/ARnft/discussions/156) 
 
 More to come...
