@@ -13,7 +13,7 @@ seo:
   datePublished: 2020-12-26
   type: NewsArticle
   author: Walter Perdan
-image: /assets/images/webarkit-logo-social.jpg
+image: /resources/webarkit-logo-social.jpg
 intro_paragraph: WebARKit is evolving to a more robust Open Source community,
   read the article for more...
 ---
