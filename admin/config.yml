@@ -31,6 +31,7 @@ collections: # A list of collections the CMS should be able to edit
       - {label: "Layout", name: "layout", widget: "hidden", default: "post"}
       - {label: "Slug", name: "slug", widget: "string"}
       - {label: "Title", name: "title", widget: "string", tagname: "h1"}
+      - {label: "SubTitle", name: "subtitle", widget: "string", tagname: "h2"}
       - {label: "Description", name: "description", widget: "text"}
       - label: "Author"
         name: "author"
