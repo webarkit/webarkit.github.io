@@ -27,4 +27,8 @@ A lot of discussions and sharing of ideas about the future of **WebARKit** and *
 
 Recently i have also relased a new ARnft version with some nice features see this [PR](https://github.com/webarkit/ARnft/pull/154), this is about Threejs rendering system. I added some important event listeners that let you built more advanced stuff. I also removed the Ofscreencanvas that was causing an issue. 
 
-About Arnft: our idea is to make ARnft more agnostic in rispect to every rendering engine. Our plan is to evolve it to a modular system in which the developer may choose his preferred render engine (Three.js, Babylonjs....) without any constrictions. For doing this we will switch to a typed script version of the library, that will let us more freedom and will add more flexibility. More to come...
+About Arnft: our idea is to make ARnft more agnostic in rispect to every rendering engine. Our plan is to evolve it to a modular system in which the developer may choose his preferred render engine (Three.js, Babylonjs....) without any constrictions. For doing this we will switch to a typed script version of the library, that will let us more freedom and will add more flexibility. 
+
+If you want partecipate to the discussion, join us on the discussions board see this topic: [The Future of ARnft and WebARKit ](<The Future of ARnft and WebARKit>)
+
+More to come...
