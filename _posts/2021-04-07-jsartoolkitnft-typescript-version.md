@@ -26,7 +26,7 @@ We will publish in the webarkit scoped name when it will be almost stable. We wi
 
 We didn't make any improve apart the Typescript langauage conversion, there are still some little refinements to do in the code, that is planned to realize.
 
-In regards of the new Typescript feature, you don't need to download any other typed library, types folder is in the same folder, so everything you need to do is to install the package and import it in you project:
+In regards of the new Typescript feature, you don't need to download any other typed library, `types` folder is present  in the root folder, so everything you need to do is to install the package and import it in you project:
 
 `import AR from "@kalwalt/jsartoolkit-nft"`
 
