@@ -21,12 +21,12 @@ workbox.routing.registerRoute(
 
 // use `cacheFirst` strategy for images
 workbox.routing.registerRoute(
-    /assets\/(img|icons|svg|json)/,
+    /assets\/(img|icons|svg)/,
     workbox.strategies.cacheFirst()
 );
 
 // use `cacheFirst` strategy for images
 workbox.routing.registerRoute(
-    /\.(?:js|css|png|gif|jpg|svg|json)$/,
+    /\.(?:js|css|png|gif|jpg|svg)$/,
     workbox.strategies.cacheFirst()
 );
