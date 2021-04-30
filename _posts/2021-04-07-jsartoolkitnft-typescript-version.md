@@ -12,7 +12,7 @@ seo:
   datePublished: 2021-04-07
   type: NewsArticle
   author: Walter Perdan
-image: https://github.com/webarkit/ARnft/blob/master/examples/Data/arNFT-logo.gif
+image: ../examples/Data/JsartoolkitNFT-logo.gif
 intro_paragraph: We developed a new jsartolkitNFT for a better development
   phase, easy integration and our upcoming new ARnft library.
 ---
