@@ -31,13 +31,14 @@ collections: # A list of collections the CMS should be able to edit
       - {label: "Layout", name: "layout", widget: "hidden", default: "post"}
       - {label: "Slug", name: "slug", widget: "string"}
       - {label: "Title", name: "title", widget: "string", tagname: "h1"}
+      - {label: "SubTitle", name: "subtitle", widget: "string", tagname: "h2"}
       - {label: "Description", name: "description", widget: "text"}
       - label: "Author"
         name: "author"
         widget: "select"
         options:
           - { label: "Walter Perdan", value: "Walter Perdan" }
-      - {label: "Publish Date", name: "date", widget: "datetime", format: "YYYY-MM-DD HH:MM:SS"}
+      - {label: "Publish Date", name: "date", widget: "datetime", format: "YYYY-MM-DD HH:MM"}
       - {label: "Language", name: "lang", widget: "text", default: "en"}
       - label: "Seo"
         name: "seo"
