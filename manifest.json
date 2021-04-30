@@ -1,7 +1,7 @@
 {
   "name": "WebARKit",
   "short_name": "WebARKit",
-  "start_url": ".",
+  "start_url": "/",
   "display": "standalone",
   "background_color": "#fff",
   "theme_color": "#1E2A78",

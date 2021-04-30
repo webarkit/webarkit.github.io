@@ -1,7 +1,7 @@
 // set names for both precache & runtime cache
 workbox.core.setCacheNameDetails({
     prefix: 'webarkit-site',
-    suffix: 'v1',
+    suffix: 'v1.0',
     precache: 'precache',
     runtime: 'runtime-cache'
 });
@@ -21,12 +21,12 @@ workbox.routing.registerRoute(
 
 // use `cacheFirst` strategy for images
 workbox.routing.registerRoute(
-    /assets\/(img|icons|svg|json)/,
+    /assets\/(img|icons|svg)/,
     workbox.strategies.cacheFirst()
 );
 
 // use `cacheFirst` strategy for images
 workbox.routing.registerRoute(
-    /\.(?:js|css|png|gif|jpg|svg|json)$/,
+    /\.(?:js|css|png|gif|jpg|svg)$/,
     workbox.strategies.cacheFirst()
 );
