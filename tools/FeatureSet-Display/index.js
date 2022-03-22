@@ -1,55 +1,49 @@
-var imageLoader = document.getElementById('imageLoader');
-imageLoader.addEventListener('change', handleImage, false);
-const reader = new FileReader();
-
+var markerLoader = document.getElementById('markerLoader');
+markerLoader.addEventListener('change', handleImage, false);
 var name;
-var nameWithExt;
 
 function handleImage(e) {
     nameWithExt = e.target.files[0].name;
-    console.log(e);
-    console.log(e.target.files[0]);
-    console.log(nameWithExt);
-    console.log("Image uploaded: " + nameWithExt);
+    if (e.target.files.length == 3) {
+        console.log("NFT marker uploaded: " + nameWithExt);
 
-    name = nameWithExt.substr(0, nameWithExt.lastIndexOf('.'));
+        name = nameWithExt.substr(0, nameWithExt.lastIndexOf('.'));
 
-    let ext = nameWithExt.substr(nameWithExt.lastIndexOf('.'));
+        let ext = nameWithExt.substr(nameWithExt.lastIndexOf('.'));
 
-    if (ext == '.iset' || ext == '.fset' || ext == '.fset3') {
-        console.log('featureSet detected!');
-        fileReader(e)
-    }
-    else {
-        console.log("Invalid image format!");
+        if (ext == '.iset' || ext == '.fset' || ext == '.fset3') {
+            console.log('FeatureSet detected!');
+            fileReader(e)
+        }
+        else {
+            console.log("Invalid file format!");
+        }
     }
 }
 
 function loadFset(url) {
     var ar = new ARFset.ARFset();
-    console.log(ar);
+    
     ar.initialize()
-        .then((e) => {
-            console.log(e);
-            ar.loadNFTMarker(url, (nft) => {
+        .then((ar) => {
+            ar.loadNFTMarkerBlob(url, (nft) => {
                 console.log(nft);
             });
             document.addEventListener('nftMarker', (ev) => {
-
             })
             ar.display();
         })
 }
 
 function fileReader(ev) {
-    const selectedFile = ev.target.files[0];
-    console.log(selectedFile);
-    if (selectedFile) {
+    var dataURLs = [];
+    for (var i = 0; i < 3; i++) {
+        let reader = new FileReader();
         reader.onload = function (event) {
             var dataURL = event.target.result;
-            //console.log(dataURL);
-            loadFset(dataURL)
+            dataURLs.push(dataURL);
         };
-        reader.readAsDataURL(selectedFile);
+        reader.readAsDataURL(ev.target.files[i]);
     }
+    loadFset(dataURLs)
 }

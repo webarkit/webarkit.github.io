@@ -5,14 +5,12 @@ subtitle: Display your .iset .fset .fset3 files
 content_width: is-full
 ---
 <div class="container">
+  <h1>FeatureSET-Display</h1>
+  <p>Displaying .iset .fset .fset3 files</p>
   <p>Feature points: light green circles</p>
   <p>FeatureSet3 points: tiny red circles</p>
-</div>
-<div class="section">
-  <input class="input is-hidden" type="file" id="imageLoader" name="imageLoader" />
-  <button class="button is-primary is-outlined is-fullwidth" id="uploadBt"
-    onclick="document.getElementById('imageLoader').click();">Upload Image</button>
-</div>
+  <input type="file" id="markerLoader" name="markerLoader" style="display: none;" multiple />
+  <button class="button" id="uploadBt" title="select all 3 files: .iset .fset and .fset3" onclick="document.getElementById('markerLoader').click();">Upload NFT marker</button>
 </div>
 
 <script type="text/javascript" src="./dist/ARFset.js"></script>
