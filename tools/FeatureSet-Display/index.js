@@ -23,6 +23,7 @@ function handleImage(e) {
 
 function loadFset(url) {
     var ar = new ARFset.ARFset();
+    ar.attachCanvas('cv')
     
     ar.initialize()
         .then((ar) => {
