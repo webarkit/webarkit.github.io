@@ -92,3 +92,7 @@ pwa:
 #   - vendor/cache/
 #   - vendor/gems/
 #   - vendor/ruby/
+
+# Include HTTPS headers
+include:
+  - _headers
