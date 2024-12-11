@@ -208,11 +208,14 @@ function useJpeg(e) {
 function readImage(e) {
     reader.onload = function (event) {
 
-        var img = new Image();
+        const img = new Image();
         img.onload = function () {
-            var canvasEl = document.querySelector('#imageCanvas');
-            canvas.width = canvasEl.clientWidth;
-            canvas.height = canvasEl.clientHeight;
+            canvas.width = img.width;
+            canvas.height = img.height;
+
+            canvas.style.width = img.width > 1200 ? '1200px' : img.width + 'px';
+            canvas.style.height = img.height > 1200 ? '1200px' : img.height + 'px';
+
 
             hideCanvas.width = img.width;
             hideCanvas.height = img.height;
