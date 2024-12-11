@@ -1,33 +1,40 @@
-var imageLoader = document.getElementById('imageLoader');
+import NftMC from './wasm/NftMarkerCreator_ES6_wasm.js'
+
+const nftMC = await NftMC();
+
+const imageLoader = document.getElementById('imageLoader');
 imageLoader.addEventListener('change', handleImage, false);
-var canvas = document.getElementById('imageCanvas');
-var hideCanvas = document.getElementById('hideCanvas');
+
+const canvas = document.getElementById('imageCanvas');
+const hideCanvas = document.getElementById('hideCanvas');
 hideCanvas.style.display = "none";
-var ctx = canvas.getContext('2d');
+
+const ctx = canvas.getContext('2d');
 ctx.fillStyle = "#949494";
 ctx.fillRect(0, 0, canvas.width, canvas.height);
-var ctxHide = hideCanvas.getContext('2d');
 
-var reader = new FileReader();
+const ctxHide = hideCanvas.getContext('2d');
 
-var name;
-var nameWithExt;
+const reader = new FileReader();
 
-var globalObj = {
+let name;
+let nameWithExt;
+
+const globalObj = {
     dpi: 0,
     nc: 0,
     w: 0,
     h: 0,
     arr: []
-}
+};
 
 function handleImage(e) {
     nameWithExt = e.target.files[0].name;
     console.log("Image uploaded: " + nameWithExt);
 
-    name = nameWithExt.substr(0, nameWithExt.lastIndexOf('.'));
+    name = nameWithExt.substring(0, nameWithExt.lastIndexOf('.'));
 
-    let extJpg = nameWithExt.substr(nameWithExt.lastIndexOf('.'));
+    let extJpg = nameWithExt.substring(nameWithExt.lastIndexOf('.'));
 
     let confidenceEl = document.getElementById("confidenceLevel");
     let childEls = confidenceEl.getElementsByClassName("confidenceEl");
@@ -35,26 +42,26 @@ function handleImage(e) {
         childEls[i].src = "./icons/star2.svg";
     }
 
-    if (extJpg == '.jpg' || extJpg == '.jpeg' || extJpg == '.JPG' || extJpg == '.JPEG') {
+    if (extJpg === '.jpg' || extJpg === '.jpeg' || extJpg === '.JPG' || extJpg === '.JPEG') {
         useJpeg(e);
-    } else if (extJpg == '.png' || extJpg == '.PNG') {
+    } else if (extJpg === '.png' || extJpg === '.PNG') {
         globalObj.dpi = 72;
         readImage(e)
     } else {
-        console.log("Invalid image format!");
+        console.error("Invalid image format!");
     }
 
     document.getElementById("generateBt").disabled = false;
 }
 
 function generate() {
-    var imageCanvas = document.querySelector('#imageCanvas');
+    const imageCanvas = document.querySelector('#imageCanvas');
     imageCanvas.style.opacity = 0.25;
 
-    var okSign = document.querySelector('.checkmark-cover');
+    const okSign = document.querySelector('.checkmark-cover');
     okSign.style.display = 'none';
 
-    var spinner = document.querySelector('.spinner-container');
+    const spinner = document.querySelector('.spinner-container');
     spinner.style.display = 'block';
 
     setTimeout(() => {
@@ -62,74 +69,68 @@ function generate() {
 
         let paramStr = cmdArr.join(' ');
         console.log(paramStr)
-        let StrBuffer = Module._malloc(paramStr.length + 1);
-        Module.writeStringToMemory(paramStr, StrBuffer);
-        
-        let heapSpace = Module._malloc(globalObj.arr.length * globalObj.arr.BYTES_PER_ELEMENT); // 1
-        Module.HEAPU8.set(globalObj.arr, heapSpace); // 2
 
-        Module._createImageSet(heapSpace, globalObj.dpi, globalObj.w, globalObj.h, globalObj.nc, StrBuffer);
-
-        Module._free(heapSpace);
-        Module._free(StrBuffer);
+        nftMC.createNftDataSet(globalObj.arr, globalObj.dpi, globalObj.w, globalObj.h, globalObj.nc, paramStr);
         
         downloadIset();
     }, 500);
 }
 
+window.generate = generate;
+
 function downloadIset() {
     let mime = "application/octet-stream";
 
-    let filenameIset = "asa.iset";
-    let filenameFset = "asa.fset";
-    let filenameFset3 = "asa.fset3";
+    let filenameIset = "tempFilename.iset";
+    let filenameFset = "tempFilename.fset";
+    let filenameFset3 = "tempFilename.fset3";
 
     let ext = ".iset";
     let ext2 = ".fset";
     let ext3 = ".fset3";
 
-    let content = Module.FS.readFile(filenameIset);
-    let contentFset = Module.FS.readFile(filenameFset);
-    let contentFset3 = Module.FS.readFile(filenameFset3);
+    let content = nftMC.FS.readFile(filenameIset);
+    let contentFset = nftMC.FS.readFile(filenameFset);
+    let contentFset3 = nftMC.FS.readFile(filenameFset3);
 
-    var a = document.createElement('a');
-    a.download = name + ext;
-    a.href = URL.createObjectURL(new Blob([content], { type: mime }));
-    a.style.display = 'none';
+    const isetFile = document.createElement('a');
+    isetFile.download = name + ext;
+    isetFile.href = URL.createObjectURL(new Blob([content], { type: mime }));
+    isetFile.style.display = 'none';
 
-    var b = document.createElement('a');
-    b.download = name + ext2;
-    b.href = URL.createObjectURL(new Blob([contentFset], { type: mime }));
-    b.style.display = 'none';
+    const fsetFile = document.createElement('a');
+    fsetFile.download = name + ext2;
+    fsetFile.href = URL.createObjectURL(new Blob([contentFset], { type: mime }));
+    fsetFile.style.display = 'none';
 
-    var c = document.createElement('a');
-    c.download = name + ext3;
-    c.href = URL.createObjectURL(new Blob([contentFset3], { type: mime }));
-    c.style.display = 'none';
+    const fset3File = document.createElement('a');
+    fset3File.download = name + ext3;
+    fset3File.href = URL.createObjectURL(new Blob([contentFset3], { type: mime }));
+    fset3File.style.display = 'none';
 
-    document.body.appendChild(a);
-    a.click();
+    document.body.appendChild(isetFile);
+    isetFile.click();
 
-    document.body.appendChild(b);
-    b.click();
+    document.body.appendChild(fsetFile);
+    fsetFile.click();
 
-    document.body.appendChild(c);
-    c.click();
+    document.body.appendChild(fset3File);
+    fset3File.click();
 
-    var spinner = document.querySelector('.spinner-container');
+    const spinner = document.querySelector('.spinner-container');
     spinner.style.display = 'none';
 
-    var okSign = document.querySelector('.checkmark-cover');
+    const okSign = document.querySelector('.checkmark-cover');
     okSign.style.display = 'block';
 }
 
 function getUint8(str) {
-    let base64 = str.substr(23, str.length);
-    var raw = atob(base64);
-    var rawLength = raw.length;
-    var array = new Uint8Array(new ArrayBuffer(rawLength));
+    const base64 = str.substring(23);
+    const raw = atob(base64);
+    const rawLength = raw.length;
+    const array = new Uint8Array(new ArrayBuffer(rawLength));
 
-    for (i = 0; i < rawLength; i++) {
+    for (let i = 0; i < rawLength; i++) {
         array[i] = raw.charCodeAt(i);
     }
 
@@ -152,6 +153,7 @@ function setValueFromModal() {
     globalObj.nc = parseInt(input);
     closeModal();
 }
+window.setValueFromModal = setValueFromModal;
 
 function detectColorSpace(arr) {
     let target = parseInt(arr.length / 4);
@@ -163,12 +165,12 @@ function detectColorSpace(arr) {
         let g = arr[j + 1];
         let b = arr[j + 2];
 
-        if (r == g && r == b) {
+        if (r === g && r === b) {
             counter++;
         }
     }
 
-    if (target == counter) {
+    if (target === counter) {
         return 1;
     } else {
         return 3;
@@ -185,10 +187,10 @@ function useJpeg(e) {
             globalObj.dpi = dpi1;
         }
 
-        var nc1 = EXIF.getTag(this, "ComponentsConfiguration")
+        const nc1 = EXIF.getTag(this, "ComponentsConfiguration");
 
         if (isNaN(nc1) || nc1 == null) {
-            var nc2 = parseFloat(EXIF.getTag(this, "SamplesPerPixel"));
+            const nc2 = parseFloat(EXIF.getTag(this, "SamplesPerPixel"));
             if (isNaN(nc2) || nc2 == null) {
                 // openModal();
             } else {
@@ -206,11 +208,14 @@ function useJpeg(e) {
 function readImage(e) {
     reader.onload = function (event) {
 
-        var img = new Image();
+        const img = new Image();
         img.onload = function () {
-            var canvasEl = document.querySelector('#imageCanvas');
-            canvas.width = canvasEl.clientWidth;
-            canvas.height = canvasEl.clientHeight;
+            canvas.width = img.width;
+            canvas.height = img.height;
+
+            canvas.style.width = img.width > 1200 ? '1200px' : img.width + 'px';
+            canvas.style.height = img.height > 1200 ? '1200px' : img.height + 'px';
+
 
             hideCanvas.width = img.width;
             hideCanvas.height = img.height;
@@ -223,17 +228,17 @@ function readImage(e) {
             ctx.drawImage(img, 0, 0, img.width, img.height,     // source rectangle
                 0, 0, canvas.width, canvas.height); // destination rectangle
 
-            var imgData = ctxHide.getImageData(0, 0, hideCanvas.width, hideCanvas.height);
+            const imgData = ctxHide.getImageData(0, 0, hideCanvas.width, hideCanvas.height);
 
             let newArr = [];
 
             let verifyColorSpace = detectColorSpace(imgData.data);
 
-            if (verifyColorSpace == 1) {
+            if (verifyColorSpace === 1) {
                 for (let j = 0; j < imgData.data.length; j += 4) {
                     newArr.push(imgData.data[j]);
                 }
-            } else if (verifyColorSpace == 3) {
+            } else if (verifyColorSpace === 3) {
                 for (let j = 0; j < imgData.data.length; j += 4) {
                     newArr.push(imgData.data[j]);
                     newArr.push(imgData.data[j + 1]);
@@ -243,9 +248,7 @@ function readImage(e) {
 
             globalObj.nc = verifyColorSpace;
 
-            let uint = new Uint8Array(newArr);
-
-            globalObj.arr = uint;
+            globalObj.arr = new Uint8Array(newArr);
 
             let confidence = calculateQuality();
             let confidenceEl = document.getElementById("confidenceLevel");
