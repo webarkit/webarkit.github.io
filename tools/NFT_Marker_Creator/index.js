@@ -1,3 +1,7 @@
+import NftMC from './wasm/NftMarkerCreator_ES6_wasm.js'
+
+const nftMC = await NftMC();
+
 var imageLoader = document.getElementById('imageLoader');
 imageLoader.addEventListener('change', handleImage, false);
 var canvas = document.getElementById('imageCanvas');
@@ -62,35 +66,29 @@ function generate() {
 
         let paramStr = cmdArr.join(' ');
         console.log(paramStr)
-        let StrBuffer = Module._malloc(paramStr.length + 1);
-        Module.writeStringToMemory(paramStr, StrBuffer);
-        
-        let heapSpace = Module._malloc(globalObj.arr.length * globalObj.arr.BYTES_PER_ELEMENT); // 1
-        Module.HEAPU8.set(globalObj.arr, heapSpace); // 2
 
-        Module._createImageSet(heapSpace, globalObj.dpi, globalObj.w, globalObj.h, globalObj.nc, StrBuffer);
-
-        Module._free(heapSpace);
-        Module._free(StrBuffer);
+        nftMC.createNftDataSet(globalObj.arr, globalObj.dpi, globalObj.w, globalObj.h, globalObj.nc, paramStr);
         
         downloadIset();
     }, 500);
 }
 
+window.generate = generate;
+
 function downloadIset() {
     let mime = "application/octet-stream";
 
-    let filenameIset = "asa.iset";
-    let filenameFset = "asa.fset";
-    let filenameFset3 = "asa.fset3";
+    let filenameIset = "tempFilename.iset";
+    let filenameFset = "tempFilename.fset";
+    let filenameFset3 = "tempFilename.fset3";
 
     let ext = ".iset";
     let ext2 = ".fset";
     let ext3 = ".fset3";
 
-    let content = Module.FS.readFile(filenameIset);
-    let contentFset = Module.FS.readFile(filenameFset);
-    let contentFset3 = Module.FS.readFile(filenameFset3);
+    let content = nftMC.FS.readFile(filenameIset, {flags: 'r+'});
+    let contentFset = nftMC.FS.readFile(filenameFset, {flags: 'r+'});
+    let contentFset3 = nftMC.FS.readFile(filenameFset3, {flags: 'r+'});
 
     var a = document.createElement('a');
     a.download = name + ext;
@@ -152,6 +150,7 @@ function setValueFromModal() {
     globalObj.nc = parseInt(input);
     closeModal();
 }
+window.setValueFromModal = setValueFromModal;
 
 function detectColorSpace(arr) {
     let target = parseInt(arr.length / 4);

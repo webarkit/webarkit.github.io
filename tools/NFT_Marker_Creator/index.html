@@ -10,7 +10,7 @@ content_width: is-full
     <div class="section">
       <input class="input is-hidden" type="file" id="imageLoader" name="imageLoader"/>
       <button class="button is-primary is-outlined is-fullwidth" id="uploadBt" onclick="document.getElementById('imageLoader').click();">Upload Image</button>
-      <button class="button is-fullwidth" id="generateBt" onclick="generate()" disabled>Generate</button>
+      <button class="button is-fullwidth" id="generateBt" onclick="window.generate()" disabled>Generate</button>
     </div>
     <div class="tile is-ancestor"  id="wrapper">
         <canvas class="tile" id="imageCanvas" style="width: auto; height: 120rem"></canvas>
@@ -50,13 +50,9 @@ content_width: is-full
         <p id="modalTxt">Inform the number of channels(nc):<br>(black and white images have NC=1, colored images have NC=3)</p>
         <input id="modalInput" type="number"  value="3">
         <button id="cancelBt" class="button" onclick="closeModal()">Cancel</button>
-        <button id="confirmBt" class="button" onclick="setValueFromModal()">Confirm</button>
+        <button id="confirmBt" class="button" onclick="window.setValueFromModal()">Confirm</button>
     </div>
 </div>
 
 <script src="exif.js"></script>
-<script type='text/javascript'>
-      var artoolkit_wasm_url = './wasm/NftMarkerCreator_wasm.wasm';
-</script>
-<script async type="text/javascript" src="./wasm/NftMarkerCreator_wasm.js"></script>
-<script src="index.js"></script>
+<script  type="module" src="index.js"></script>
