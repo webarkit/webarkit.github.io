@@ -1,55 +1,94 @@
 const WARM_UP_TOLERANCE = 5;
 let tickCount = 0;
-var markerResult = null;
-var ar;
-
-// initialize the OneEuroFilter
+const markerResult = null;
+let ar;
 let filterMinCF = 0.0001;
 let filterBeta = 0.01;
-const filter = new OneEuroFilter({ minCutOff: filterMinCF, beta: filterBeta });
-function load_thread(msg) {
-      console.debug("Loading marker at: ", msg.marker);
-  
-      var onLoad = function (arController) {
-        ar = arController;
-        var cameraMatrix = ar.getCameraMatrix();
-  
-        ar.addEventListener("getNFTMarker", function (ev) {
-          tickCount += 1;
-          if (tickCount > WARM_UP_TOLERANCE) {
-            var mat = filter.filter(Date.now(), ev.data.matrixGL_RH);
-            var markerFound = new CustomEvent("markerFound", {detail: {matrixGL_RH: mat}})
-            window.dispatchEvent(markerFound)
-        }
-        });
-  
-        ar.addEventListener("lostNFTMarker", function (ev) {
-          filter.reset();
-        });
-  
-        ar.loadNFTMarker(msg.marker, function (id) {
-          ar.trackNFTMarkerId(id);
-          let marker = ar.getNFTData(ar.id, 0);
-          console.log("nftMarker data: ", marker);
-          var markerInfos = new CustomEvent("markerInfos", {detail: {marker: marker}})
-          window.dispatchEvent(markerInfos);
-          console.log("loadNFTMarker -> ", id);
-          var endLoading = new CustomEvent("endLoading", {detail: {end: true}})
-            window.dispatchEvent(endLoading)
+
+// initialize the OneEuroFilter
+const OneEuroFilterCtor =
+    typeof OneEuroFilter === "function"
+        ? OneEuroFilter
+        : OneEuroFilter && typeof OneEuroFilter.OneEuroFilter === "function"
+            ? OneEuroFilter.OneEuroFilter
+            : null;
+
+if (!OneEuroFilterCtor) {
+    throw new Error("OneEuroFilter constructor not found in worker context");
+}
+
+const filter =
+    OneEuroFilterCtor.length >= 2
+        ? new OneEuroFilterCtor(filterMinCF, filterBeta)
+        : new OneEuroFilterCtor({
+            minCutOff: filterMinCF,
+            beta: filterBeta,
         });
 
-        var loaded = new CustomEvent("loaded", {detail: {proj: cameraMatrix}});
-        window.dispatchEvent(loaded)
-      };
-  
-      var onError = function (error) {
-        console.error(error);
-      };
-  
-      console.debug("Loading camera at:", msg.camera_para);
-  
-      // we cannot pass the entire ARControllerNFT, so we re-create one inside the Worker, starting from camera_param
-      ARControllerNFT.initWithDimensions(msg.pw, msg.ph, msg.camera_para)
-      .then(onLoad)
-      .catch(onError);
-  }
+function load_thread(msg) {
+  console.debug("Loading marker at: ", msg.marker);
+
+  const onLoad = function (arController) {
+    ar = arController;
+    const cameraMatrix = ar.getCameraMatrix();
+
+    ar.addEventListener("getNFTMarker", function (ev) {
+      tickCount += 1;
+      if (tickCount > WARM_UP_TOLERANCE) {
+        const mat = filter.filter(Date.now(), ev.data.matrixGL_RH);
+        const markerFound = new CustomEvent("markerFound", {
+          detail: { matrixGL_RH: mat },
+        });
+        window.dispatchEvent(markerFound);
+      }
+    });
+
+    ar.addEventListener("lostNFTMarker", function (ev) {
+      filter.reset();
+    });
+
+    ar.loadNFTMarker(
+      msg.marker,
+      function (id) {
+        ar.trackNFTMarkerId(id);
+        let marker = ar.getNFTData(ar.id, 0);
+        console.log("nftMarker data: ", marker);
+        const markerInfos = new CustomEvent("markerInfos", {
+          detail: { marker: marker },
+        });
+        window.dispatchEvent(markerInfos);
+        console.log("loadNFTMarker -> ", id);
+        const endLoading = new CustomEvent("endLoading", {
+          detail: { end: true },
+        });
+        window.dispatchEvent(endLoading);
+      },
+      function (e) {
+        console.error("Error in loadNFTMarker function: ", e);
+      },
+    );
+
+    if (ar && ar.process) {
+      window.addEventListener("imageDataEvent", function (ev) {
+        const iData = ev.detail.imageData;
+        ar.process(iData);
+      });
+    }
+
+    const loaded = new CustomEvent("loaded", {
+      detail: { proj: cameraMatrix },
+    });
+    window.dispatchEvent(loaded);
+  };
+
+  const onError = function (error) {
+    console.error(error);
+  };
+
+  console.debug("Loading camera at:", msg.camera_para);
+
+  // we cannot pass the entire ARControllerNFT, so we re-create one inside the Worker, starting from camera_param
+  ARControllerNFT.initWithDimensions(msg.pw, msg.ph, msg.camera_para)
+    .then(onLoad)
+    .catch(onError);
+}
