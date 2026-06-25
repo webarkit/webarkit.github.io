@@ -5,3 +5,16 @@
 Official WebARkit org website.
 The website www.webarkit.org is hosted on [Netlify.com](https://www.netlify.com/).
 Join us at the [slack channel.](https://join.slack.com/t/webarkit/shared_invite/zt-eupovakz-7e2spEifwn~rOHC0vpaWhw) or follow us on Twitter: [@WebarkitO](https://twitter.com/WebarkitO) or Facebook: [webarkit](https://www.facebook.com/webarkit)
+
+## Local threaded examples
+
+Only the threaded JsartoolkitNFT example needs COOP/COEP headers.
+
+For local Jekyll development, build first and serve `_site` with:
+
+```bash
+bundle exec jekyll build
+python serve-coep.py --root _site --port 8000
+```
+
+For Netlify, `netlify.toml` scopes COOP/COEP to `examples/ARToolkitNFT_ES6_threading_example.html` and keeps `.mjs` served as JavaScript.
