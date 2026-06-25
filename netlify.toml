@@ -12,6 +12,12 @@
     Cross-Origin-Embedder-Policy = "require-corp"
 
 [[headers]]
+  for = "/dist/*"
+  [headers.values]
+    Cross-Origin-Embedder-Policy = "require-corp"
+    Cross-Origin-Resource-Policy = "same-origin"
+
+[[headers]]
   for = "/examples/Data/js/*.mjs"
   [headers.values]
     Content-Type = "application/javascript; charset=utf-8"
