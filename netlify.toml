@@ -1,0 +1,22 @@
+[build]
+  command = "bundle exec jekyll build"
+  publish = "_site"
+
+[build.environment]
+  JEKYLL_ENV = "production"
+
+[[headers]]
+  for = "/examples/ARToolkitNFT_ES6_threading_example.html"
+  [headers.values]
+    Cross-Origin-Opener-Policy = "same-origin"
+    Cross-Origin-Embedder-Policy = "require-corp"
+
+[[headers]]
+  for = "/examples/Data/js/*.mjs"
+  [headers.values]
+    Content-Type = "application/javascript; charset=utf-8"
+
+[[headers]]
+  for = "/dist/*.mjs"
+  [headers.values]
+    Content-Type = "application/javascript; charset=utf-8"
