@@ -6,7 +6,7 @@
   JEKYLL_ENV = "production"
 
 [[headers]]
-  for = "/examples/ARToolkitNFT_ES6_threading_example.html"
+  for = "/examples/ARToolkitNFT_ES6_threading_example*"
   [headers.values]
     Cross-Origin-Opener-Policy = "same-origin"
     Cross-Origin-Embedder-Policy = "require-corp"
