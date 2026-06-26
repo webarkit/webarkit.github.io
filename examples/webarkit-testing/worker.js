@@ -24,8 +24,10 @@ function initTracker(msg) {
 
   var onLoad = function (wark) {
     ar = wark;
+    wark.setLogLevel(WebARKit.WebARKitController.WEBARKIT_LOG_LEVEL_DEBUG);
     wark.loadTrackerGrayImage(msg.imageData, msg.imgWidth, msg.imgHeight, WebARKit.WebARKitController.GRAY);
-
+    // Allocate the persistent WASM frame buffer once — avoids convertJSArrayToNumberVector on every frame.
+    wark.initFrameBuffer(WebARKit.WebARKitController.GRAY);
     var cameraProjMat = wark.getCameraProjectionMatrix();
     console.log("camera proj Mat: ", cameraProjMat);
 
@@ -42,6 +44,9 @@ function initTracker(msg) {
         type: "found",
         corners: JSON.stringify(event.data.corners),
         matrix: JSON.stringify(event.data.matrix),
+        matrixGL_RH: JSON.stringify(event.data.matrixGL_RH),
+        transMatrix: JSON.stringify(event.data.transMatrix),
+        viewMatrix_GL: JSON.stringify(event.data.viewMatrix_GL),
         pose: JSON.stringify(event.data.pose),
       };
     });
