@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>WebARKit Teblid - Webcam ES6 example</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=0.5, maximum-scale=1">
+    <link rel="stylesheet" href="css/nft-style.css">
+    <style>
+        /* On-screen tracking status (console logging is kept as well). */
+        #status {
+            left: 50%;
+            bottom: 14px;
+            transform: translateX(-50%);
+            margin: 0;
+            z-index: 200;
+            padding: 0.4rem 0.9rem;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #b91c1c; /* searching: red */
+        }
+        #status.tracked { color: #15803d; } /* tracked: green */
+    </style>
+</head>
+<body>
+
+<div id="loading">
+    <img src="data/aframe-k.png"/>
+    <span class="loading-text">Loading, please wait</span>
+</div>
+
+<!--
+==================
+STATS
+==================
+-->
+<div id="stats" class="ui stats">
+    <div id="stats1" class="stats-item">
+        <p class="stats-item-title">Main</p>
+    </div>
+    <div id="stats2" class="stats-item">
+        <p class="stats-item-title">Worker</p>
+    </div>
+</div>
+
+<!-- On-screen tracking status -->
+<div id="status" class="ui">Searching for marker&hellip;</div>
+
+<div id="app">
+    <!--
+        Live camera feed. #video and #canvas are both full-bleed object-fit:cover
+        (nft-style.css). Since the canvas drawing buffer is sized to the capture
+        resolution (same aspect as the video), the cover-crop is identical on both,
+        so the AR overlay aligns with the video. The video is NOT mirrored.
+    -->
+    <video id="video" autoplay muted playsinline></video>
+    <canvas id="canvas"></canvas>
+</div>
+
+<script src="js/stats.min.js"></script>
+<script src="js/three.min.js"></script>
+<script src="initCamera.js"></script>
+
+<script>
+    function setTrackerType() {
+        return 'teblid';
+    }
+</script>
+
+<script src="threejs_teblid_webcam_worker_ES6.js"></script>
+
+<script>
+    /**
+     * STATS
+     */
+    var statsMain = new Stats();
+    statsMain.showPanel(0);
+    document.getElementById('stats1').appendChild(statsMain.dom);
+
+    var statsWorker = new Stats();
+    statsWorker.showPanel(0);
+    document.getElementById('stats2').appendChild(statsWorker.dom);
+
+    // Capture resolution. Change to 1280 x 720 to verify the higher-res path.
+    const CAPTURE_W = 640;
+    const CAPTURE_H = 480;
+
+    window.addEventListener('load', async () => {
+        console.log('init WebARKit Teblid Webcam...');
+
+        try {
+            const video = await initCamera(CAPTURE_W, CAPTURE_H);
+            // Use the ACTUAL capture size (browsers may not honor the request).
+            const vw = video.videoWidth || CAPTURE_W;
+            const vh = video.videoHeight || CAPTURE_H;
+            console.log('camera size:', vw, 'x', vh);
+
+            initTargetCanvas(vw, vh);
+            start(
+                './data/pinball.jpg',
+                video,
+                vw,
+                vh,
+                function () { statsMain.update(); },
+                function () { statsWorker.update(); }
+            );
+        } catch (e) {
+            console.error('Camera init failed:', e);
+            const loader = document.getElementById('loading');
+            if (loader) {
+                loader.querySelector('.loading-text').innerText =
+                    'Camera access failed: ' + (e && e.message ? e.message : e);
+            }
+        }
+    });
+
+    function initTargetCanvas(width, height) {
+        const canvas = document.querySelector('#canvas');
+        canvas.width = width;
+        canvas.height = height;
+    }
+</script>
+
+</body>
+</html>

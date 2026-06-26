@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>WebARKit - Feature trackers (Teblid / AKAZE / ORB / FREAK)</title>
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="./dist/GrayScale.js"></script>
+  <script type="text/javascript" src="js/stats.min.js"></script>
+  <!--
+    Unified replacement for {teblid,akaze,orb,freak}_example.html (issue #36).
+    The tracker type is chosen at runtime via the #tracker-select dropdown./
+    The selection is persisted in the URL query string (?tracker=akaze) so it
+    survives the page reload that re-initialises the worker, and the link is
+    shareable. setTrackerType() reads the param; worker_setup.js calls it once
+    at parse time -- so we keep worker_setup.js unchanged.
+  -->
+  <script>
+    const SUPPORTED_TRACKERS = ['teblid', 'akaze', 'orb', 'freak'];
+    const DEFAULT_TRACKER = 'teblid';
+
+    function getTrackerFromUrl() {
+      const param = new URLSearchParams(window.location.search).get('tracker');
+      return SUPPORTED_TRACKERS.includes(param) ? param : DEFAULT_TRACKER;
+    }
+
+    // worker_setup.js calls this once at script-parse time.
+    function setTrackerType() {
+      return getTrackerFromUrl();
+    }
+  </script>
+  <script src="worker_setup.js"></script>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    #tracker-picker {
+      position: fixed;
+      top: 0.5rem;
+      right: 0.5rem;
+      z-index: 200;
+      padding: 0.4rem 0.6rem;
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 6px;
+      font: 0.85rem system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    }
+    #tracker-picker label { margin-right: 0.4rem; font-weight: 600; }
+    #tracker-picker select { font: inherit; padding: 0.15rem 0.25rem; }
+  </style>
+</head>
+
+<body>
+  <div id="tracker-picker">
+    <label for="tracker-select">Tracker:</label>
+    <select id="tracker-select">
+      <option value="teblid">Teblid</option>
+      <option value="akaze">AKAZE</option>
+      <option value="orb">ORB</option>
+      <option value="freak">FREAK</option>
+    </select>
+  </div>
+
+  <div id="stats"></div>
+  <img id="refIm" src="./data/pinball.jpg" width="1637" height="2048" style="display:none;">
+  <img id="arElem" src="./data/aframe-k.png"></img>
+  <div id="loading">Loading Image Tracking Modules...</div>
+
+  <script>
+    // Sync the dropdown with the URL, and reload with the new param on change so
+    // the worker re-initialises with the selected tracker.
+    (function initTrackerPicker() {
+      const select = document.getElementById('tracker-select');
+      select.value = getTrackerFromUrl();
+      select.addEventListener('change', () => {
+        const url = new URL(window.location.href);
+        url.searchParams.set('tracker', select.value);
+        window.location.href = url.toString();
+      });
+    })();
+  </script>
+</body>
+
+</html>
