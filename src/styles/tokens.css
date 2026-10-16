@@ -1,0 +1,71 @@
+/*
+ * WebARKit design tokens.
+ * Dark is the reference theme; [data-theme='light'] overrides it.
+ * The same `data-theme` attribute and `starlight-theme` localStorage key are used
+ * by the docs (Starlight), so the choice carries over between site and docs.
+ */
+:root {
+  /* Brand (theme-independent) */
+  --wk-brand: #1e2a78;          /* WebARKit blue */
+  --wk-brand-2: #3a4ab5;        /* indigo, borders on brand fills */
+  --wk-brand-ink: #0f1638;      /* deepest navy */
+
+  /* Fonts */
+  --wk-font-display: 'Sora', system-ui, sans-serif;
+  --wk-font-body: 'IBM Plex Sans', system-ui, sans-serif;
+  --wk-font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+
+  /* Layout */
+  --wk-max: 1280px;
+  --wk-gutter: 24px;
+  --wk-radius: 14px;
+  --wk-radius-sm: 8px;
+
+  /* Dark theme */
+  --wk-bg: #090c1a;
+  --wk-bg-alt: #0c1024;
+  --wk-surface: #10152b;
+  --wk-surface-2: #161d3a;
+  --wk-line: #1c2448;
+  --wk-line-strong: #26305a;
+  --wk-line-node: #2e3972;
+  --wk-text: #e8ebf7;
+  --wk-text-2: #b7bed9;
+  --wk-text-3: #a3abcb;
+  --wk-text-4: #6e78a3;
+  --wk-link: #8c9bff;
+  --wk-link-hover: #c3cbff;
+  --wk-accent: #e0559a;         /* magenta: "tracked", AR, highlights */
+  --wk-accent-soft: #6a2a48;
+  --wk-green: #6de0a0;
+  --wk-on-brand: #ffffff;
+  --wk-camera: #0c1024;         /* camera-feed panels stay dark in both themes */
+  --wk-header-bg: rgba(9, 12, 26, 0.92);
+  --wk-mark-right: #3a4ab5;
+
+  color-scheme: dark;
+}
+
+:root[data-theme='light'] {
+  --wk-bg: #eef1fb;
+  --wk-bg-alt: #e3e8f8;
+  --wk-surface: #ffffff;
+  --wk-surface-2: #f4f6fd;
+  --wk-line: #d3daf0;
+  --wk-line-strong: #c3ccea;
+  --wk-line-node: #b7c2e8;
+  --wk-text: #0f1638;
+  --wk-text-2: #3a4472;
+  --wk-text-3: #4a5480;
+  --wk-text-4: #5a6494;
+  --wk-link: #2f3fb8;
+  --wk-link-hover: #1e2a78;
+  --wk-accent: #b8336a;
+  --wk-accent-soft: #ebb8cd;
+  --wk-green: #1c7a4a;
+  --wk-camera: #1a2152;
+  --wk-header-bg: rgba(238, 241, 251, 0.92);
+  --wk-mark-right: #1e2a78;
+
+  color-scheme: light;
+}

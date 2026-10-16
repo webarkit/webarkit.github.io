@@ -1,0 +1,141 @@
+---
+import { render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getPosts, postPath, postUrl, formatDate, type Post } from '../../lib/blog';
+
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  return posts.map((post, i) => ({
+    params: { path: postPath(post) },
+    props: { post, newer: posts[i - 1], older: posts[i + 1] },
+  }));
+}
+
+interface Props {
+  post: Post;
+  newer?: Post;
+  older?: Post;
+}
+
+const { post, newer, older } = Astro.props;
+const { Content } = await render(post);
+const { title, description, date, author, image, tags } = post.data;
+// Skip the cover when the post body already starts with the same picture.
+const showCover = image && !post.body?.includes(image) && !image.includes('webarkit-logo-social');
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  image={image && !image.includes('webarkit-logo-social') ? image : undefined}
+  type="article"
+  publishedTime={date}
+>
+  <article class="wk-container wk-post">
+    <header class="wk-post__head">
+      <a href="/blog/" class="wk-post__back">← All posts</a>
+      <h1>{title}</h1>
+      <p class="wk-post__meta">
+        <time datetime={date.toISOString()}>{formatDate(date)}</time>
+        <span aria-hidden="true">·</span>
+        <span>{author}</span>
+        {tags.map((t) => <span class="wk-tag">{t}</span>)}
+      </p>
+    </header>
+
+    {showCover && <img class="wk-post__cover" src={image} alt="" loading="eager" />}
+
+    <div class="wk-prose">
+      <Content />
+    </div>
+
+    <nav class="wk-post__nav" aria-label="More posts">
+      {
+        older ? (
+          <a href={postUrl(older)}>
+            <span>Older</span>
+            {older.data.title}
+          </a>
+        ) : (
+          <span />
+        )
+      }
+      {
+        newer && (
+          <a href={postUrl(newer)} class="wk-post__newer">
+            <span>Newer</span>
+            {newer.data.title}
+          </a>
+        )
+      }
+    </nav>
+  </article>
+</BaseLayout>
+
+<style>
+  .wk-post {
+    padding-top: 48px;
+    padding-bottom: 96px;
+  }
+  .wk-post__head {
+    max-width: 820px;
+    margin-bottom: 32px;
+  }
+  .wk-post__back {
+    font-size: 14px;
+  }
+  h1 {
+    font-size: clamp(32px, 5vw, 48px);
+    letter-spacing: -0.03em;
+    margin: 18px 0 14px;
+  }
+  .wk-post__meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    color: var(--wk-text-3);
+    font-size: 14px;
+    margin: 0;
+  }
+  .wk-post__meta time {
+    font-family: var(--wk-font-mono);
+  }
+  .wk-post__cover {
+    display: block;
+    max-width: 720px;
+    width: 100%;
+    height: auto;
+    border-radius: var(--wk-radius);
+    border: 1px solid var(--wk-line);
+    margin-bottom: 32px;
+    background: var(--wk-surface);
+  }
+  .wk-post__nav {
+    max-width: 720px;
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: 64px;
+    padding-top: 24px;
+    border-top: 1px solid var(--wk-line);
+  }
+  .wk-post__nav a {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    max-width: 48%;
+    font-weight: 600;
+  }
+  .wk-post__nav span {
+    font-family: var(--wk-font-mono);
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--wk-text-4);
+    text-transform: uppercase;
+  }
+  .wk-post__newer {
+    text-align: right;
+    margin-left: auto;
+  }
+</style>

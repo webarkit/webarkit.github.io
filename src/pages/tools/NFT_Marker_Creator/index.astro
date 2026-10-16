@@ -1,0 +1,187 @@
+---
+import ToolLayout from '../../../layouts/ToolLayout.astro';
+// The tool itself: public/tools/NFT_Marker_Creator/ (index.js, exif.js, wasm/, icons/).
+// Element ids and classes below are used by index.js — keep them.
+---
+
+<ToolLayout
+  title="NFT Marker Creator"
+  description="Turn a JPG or PNG into an NFT marker (.iset, .fset, .fset3) for jsartoolkitNFT, ARnft, jsartoolkit5 and AR.js. Everything runs in your browser; the image is never uploaded."
+  docs="/docs/tools/nft-marker-creator/"
+>
+  <div class="wk-tool__panel">
+    <div class="wk-tool__actions">
+      <input class="sr-only" type="file" id="imageLoader" name="imageLoader" accept=".jpg,.jpeg,.png" />
+      <button class="wk-btn wk-btn--primary" id="uploadBt" type="button">Upload image</button>
+      <button class="wk-btn" id="generateBt" type="button" disabled>Generate marker</button>
+    </div>
+
+    <div id="wrapper" class="nmc-stage">
+      <canvas id="imageCanvas"></canvas>
+      <div class="spinner-container" aria-live="polite">
+        <div class="spinner" aria-label="Generating"></div>
+      </div>
+      <div class="checkmark-cover">
+        <div class="tasks-list-mark" aria-label="Done"></div>
+      </div>
+    </div>
+    <canvas id="hideCanvas"></canvas>
+
+    <div id="confidenceLevel" class="nmc-confidence">
+      <span>Confidence</span>
+      <span class="nmc-stars">
+        <img class="confidenceEl" src="./icons/star2.svg" alt="" width="20" height="20" />
+        <img class="confidenceEl" src="./icons/star2.svg" alt="" width="20" height="20" />
+        <img class="confidenceEl" src="./icons/star2.svg" alt="" width="20" height="20" />
+        <img class="confidenceEl" src="./icons/star2.svg" alt="" width="20" height="20" />
+        <img class="confidenceEl" src="./icons/star2.svg" alt="" width="20" height="20" />
+      </span>
+    </div>
+
+    <p id="warning" class="wk-tool__note">
+      <strong>Heads up:</strong> images wider or taller than 1000&nbsp;px can take 20 minutes or more.
+      For large images use the Node version:
+      <a href="https://github.com/webarkit/Nft-Marker-Creator-App">webarkit/Nft-Marker-Creator-App</a>.
+    </p>
+  </div>
+
+  <div id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div id="modalBody">
+      <p id="modalTitle">No “number of channels” found</p>
+      <p id="modalTxt">Black-and-white images have 1 channel, colour images have 3.</p>
+      <label for="modalInput">Number of channels</label>
+      <input id="modalInput" type="number" value="3" min="1" max="4" />
+      <div class="nmc-modal-actions">
+        <button id="cancelBt" class="wk-btn" type="button">Cancel</button>
+        <button id="confirmBt" class="wk-btn wk-btn--primary" type="button">Confirm</button>
+      </div>
+    </div>
+  </div>
+
+  <script is:inline src="./exif.js"></script>
+  <script is:inline type="module" src="./index.js"></script>
+  <script is:inline>
+    document.getElementById('uploadBt').addEventListener('click', () =>
+      document.getElementById('imageLoader').click(),
+    );
+    document.getElementById('generateBt').addEventListener('click', () => window.generate());
+    document.getElementById('confirmBt').addEventListener('click', () => window.setValueFromModal());
+    document.getElementById('cancelBt').addEventListener('click', () => {
+      document.getElementById('modal').style.display = 'none';
+    });
+  </script>
+</ToolLayout>
+
+<style>
+  .nmc-stage {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    min-height: 200px;
+    background: var(--wk-camera);
+    border-radius: var(--wk-radius-sm);
+    overflow: auto;
+    padding: 16px;
+  }
+  #hideCanvas {
+    display: none;
+  }
+  .spinner-container,
+  .checkmark-cover {
+    display: none;
+    position: absolute;
+    inset: 0;
+  }
+  .spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 56px;
+    height: 56px;
+    margin: -28px 0 0 -28px;
+    border: 4px solid rgba(255, 255, 255, 0.2);
+    border-top-color: #e0559a;
+    border-radius: 50%;
+    animation: nmc-spin 0.9s linear infinite;
+  }
+  .tasks-list-mark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 64px;
+    height: 64px;
+    margin: -32px 0 0 -32px;
+    border-radius: 50%;
+    background: #1c7a4a;
+  }
+  .tasks-list-mark::after {
+    content: '';
+    position: absolute;
+    left: 22px;
+    top: 14px;
+    width: 14px;
+    height: 26px;
+    border: solid #fff;
+    border-width: 0 5px 5px 0;
+    transform: rotate(45deg);
+  }
+  .nmc-confidence {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 20px 0 8px;
+    font-weight: 600;
+  }
+  .nmc-stars {
+    display: flex;
+    gap: 4px;
+  }
+  #modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    background: rgba(9, 12, 26, 0.7);
+  }
+  #modalBody {
+    max-width: 420px;
+    margin: 15vh auto 0;
+    background: var(--wk-surface);
+    border: 1px solid var(--wk-line-strong);
+    border-radius: var(--wk-radius);
+    padding: 24px;
+  }
+  #modalTitle {
+    font-weight: 600;
+    font-size: 18px;
+    margin-top: 0;
+  }
+  #modalTxt {
+    color: var(--wk-text-3);
+  }
+  #modalBody label {
+    display: block;
+    margin-bottom: 6px;
+  }
+  #modalInput {
+    width: 100%;
+    height: 44px;
+    padding: 0 12px;
+    border-radius: var(--wk-radius-sm);
+    border: 1px solid var(--wk-line-strong);
+    background: var(--wk-bg);
+    color: var(--wk-text);
+    font: inherit;
+  }
+  .nmc-modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 20px;
+  }
+  @keyframes nmc-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+</style>

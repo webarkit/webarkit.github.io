@@ -1,0 +1,68 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import { ECOSYSTEM } from '../../data/ecosystem';
+
+const tools = ECOSYSTEM.filter((i) => i.category === 'tool');
+---
+
+<BaseLayout
+  title="Tools"
+  description="Browser tools for WebAR content creation: create NFT markers from any image and inspect their feature points."
+>
+  <PageHero eyebrow="Tools" title="Tools for AR content">
+    Free, in-browser helpers for preparing image targets. Nothing is uploaded: your images stay on
+    your device.
+  </PageHero>
+  <section class="wk-container wk-tools">
+    <div class="wk-grid">
+      {
+        tools.map((t) => (
+          <article class="wk-card wk-tools__card">
+            <h2>{t.name}</h2>
+            <p>{t.description}</p>
+            <div class="wk-tools__cta">
+              {t.app && (
+                <a class="wk-btn wk-btn--primary" href={t.app}>
+                  Open tool
+                </a>
+              )}
+              {t.docs && (
+                <a class="wk-btn" href={t.docs}>
+                  Guide
+                </a>
+              )}
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .wk-tools {
+    padding-bottom: 96px;
+  }
+  .wk-tools__card {
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .wk-tools__card h2 {
+    font-size: 24px;
+    margin: 0;
+  }
+  .wk-tools__card p {
+    color: var(--wk-text-3);
+    margin: 0;
+    flex: 1 1 auto;
+  }
+  .wk-tools__cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 8px;
+  }
+</style>

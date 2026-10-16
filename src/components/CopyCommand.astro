@@ -1,0 +1,87 @@
+---
+interface Props {
+  command: string;
+}
+const { command } = Astro.props;
+---
+
+<div class="wk-cmd">
+  <span class="wk-cmd__prompt" aria-hidden="true">$</span>
+  <code>{command}</code>
+  <button type="button" class="wk-cmd__copy" data-copy={command} aria-label={`Copy: ${command}`}>
+    <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+      <rect x="8" y="8" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"
+      ></rect>
+      <path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" fill="none" stroke="currentColor"
+      stroke-width="2"></path>
+    </svg>
+    <span class="wk-cmd__done">Copied</span>
+  </button>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('.wk-cmd__copy').forEach((btn) =>
+    btn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(btn.dataset.copy ?? '');
+        btn.classList.add('is-done');
+        setTimeout(() => btn.classList.remove('is-done'), 1600);
+      } catch {}
+    }),
+  );
+</script>
+
+<style>
+  .wk-cmd {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    max-width: 460px;
+    font-family: var(--wk-font-mono);
+    font-size: 14px;
+    background: var(--wk-surface);
+    border: 1px solid var(--wk-line);
+    border-radius: 10px;
+    padding: 6px 6px 6px 16px;
+  }
+  .wk-cmd__prompt {
+    color: var(--wk-text-4);
+  }
+  code {
+    flex: 1 1 auto;
+    color: var(--wk-text);
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  .wk-cmd__copy {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 36px;
+    border: 0;
+    border-radius: 6px;
+    background: transparent;
+    color: var(--wk-text-3);
+    cursor: pointer;
+  }
+  .wk-cmd__copy:hover {
+    color: var(--wk-text);
+    background: var(--wk-surface-2);
+  }
+  .wk-cmd__done {
+    display: none;
+    position: absolute;
+    right: 0;
+    bottom: calc(100% + 6px);
+    font-size: 12px;
+    background: var(--wk-brand);
+    color: #fff;
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+  .wk-cmd__copy.is-done .wk-cmd__done {
+    display: block;
+  }
+</style>

@@ -1,0 +1,96 @@
+---
+import TrackingViewport from './TrackingViewport.astro';
+import CopyCommand from '../CopyCommand.astro';
+---
+
+<section class="wk-container wk-hero">
+  <div class="wk-hero__text">
+    <p class="wk-hero__badge"><span></span>Open-source WebAR · image tracking in the browser</p>
+    <h1>Augment any image, right in the browser.</h1>
+    <p class="wk-hero__lead">
+      WebARKit is an open-source toolkit for markerless WebAR: NFT image tracking compiled to
+      WebAssembly, computer-vision building blocks in Rust and TypeScript, and a node-based studio to
+      compose AR scenes without code.
+    </p>
+    <div class="wk-hero__cta">
+      <a class="wk-btn wk-btn--primary" href="/docs/">Get started</a>
+      <a class="wk-btn" href="/examples/">
+        <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+          <path
+            d="M3 8V5a2 2 0 0 1 2-2h3M16 3h3a2 2 0 0 1 2 2v3M21 16v3a2 2 0 0 1-2 2h-3M8 21H5a2 2 0 0 1-2-2v-3"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"></path>
+          <circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="2"></circle>
+        </svg>
+        Try a live demo
+      </a>
+    </div>
+    <CopyCommand command="npm i @webarkit/jsartoolkit-nft" />
+  </div>
+  <div class="wk-hero__visual">
+    <TrackingViewport />
+  </div>
+</section>
+
+<style>
+  .wk-hero {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 56px;
+    align-items: center;
+    padding-top: 88px;
+    padding-bottom: 72px;
+  }
+  .wk-hero__text {
+    flex: 1 1 460px;
+    min-width: 0;
+  }
+  .wk-hero__visual {
+    flex: 1 1 520px;
+    min-width: 0;
+  }
+  .wk-hero__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--wk-font-mono);
+    font-size: 13px;
+    color: var(--wk-text-3);
+    border: 1px solid var(--wk-line-strong);
+    border-radius: 999px;
+    padding: 5px 12px 5px 8px;
+    margin: 0;
+  }
+  .wk-hero__badge span {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--wk-accent);
+  }
+  h1 {
+    font-size: clamp(40px, 6vw, 60px);
+    line-height: 1.04;
+    letter-spacing: -0.03em;
+    margin: 24px 0 20px;
+  }
+  .wk-hero__lead {
+    font-size: 19px;
+    color: var(--wk-text-2);
+    margin: 0 0 32px;
+    max-width: 560px;
+  }
+  .wk-hero__cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+  @media (max-width: 600px) {
+    .wk-hero {
+      padding-top: 48px;
+      gap: 40px;
+    }
+  }
+</style>

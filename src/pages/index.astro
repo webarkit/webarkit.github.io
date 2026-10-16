@@ -1,0 +1,369 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/home/Hero.astro';
+import Studio from '../components/home/Studio.astro';
+import MarkerThumb from '../components/MarkerThumb.astro';
+import { ECOSYSTEM, CATEGORY_LABEL } from '../data/ecosystem';
+import { EXAMPLES } from '../data/examples';
+import { SITE } from '../data/site';
+import { getPosts, postUrl, formatDate } from '../lib/blog';
+
+const posts = (await getPosts()).slice(0, 4);
+const featured = EXAMPLES.slice(0, 4);
+
+const learn = [
+  {
+    title: 'Getting started',
+    text: 'From zero to a tracked image in about ten minutes.',
+    links: [
+      { label: 'Your first image-tracking app', href: '/docs/getting-started/first-app/' },
+      { label: 'Choosing a library', href: '/docs/getting-started/choosing-a-library/' },
+      { label: 'Hosting: HTTPS, camera and COOP/COEP', href: '/docs/getting-started/hosting/' },
+    ],
+  },
+  {
+    title: 'Tutorials',
+    text: 'Step-by-step guides with runnable code.',
+    links: [
+      { label: 'Make a good NFT marker', href: '/docs/tutorials/make-a-good-marker/' },
+      { label: 'ARnft with Three.js', href: '/docs/tutorials/arnft-threejs/' },
+    ],
+  },
+  {
+    title: 'Libraries & tools',
+    text: 'One page per package: install, API, examples.',
+    mono: true,
+    links: [
+      { label: 'jsartoolkitNFT', href: '/docs/libraries/jsartoolkitnft/' },
+      { label: 'ARnft', href: '/docs/libraries/arnft/' },
+      { label: 'NFT Marker Creator', href: '/docs/tools/nft-marker-creator/' },
+    ],
+  },
+];
+---
+
+<BaseLayout>
+  <Hero />
+
+  <!-- Ecosystem -->
+  <section class="wk-section" id="ecosystem">
+    <div class="wk-container">
+      <div class="wk-section-head">
+        <div>
+          <p class="wk-eyebrow">01 / Ecosystem</p>
+          <h2 class="wk-h2">One toolkit, from pixels to scenes</h2>
+        </div>
+        <p>
+          Pick the layer you need: ready-to-use tracking libraries, low-level CV building blocks, or
+          tools to prepare your markers.
+        </p>
+      </div>
+      <div class="wk-grid">
+        {
+          ECOSYSTEM.map((item) => (
+            <article class={`wk-card wk-eco wk-eco--${item.category}`}>
+              <p class="wk-kicker">
+                {CATEGORY_LABEL[item.category]}
+                {item.status === 'next' && ' · next'}
+              </p>
+              <h3>{item.name}</h3>
+              <p class="wk-eco__desc">{item.description}</p>
+              <div class="wk-eco__tags">
+                {item.tags.map((t) => (
+                  <span class="wk-tag">{t}</span>
+                ))}
+              </div>
+              <div class="wk-eco__links">
+                {item.app && <a href={item.app}>Open tool</a>}
+                {item.docs && <a href={item.docs}>Docs</a>}
+                {item.repo && <a href={item.repo}>GitHub</a>}
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <Studio />
+
+  <!-- Examples -->
+  <section class="wk-section">
+    <div class="wk-container">
+      <div class="wk-section-head">
+        <div>
+          <p class="wk-eyebrow">03 / Examples</p>
+          <h2 class="wk-h2">Run it on your phone in seconds</h2>
+        </div>
+        <a href="/examples/" class="wk-more">All examples →</a>
+      </div>
+      <div class="wk-grid">
+        {
+          featured.map((ex) => (
+            <a class="wk-card wk-ex" href={`/examples/#${ex.id}`}>
+              <MarkerThumb images={ex.markers.map((m) => m.image)} />
+              <span class="wk-ex__body">
+                <span class="wk-ex__lib">{ex.library}</span>
+                <span class="wk-ex__title">{ex.title}</span>
+                <span class="wk-ex__desc">{ex.description}</span>
+              </span>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Learn -->
+  <section class="wk-section wk-section--alt" id="learn">
+    <div class="wk-container">
+      <p class="wk-eyebrow">04 / Learn</p>
+      <h2 class="wk-h2 wk-learn__title">Docs and tutorials</h2>
+      <div class="wk-grid">
+        {
+          learn.map((col) => (
+            <div class="wk-card wk-learn">
+              <h3>{col.title}</h3>
+              <p>{col.text}</p>
+              <ul class={col.mono ? 'is-mono' : undefined}>
+                {col.links.map((l) => (
+                  <li>
+                    <a href={l.href}>{l.label}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog -->
+  <section class="wk-section">
+    <div class="wk-container">
+      <div class="wk-section-head">
+        <div>
+          <p class="wk-eyebrow">05 / Blog</p>
+          <h2 class="wk-h2">News from the project</h2>
+        </div>
+        <div class="wk-more-links">
+          <a href="/blog/" class="wk-more">All posts →</a>
+          <a href="/feed.xml" class="wk-more">RSS</a>
+        </div>
+      </div>
+      <ol class="wk-news">
+        {
+          posts.map((p) => (
+            <li>
+              <a href={postUrl(p)}>
+                <time datetime={p.data.date.toISOString()}>{formatDate(p.data.date)}</time>
+                <span class="wk-news__title">{p.data.title}</span>
+                <span class="wk-news__tags">
+                  {p.data.tags.map((t) => (
+                    <span class="wk-tag">{t}</span>
+                  ))}
+                </span>
+              </a>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <!-- Community -->
+  <section class="wk-community">
+    <div class="wk-container">
+      <div>
+        <h2>Build open WebAR with us</h2>
+        <p>
+          Developers, AR enthusiasts and visual artists welcome. Ask questions, share what you make,
+          send a PR.
+        </p>
+      </div>
+      <div class="wk-community__cta">
+        <a class="wk-btn wk-btn--light" href={SITE.discord}>Join Discord</a>
+        <a class="wk-btn wk-btn--ghost" href={SITE.github}>Contribute on GitHub</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .wk-eco {
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .wk-eco--cv .wk-kicker {
+    color: var(--wk-link);
+  }
+  .wk-eco--tool .wk-kicker {
+    color: var(--wk-green);
+  }
+  .wk-eco .wk-kicker {
+    margin: 0;
+  }
+  .wk-eco h3 {
+    font-family: var(--wk-font-mono);
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 0;
+    margin: 0;
+  }
+  .wk-eco__desc {
+    color: var(--wk-text-3);
+    font-size: 15px;
+    margin: 0;
+    flex: 1 1 auto;
+  }
+  .wk-eco__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .wk-eco__links {
+    display: flex;
+    gap: 16px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .wk-eco__links a {
+    padding: 6px 0;
+  }
+
+  .wk-more {
+    font-weight: 600;
+  }
+  .wk-more-links {
+    display: flex;
+    gap: 20px;
+  }
+
+  .wk-ex {
+    overflow: hidden;
+    color: var(--wk-text);
+    display: flex;
+    flex-direction: column;
+  }
+  .wk-ex:hover {
+    color: var(--wk-text);
+    border-color: var(--wk-line-node);
+  }
+  .wk-ex:hover .wk-ex__title {
+    color: var(--wk-link);
+  }
+  .wk-ex__body {
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .wk-ex__lib {
+    font-family: var(--wk-font-mono);
+    font-size: 12px;
+    color: var(--wk-accent);
+  }
+  .wk-ex__title {
+    font-size: 17px;
+    font-weight: 600;
+  }
+  .wk-ex__desc {
+    color: var(--wk-text-3);
+    font-size: 14px;
+  }
+
+  .wk-learn__title {
+    margin-bottom: 36px;
+  }
+  .wk-learn {
+    padding: 24px;
+  }
+  .wk-learn h3 {
+    font-size: 20px;
+    margin: 0 0 6px;
+  }
+  .wk-learn p {
+    color: var(--wk-text-3);
+    font-size: 15px;
+    margin: 0 0 16px;
+  }
+  .wk-learn ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 15px;
+  }
+  .wk-learn ul.is-mono {
+    font-family: var(--wk-font-mono);
+    font-size: 14px;
+  }
+
+  .wk-news {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-bottom: 1px solid var(--wk-line);
+  }
+  .wk-news a {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 32px;
+    padding: 20px 0;
+    border-top: 1px solid var(--wk-line);
+    color: var(--wk-text);
+  }
+  .wk-news a:hover {
+    color: var(--wk-link);
+  }
+  .wk-news time {
+    font-family: var(--wk-font-mono);
+    font-size: 14px;
+    color: var(--wk-text-3);
+    width: 120px;
+  }
+  .wk-news__title {
+    flex: 1 1 400px;
+    font-size: 19px;
+    font-weight: 600;
+  }
+  .wk-news__tags {
+    display: flex;
+    gap: 6px;
+  }
+
+  .wk-community {
+    background: var(--wk-brand);
+    color: #fff;
+  }
+  .wk-community > div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 64px;
+    padding-bottom: 64px;
+  }
+  .wk-community > div > div:first-child {
+    flex: 1 1 420px;
+  }
+  .wk-community h2 {
+    font-size: clamp(28px, 4vw, 36px);
+    margin: 0 0 10px;
+  }
+  .wk-community p {
+    color: #d5daf5;
+    margin: 0;
+  }
+  .wk-community__cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+</style>
