@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Page not found">
+  <section class="wk-container wk-404">
+    <p class="wk-eyebrow">404 · target lost</p>
+    <h1>We couldn’t track this page.</h1>
+    <p>It may have moved when we rebuilt the site. Try one of these:</p>
+    <div class="wk-404__links">
+      <a class="wk-btn wk-btn--primary" href="/">Home</a>
+      <a class="wk-btn" href="/docs/">Docs</a>
+      <a class="wk-btn" href="/examples/">Examples</a>
+      <a class="wk-btn" href="/blog/">Blog</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .wk-404 {
+    padding-top: 120px;
+    padding-bottom: 160px;
+  }
+  h1 {
+    font-size: clamp(36px, 6vw, 56px);
+    margin: 0 0 16px;
+  }
+  p:not(.wk-eyebrow) {
+    color: var(--wk-text-2);
+    font-size: 18px;
+  }
+  .wk-404__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 24px;
+  }
+</style>

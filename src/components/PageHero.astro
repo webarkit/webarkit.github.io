@@ -1,0 +1,39 @@
+---
+interface Props {
+  eyebrow?: string;
+  title: string;
+}
+const { eyebrow, title } = Astro.props;
+---
+
+<section class="wk-page-hero">
+  <div class="wk-container">
+    {eyebrow && <p class="wk-eyebrow">{eyebrow}</p>}
+    <h1>{title}</h1>
+    {
+      Astro.slots.has('default') && (
+        <p class="wk-page-hero__lead">
+          <slot />
+        </p>
+      )
+    }
+  </div>
+</section>
+
+<style>
+  .wk-page-hero > div {
+    padding-top: 64px;
+    padding-bottom: 40px;
+  }
+  h1 {
+    font-size: clamp(36px, 5vw, 52px);
+    margin: 0 0 14px;
+    letter-spacing: -0.03em;
+  }
+  .wk-page-hero__lead {
+    font-size: 18px;
+    color: var(--wk-text-2);
+    max-width: 640px;
+    margin: 0;
+  }
+</style>

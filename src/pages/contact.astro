@@ -1,0 +1,84 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import { SITE } from '../data/site';
+---
+
+<BaseLayout
+  title="Contact"
+  description="Contact the WebARKit team for information about the project, collaborations, or to join the team."
+>
+  <PageHero eyebrow="Contact" title="Get in touch">
+    Questions, ideas, collaborations — or you want to join the team. Collaborations are very welcome.
+  </PageHero>
+  <div class="wk-container wk-contact">
+    <form class="wk-card wk-contact__form" action="https://formspree.io/f/maylovzq" method="POST">
+      <label>
+        Your email
+        <input type="email" name="_replyto" autocomplete="email" required />
+      </label>
+      <label>
+        Your message
+        <textarea name="message" rows="6" required></textarea>
+      </label>
+      <button class="wk-btn wk-btn--primary" type="submit">Send</button>
+    </form>
+    <div class="wk-contact__other">
+      <h2>Other ways</h2>
+      <ul>
+        <li><a href={SITE.discord}>Discord server</a> — the fastest way to reach us.</li>
+        <li><a href={SITE.github}>GitHub</a> — issues and discussions on each repository.</li>
+        <li><a href={SITE.twitter}>X / Twitter</a> and <a href={SITE.facebook}>Facebook</a>.</li>
+      </ul>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .wk-contact {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    padding-bottom: 96px;
+  }
+  .wk-contact__form {
+    flex: 2 1 420px;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    align-items: flex-start;
+  }
+  label {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    width: 100%;
+    font-weight: 500;
+  }
+  input,
+  textarea {
+    width: 100%;
+    padding: 12px;
+    min-height: 44px;
+    border-radius: var(--wk-radius-sm);
+    border: 1px solid var(--wk-line-strong);
+    background: var(--wk-bg);
+    color: var(--wk-text);
+    font: inherit;
+  }
+  .wk-contact__other {
+    flex: 1 1 260px;
+  }
+  .wk-contact__other h2 {
+    font-size: 20px;
+    margin: 0 0 12px;
+  }
+  .wk-contact__other ul {
+    padding-left: 18px;
+    color: var(--wk-text-3);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+</style>

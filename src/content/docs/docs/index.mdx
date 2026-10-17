@@ -1,0 +1,52 @@
+---
+title: WebARKit documentation
+description: Learn to build markerless WebAR with WebARKit — image tracking in the browser with jsartoolkitNFT and ARnft.
+---
+
+import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
+
+WebARKit is a family of open-source libraries and tools for **markerless WebAR**: you pick an image (a poster, a postcard, a book cover), turn it into an **NFT marker**, and the browser tracks it through the phone camera so you can anchor 3D content on it.
+
+<CardGrid>
+  <LinkCard
+    title="Your first image-tracking app"
+    description="Run a working NFT demo locally and on your phone."
+    href="/docs/getting-started/first-app/"
+  />
+  <LinkCard
+    title="Choosing a library"
+    description="jsartoolkitNFT, ARnft, or the new Rust/TypeScript stack?"
+    href="/docs/getting-started/choosing-a-library/"
+  />
+  <LinkCard
+    title="Make a good NFT marker"
+    description="What makes an image track well, and how to check it."
+    href="/docs/tutorials/make-a-good-marker/"
+  />
+  <LinkCard
+    title="Hosting"
+    description="HTTPS, camera permissions and COOP/COEP for threaded builds."
+    href="/docs/getting-started/hosting/"
+  />
+</CardGrid>
+
+## How the pieces fit
+
+<CardGrid>
+  <Card title="Tracking libraries" icon="seti:javascript">
+    **jsartoolkitNFT** (WebAssembly tracking core) and **ARnft** (a higher-level library with Three.js rendering) are what you use today in an app.
+  </Card>
+  <Card title="CV core" icon="seti:rust">
+    **WebARKitLib-rs** (the tracking engine ported to Rust), **purecv** and **jsfeatNext** are the next-generation computer-vision building blocks, in Rust and TypeScript.
+  </Card>
+  <Card title="Tools" icon="setting">
+    **NFT Marker Creator** turns an image into a marker; **FeatureSet Display** shows its feature points.
+  </Card>
+  <Card title="Studio" icon="puzzle">
+    **WebARKit Studio** (in development) is a node editor to compose AR scenes without code.
+  </Card>
+</CardGrid>
+
+:::note[These docs are new]
+This section replaces scattered READMEs and is being filled in. If something is missing or wrong, use **Edit page** at the bottom, or ask on [Discord](https://discord.gg/2jK5sYSKbD).
+:::

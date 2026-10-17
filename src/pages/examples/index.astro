@@ -1,0 +1,350 @@
+---
+import QRCode from 'qrcode';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import MarkerThumb from '../../components/MarkerThumb.astro';
+import { EXAMPLES } from '../../data/examples';
+import { SITE } from '../../data/site';
+
+const libraries = [...new Set(EXAMPLES.map((e) => e.library))];
+
+const items = await Promise.all(
+  EXAMPLES.map(async (ex) => ({
+    ...ex,
+    qr: await QRCode.toString(new URL(ex.url, SITE.url).href, {
+      type: 'svg',
+      margin: 1,
+      color: { dark: '#0F1638', light: '#FFFFFF' },
+    }),
+  })),
+);
+---
+
+<BaseLayout
+  title="Examples"
+  description="Live WebAR demos built with jsartoolkitNFT, ARnft and webarkit-testing. Open them on your phone and point the camera at the marker."
+>
+  <div class="wk-gallery">
+    <aside class="wk-gallery__side">
+      <h1>Examples</h1>
+      <p class="wk-gallery__intro">
+        Pick a demo, start the camera and point it at the marker (print it or show it on another
+        screen).
+      </p>
+      <div class="wk-gallery__filters" role="group" aria-label="Filter by library">
+        <button type="button" class="wk-chip" aria-pressed="true" data-lib="">All</button>
+        {
+          libraries.map((l) => (
+            <button type="button" class="wk-chip" aria-pressed="false" data-lib={l}>
+              {l}
+            </button>
+          ))
+        }
+      </div>
+      <nav aria-label="Examples">
+        <ul class="wk-gallery__list">
+          {
+            items.map((ex) => (
+              <li data-lib={ex.library}>
+                <a href={`#${ex.id}`} data-id={ex.id}>
+                  <span class="wk-gallery__lib">{ex.library}</span>
+                  <span>{ex.title}</span>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+    </aside>
+
+    <div class="wk-gallery__main">
+      {
+        items.map((ex) => (
+          <section class="wk-demo" id={ex.id} aria-labelledby={`${ex.id}-title`}>
+            <div class="wk-demo__stage" data-url={ex.url} data-isolated={ex.isolated ? 'true' : undefined}>
+              <div class="wk-demo__poster">
+                <MarkerThumb images={ex.markers.map((m) => m.image)} height={180} />
+                {ex.isolated ? (
+                  <a class="wk-btn wk-btn--primary" href={ex.url} target="_blank" rel="noopener">
+                    Open demo in a new tab ↗
+                  </a>
+                ) : (
+                  <button type="button" class="wk-btn wk-btn--primary wk-demo__start">
+                    Start demo
+                  </button>
+                )}
+                <p class="wk-demo__privacy">
+                  The camera starts only when you press the button. Video never leaves your device.
+                </p>
+              </div>
+            </div>
+
+            <div class="wk-demo__info">
+              <div class="wk-card wk-demo__about">
+                <p class="wk-demo__lib">{ex.library}</p>
+                <h2 id={`${ex.id}-title`}>{ex.title}</h2>
+                <p>{ex.description}</p>
+                {ex.note && <p class="wk-demo__note">{ex.note}</p>}
+                <div class="wk-demo__links">
+                  <a href={ex.url} target="_blank" rel="noopener">
+                    Open full screen ↗
+                  </a>
+                  <a href={ex.source}>View source</a>
+                </div>
+              </div>
+              <div class="wk-card wk-demo__phone">
+                <div class="wk-demo__qr" set:html={ex.qr} aria-hidden="true" />
+                <div>
+                  <p>Scan to open on your phone, then point it at the marker.</p>
+                  <p class="wk-demo__markers">
+                    Marker{ex.markers.length > 1 ? 's' : ''}:{' '}
+                    {ex.markers.map((m, i) => (
+                      <>
+                        {i > 0 && ', '}
+                        <a href={m.image} download>
+                          {m.name}
+                        </a>
+                      </>
+                    ))}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+        ))
+      }
+    </div>
+  </div>
+</BaseLayout>
+
+<script>
+  const demos = [...document.querySelectorAll<HTMLElement>('.wk-demo')];
+  const links = [...document.querySelectorAll<HTMLAnchorElement>('.wk-gallery__list a')];
+  document.documentElement.classList.add('wk-gallery-js');
+
+  function stopAll() {
+    document.querySelectorAll('.wk-demo__stage iframe').forEach((f) => f.remove());
+    document.querySelectorAll<HTMLElement>('.wk-demo__poster').forEach((p) => (p.hidden = false));
+  }
+
+  function show(id: string) {
+    const target = demos.find((d) => d.id === id) ?? demos[0];
+    if (!target) return;
+    stopAll();
+    demos.forEach((d) => (d.hidden = d !== target));
+    links.forEach((a) => a.setAttribute('aria-current', String(a.dataset.id === target.id)));
+  }
+
+  document.querySelectorAll<HTMLButtonElement>('.wk-demo__start').forEach((btn) =>
+    btn.addEventListener('click', () => {
+      const stage = btn.closest<HTMLElement>('.wk-demo__stage');
+      if (!stage?.dataset.url) return;
+      const frame = document.createElement('iframe');
+      frame.src = stage.dataset.url;
+      frame.title = 'Live demo';
+      frame.allow = 'camera; xr-spatial-tracking; fullscreen; accelerometer; gyroscope';
+      stage.querySelector<HTMLElement>('.wk-demo__poster')!.hidden = true;
+      stage.append(frame);
+    }),
+  );
+
+  window.addEventListener('hashchange', () => show(location.hash.slice(1)));
+  show(location.hash.slice(1));
+
+  // Library filter
+  const chips = document.querySelectorAll<HTMLButtonElement>('.wk-gallery__filters .wk-chip');
+  chips.forEach((chip) =>
+    chip.addEventListener('click', () => {
+      const lib = chip.dataset.lib ?? '';
+      chips.forEach((c) => c.setAttribute('aria-pressed', String(c === chip)));
+      document.querySelectorAll<HTMLLIElement>('.wk-gallery__list li').forEach((li) => {
+        li.hidden = lib !== '' && li.dataset.lib !== lib;
+      });
+    }),
+  );
+</script>
+
+<style>
+  .wk-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1440px;
+    margin: 0 auto;
+    min-height: calc(100vh - 64px);
+  }
+  .wk-gallery__side {
+    flex: 1 1 280px;
+    max-width: 360px;
+    padding: 32px 20px;
+    border-right: 1px solid var(--wk-line);
+  }
+  .wk-gallery__side h1 {
+    font-size: 32px;
+    margin: 0 0 8px;
+  }
+  .wk-gallery__intro {
+    color: var(--wk-text-3);
+    font-size: 15px;
+    margin: 0 0 20px;
+  }
+  .wk-gallery__filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+  .wk-gallery__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .wk-gallery__list a {
+    display: block;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    color: var(--wk-text);
+    font-size: 15px;
+  }
+  .wk-gallery__list a:hover {
+    background: var(--wk-surface);
+    color: var(--wk-text);
+  }
+  .wk-gallery__list a[aria-current='true'] {
+    background: var(--wk-surface-2);
+    border-color: var(--wk-line-node);
+  }
+  .wk-gallery__lib {
+    display: block;
+    font-family: var(--wk-font-mono);
+    font-size: 11px;
+    color: var(--wk-accent);
+  }
+
+  .wk-gallery__main {
+    flex: 999 1 560px;
+    min-width: 0;
+    padding: 20px;
+  }
+  .wk-demo + .wk-demo {
+    margin-top: 48px;
+  }
+  :global(.wk-gallery-js) .wk-demo + .wk-demo {
+    margin-top: 0;
+  }
+  .wk-demo__stage {
+    position: relative;
+    height: min(62vh, 620px);
+    min-height: 420px;
+    border: 1px solid var(--wk-line-strong);
+    border-radius: var(--wk-radius);
+    background: var(--wk-camera);
+    overflow: hidden;
+  }
+  .wk-demo__stage :global(iframe) {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+    background: #000;
+  }
+  .wk-demo__poster {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 24px;
+    text-align: center;
+  }
+  /* `display: flex` above would otherwise win over the browser's `[hidden] { display: none }`,
+     leaving the poster on top of the running demo. */
+  .wk-demo__poster[hidden] {
+    display: none;
+  }
+  .wk-demo__poster :global(.wk-thumb) {
+    background: transparent;
+  }
+  .wk-demo__privacy {
+    color: #a3abcb;
+    font-size: 13px;
+    margin: 0;
+    max-width: 380px;
+  }
+  .wk-demo__info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    margin-top: 18px;
+  }
+  .wk-demo__about {
+    flex: 2 1 320px;
+    padding: 20px;
+  }
+  .wk-demo__lib {
+    font-family: var(--wk-font-mono);
+    font-size: 12px;
+    color: var(--wk-accent);
+    margin: 0 0 4px;
+  }
+  .wk-demo__about h2 {
+    font-size: 22px;
+    margin: 0 0 8px;
+  }
+  .wk-demo__about p {
+    color: var(--wk-text-3);
+    margin: 0 0 12px;
+  }
+  .wk-demo__about .wk-demo__note {
+    color: var(--wk-text-2);
+    font-size: 14px;
+  }
+  .wk-demo__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    font-weight: 600;
+    font-size: 14px;
+  }
+  .wk-demo__phone {
+    flex: 1 1 260px;
+    padding: 18px;
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    font-size: 14px;
+    color: var(--wk-text-3);
+  }
+  .wk-demo__phone p {
+    margin: 0 0 8px;
+  }
+  .wk-demo__qr {
+    width: 96px;
+    height: 96px;
+    flex: 0 0 auto;
+    border-radius: 6px;
+    overflow: hidden;
+    background: #fff;
+  }
+  .wk-demo__qr :global(svg) {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+  .wk-demo__markers a {
+    font-weight: 600;
+  }
+  @media (max-width: 700px) {
+    .wk-gallery__side {
+      max-width: none;
+      border-right: 0;
+      border-bottom: 1px solid var(--wk-line);
+    }
+    .wk-demo__stage {
+      height: 70vh;
+    }
+  }
+</style>

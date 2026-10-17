@@ -1,0 +1,170 @@
+---
+/**
+ * Hero illustration: the Pinball marker seen by a camera, with feature points,
+ * a tracked outline and the pose axes. Pure SVG, no camera access.
+ */
+import { getImage } from 'astro:assets';
+import pinball from '../../assets/markers/pinball.jpg';
+
+const img = await getImage({ src: pinball, width: 480, format: 'webp', quality: 70 });
+
+// Deterministic "feature points" spread over the marker.
+const points = Array.from({ length: 34 }, (_, i) => {
+  const x = ((i * 73) % 100) / 100;
+  const y = ((i * 37 + 11) % 100) / 100;
+  return { cx: -96 + x * 192, cy: -120 + y * 240 };
+});
+---
+
+<div class="wk-vp">
+  <div class="wk-vp__bar">
+    <span>demo / pinball.jpg</span>
+    <span class="wk-vp__status"><span class="wk-dot"></span>NFT · tracked</span>
+  </div>
+  <div class="wk-vp__frame">
+    <svg
+      viewBox="0 0 600 340"
+      preserveAspectRatio="xMidYMid slice"
+      role="img"
+      aria-label="Illustration: the Pinball image target detected in a camera frame, with feature points, a tracked outline and the pose axes"
+    >
+      <defs>
+        <radialGradient id="vp-vignette" cx="50%" cy="50%" r="70%">
+          <stop offset="60%" stop-color="#000" stop-opacity="0"></stop>
+          <stop offset="100%" stop-color="#000" stop-opacity="0.55"></stop>
+        </radialGradient>
+      </defs>
+      <rect width="600" height="340" fill="#141A3A"></rect>
+      <g transform="translate(300 172) rotate(-11) skewX(-8) scale(0.92 0.7)">
+        <image href={img.src} x="-96" y="-120" width="192" height="240" preserveAspectRatio="none" opacity="0.92"
+        ></image>
+        <g class="wk-vp__pts">
+          {points.map((p) => <circle cx={p.cx} cy={p.cy} r="2.6"></circle>)}
+        </g>
+        <rect class="wk-vp__outline" x="-102" y="-126" width="204" height="252" fill="none" stroke-width="2.5"
+        ></rect>
+        <path
+          class="wk-vp__corners"
+          d="M-102 -98V-126H-74M74 -126H102V-98M102 98V126H74M-74 126H-102V98"
+          fill="none"
+          stroke-width="5"
+          stroke-linecap="square"></path>
+        <g stroke-width="3.4" stroke-linecap="round">
+          <line x1="0" y1="0" x2="58" y2="0" stroke="#F06D6D"></line>
+          <line x1="0" y1="0" x2="0" y2="-58" stroke="#6DE0A0"></line>
+          <line x1="0" y1="0" x2="-32" y2="28" stroke="#7FA8FF"></line>
+        </g>
+      </g>
+      <rect width="600" height="340" fill="url(#vp-vignette)"></rect>
+    </svg>
+    <div class="wk-vp__hud">pose: matrix 3×4 · markers: 1</div>
+  </div>
+  <div class="wk-vp__nodes">
+    <div class="wk-node"><span>source</span>Camera</div>
+    <div class="wk-wire" aria-hidden="true"></div>
+    <div class="wk-node"><span>tracker</span>NFT Tracker</div>
+    <div class="wk-wire" aria-hidden="true"></div>
+    <div class="wk-node"><span>render</span>Three.js scene</div>
+    <a href="/examples/" class="wk-vp__more">Open the gallery →</a>
+  </div>
+</div>
+
+<style>
+  .wk-vp {
+    background: var(--wk-surface);
+    border: 1px solid var(--wk-line-strong);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  .wk-vp__bar {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--wk-line);
+    font-family: var(--wk-font-mono);
+    font-size: 12px;
+    color: var(--wk-text-3);
+  }
+  .wk-vp__status {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .wk-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--wk-accent);
+    animation: wk-pulse 2.4s ease-in-out infinite;
+  }
+  .wk-vp__frame {
+    position: relative;
+    aspect-ratio: 600 / 340;
+    background: var(--wk-camera);
+  }
+  .wk-vp__frame svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  .wk-vp__pts {
+    fill: #8c9bff;
+  }
+  .wk-vp__outline,
+  .wk-vp__corners {
+    stroke: #e0559a;
+  }
+  .wk-vp__hud {
+    position: absolute;
+    left: 14px;
+    bottom: 14px;
+    font-family: var(--wk-font-mono);
+    font-size: 12px;
+    color: #c9cee6;
+    background: rgba(9, 12, 26, 0.8);
+    border: 1px solid #26305a;
+    border-radius: 6px;
+    padding: 6px 10px;
+  }
+  .wk-vp__nodes {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 14px;
+    border-top: 1px solid var(--wk-line);
+    font-size: 13px;
+  }
+  .wk-node {
+    background: var(--wk-surface-2);
+    border: 1px solid var(--wk-line-node);
+    border-radius: 8px;
+    padding: 8px 12px;
+  }
+  .wk-node span {
+    display: block;
+    font-family: var(--wk-font-mono);
+    font-size: 11px;
+    color: var(--wk-link);
+  }
+  .wk-wire {
+    width: 28px;
+    height: 2px;
+    background: var(--wk-accent);
+  }
+  .wk-vp__more {
+    margin-left: auto;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  @keyframes wk-pulse {
+    50% {
+      opacity: 0.35;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .wk-dot {
+      animation: none;
+    }
+  }
+</style>
