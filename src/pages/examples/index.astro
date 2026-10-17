@@ -260,6 +260,11 @@ const items = await Promise.all(
     padding: 24px;
     text-align: center;
   }
+  /* `display: flex` above would otherwise win over the browser's `[hidden] { display: none }`,
+     leaving the poster on top of the running demo. */
+  .wk-demo__poster[hidden] {
+    display: none;
+  }
   .wk-demo__poster :global(.wk-thumb) {
     background: transparent;
   }
