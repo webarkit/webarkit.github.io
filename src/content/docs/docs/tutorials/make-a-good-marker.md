@@ -22,11 +22,11 @@ Good targets:
 2. Check the **confidence** stars: they estimate how well the image will track.
 3. Press **Generate**: you get three files, `.iset`, `.fset` and `.fset3`.
 
-Images above about 1000 px per side can take a long time in the browser; for those use the Node version, [Nft-Marker-Creator-App](https://github.com/webarkit/Nft-Marker-Creator-App).
+Images above about 1000 px per side can take a long time in the browser; for those use a threaded [command-line version](/docs/tools/nft-marker-creator/#command-line-versions) (Node.js, Python or Docker).
 
 ## Check it
 
-Load the three files in [FeatureSet Display](/tools/FeatureSet-Display/). Feature points should cover the whole image. Areas with no points are areas the tracker can't see: if the camera only frames those, tracking is lost.
+Load the three files in [FeatureSet Display](/tools/FeatureSet-Display/) ([how to read it](/docs/tools/featureset-display/)). Feature points should cover the whole image. Areas with no points are areas the tracker can't see: if the camera only frames those, tracking is lost.
 
 ## Print it
 
