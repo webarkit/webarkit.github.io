@@ -82,8 +82,9 @@ export const ECOSYSTEM: EcosystemItem[] = [
   {
     name: 'NFT Marker Creator',
     category: 'tool',
-    description: 'Turn any image into an NFT marker, entirely in the browser. Nothing is uploaded.',
-    tags: ['Web app'],
+    description:
+      'Turn any image into an NFT marker in your browser, nothing uploaded. Also a threaded Node.js app, a Python package and a Docker image.',
+    tags: ['Web app', 'Node.js', 'Python', 'Docker'],
     app: '/tools/NFT_Marker_Creator/',
     docs: '/docs/tools/nft-marker-creator/',
   },
