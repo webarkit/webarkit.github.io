@@ -35,6 +35,14 @@ npm run preview   # serve dist/
 | `public/brand/` | Logo files (SVG) and icons |
 | `netlify.toml` | Build settings, COOP/COEP headers, redirects from old URLs |
 
+## Contribute
+
+- Branch from `dev` and open pull requests against `dev`. `master` is production and is published by Netlify.
+- Write commit messages and PR titles as [Conventional Commits](https://www.conventionalcommits.org/) (`feat(home): add studio teaser`).
+- Run `npm run build` before each commit. Every PR gets a Netlify deploy preview to check.
+
+Using an AI coding agent? [AGENTS.md](AGENTS.md) holds the instructions it should follow (the same rules, plus layout, hosting and design). `CLAUDE.md`, `GEMINI.md` and `.github/copilot-instructions.md` point to it.
+
 ## Add a blog post
 
 Create `src/content/blog/2026-10-20-my-post.md`:
