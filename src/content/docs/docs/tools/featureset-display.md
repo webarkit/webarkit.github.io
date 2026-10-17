@@ -17,14 +17,14 @@ If the selection is not exactly one file of each type, the tool says so and noth
 
 ## How to read it
 
-- **Light green circles** are points from the FeatureSet (`.fset`).
-- **Small red circles** are points from FeatureSet3 (`.fset3`).
+- **Light green circles** are the **tracking** points, from the FeatureSet (`.fset`). Once the marker has been found, the tracker follows it by matching small patches around these points (AR2 tracking).
+- **Small red circles** are the **detection** points, from FeatureSet3 (`.fset3`). They are what the tracker matches against the camera frame to recognise the image and start tracking (KPM detection). There are usually many more of them than green ones.
 
 Look for:
 
-- **Coverage.** Points should be spread over the whole image. Areas without points can't be tracked on their own: if the camera frames only those, tracking is lost.
-- **No lopsided clusters.** Many points in one corner and almost none elsewhere make tracking fragile when that corner is out of view.
-- **Enough points overall.** If there are few, choose a more detailed image, or regenerate the marker with a higher feature density (the `-level` option of the [command-line versions](/docs/tools/nft-marker-creator/#command-line-versions)).
+- **Coverage.** Points should be spread over the whole image. Areas without points can't be used on their own: if the camera frames only those, the marker is not recognised or tracking is lost.
+- **No lopsided clusters.** Many points in one corner and almost none elsewhere make the marker fragile when that corner is out of view.
+- **Enough points of both colours.** Few red points mean the marker is hard to recognise when it comes into view; few green points mean the tracker has little to follow once it has found it. In both cases, choose a more detailed image, or regenerate the marker with a higher feature density (the `-level` option of the [command-line versions](/docs/tools/nft-marker-creator/#command-line-versions)).
 
 Open the browser console to see the marker's size, its DPI and the number of feature points.
 
