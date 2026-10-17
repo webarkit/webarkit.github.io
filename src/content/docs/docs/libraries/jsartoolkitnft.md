@@ -3,7 +3,7 @@ title: jsartoolkitNFT
 description: ARToolKit5 NFT image tracking compiled to WebAssembly, with TypeScript types.
 ---
 
-**jsartoolkitNFT** is ARToolKit5's natural-feature-tracking engine compiled to WebAssembly with Emscripten — a lighter jsartoolkit5 with only NFT markerless support. It has TypeScript types and runs in browsers and Node.js.
+**jsartoolkitNFT** is ARToolKit5's natural-feature-tracking engine compiled to WebAssembly with Emscripten — a lighter jsartoolkit5 with only NFT markerless support. It has TypeScript types and runs in browsers; Node.js support is experimental.
 
 - Repository: [webarkit/jsartoolkitNFT](https://github.com/webarkit/jsartoolkitNFT)
 - npm: [`@webarkit/jsartoolkit-nft`](https://www.npmjs.com/package/@webarkit/jsartoolkit-nft)
@@ -24,7 +24,7 @@ import { ARToolkitNFT, ARControllerNFT } from '@webarkit/jsartoolkit-nft';
 | `@webarkit/jsartoolkit-nft` | default (UMD in the browser, Node build in Node.js) |
 | `@webarkit/jsartoolkit-nft/simd` | WebAssembly SIMD build |
 | `@webarkit/jsartoolkit-nft/td` | threaded (pthread) build — experimental, needs [COOP/COEP](/docs/getting-started/hosting/) |
-| `@webarkit/jsartoolkit-nft/node` | Node.js build (CommonJS) |
+| `@webarkit/jsartoolkit-nft/node` | Node.js build (CommonJS) — experimental |
 
 ## The tracking loop
 

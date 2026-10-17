@@ -18,8 +18,8 @@ A JavaScript library built on jsartoolkitNFT. It creates the video and canvas fo
 
 ## jsartoolkitNFT
 
-The tracking core: ARToolKit5's NFT tracker compiled to WebAssembly, with TypeScript types. You feed it RGBA frames and get back the marker pose. It ships SIMD and threaded (pthread) builds, and runs in browsers and Node.js.
+The tracking core: ARToolKit5's NFT tracker compiled to WebAssembly, with TypeScript types. You feed it RGBA frames and get back the marker pose. It ships a SIMD build and an experimental threaded (pthread) build, and runs in browsers (Node.js support is experimental).
 
 ## The next-generation stack
 
-[WebARKitLib-rs](https://github.com/webarkit/WebARKitLib-rs), [purecv](https://github.com/webarkit/purecv) and [jsfeatNext](https://github.com/webarkit/jsfeatNext) are the new computer-vision building blocks, and the [webarkit monorepo](https://github.com/webarkit/webarkit) hosts the new NFT tracker with the `.wnft` marker format. They are under active development: great if you want to contribute, not yet the default for production apps.
+[WebARKitLib-rs](https://github.com/webarkit/WebARKitLib-rs) (the tracking engine ported to Rust), [purecv](https://github.com/webarkit/purecv) (OpenCV modules in pure Rust) and [jsfeatNext](https://github.com/webarkit/jsfeatNext) (jsfeat in TypeScript) are the new computer-vision building blocks, and the [webarkit monorepo](https://github.com/webarkit/webarkit) hosts the new NFT tracker with the `.wnft` marker format (pre-release, not on npm yet). They are under active development: great if you want to contribute, not yet the default for production apps.

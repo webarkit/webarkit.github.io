@@ -27,7 +27,7 @@ export const ECOSYSTEM: EcosystemItem[] = [
     name: 'jsartoolkitNFT',
     category: 'tracking',
     description:
-      'ARToolKit NFT image tracking compiled to WebAssembly, with TypeScript types and threaded builds.',
+      'ARToolKit NFT image tracking compiled to WebAssembly, with TypeScript types, SIMD and experimental threaded builds.',
     tags: ['WASM', 'TypeScript'],
     install: 'npm i @webarkit/jsartoolkit-nft',
     repo: 'https://github.com/webarkit/jsartoolkitNFT',
@@ -37,7 +37,7 @@ export const ECOSYSTEM: EcosystemItem[] = [
     name: 'ARnft',
     category: 'tracking',
     description:
-      'Event-driven NFT AR for the web, built on jsartoolkitNFT, with Three.js and A-Frame integrations.',
+      'A small JavaScript library for NFT WebAR, built on jsartoolkitNFT: tracking in a Web Worker, SIMD and Three.js rendering.',
     tags: ['TypeScript', 'Three.js'],
     install: 'npm i @webarkit/ar-nft',
     repo: 'https://github.com/webarkit/ARnft',
@@ -48,14 +48,15 @@ export const ECOSYSTEM: EcosystemItem[] = [
     category: 'tracking',
     status: 'next',
     description:
-      'The next-generation NFT tracker in the webarkit monorepo, with the new .wnft marker format.',
+      'Natural-feature tracking for planar image targets, in TypeScript, with the new .wnft marker format. Pre-release, not on npm yet.',
     tags: ['TypeScript', '.wnft'],
-    repo: 'https://github.com/webarkit/webarkit',
+    repo: 'https://github.com/webarkit/webarkit/tree/master/packages/nft-tracker',
   },
   {
     name: 'WebARKitLib-rs',
     category: 'cv',
-    description: 'The core tracking library, rewritten in Rust for native targets and WebAssembly.',
+    description:
+      'A memory-safe Rust port of WebARKitLib (ARToolKit): the full NFT tracking engine, for native targets and WebAssembly.',
     tags: ['Rust', 'WASM'],
     install: 'cargo add webarkitlib-rs',
     repo: 'https://github.com/webarkit/WebARKitLib-rs',
@@ -63,7 +64,8 @@ export const ECOSYSTEM: EcosystemItem[] = [
   {
     name: 'purecv',
     category: 'cv',
-    description: 'Pure-Rust computer-vision primitives, tuned for WebAssembly SIMD.',
+    description:
+      'A pure-Rust reimplementation of OpenCV modules: memory-safe, SIMD-accelerated, portable from WebAssembly to no_std.',
     tags: ['Rust', 'SIMD'],
     install: 'cargo add purecv',
     repo: 'https://github.com/webarkit/purecv',
@@ -72,7 +74,7 @@ export const ECOSYSTEM: EcosystemItem[] = [
     name: 'jsfeatNext',
     category: 'cv',
     description:
-      'A modern TypeScript take on jsfeat: feature detection and descriptors for the browser.',
+      'A TypeScript port of jsfeat: FAST and ORB features, matching, homography and pose estimation, with full type definitions.',
     tags: ['TypeScript'],
     install: 'npm i @webarkit/jsfeat-next',
     repo: 'https://github.com/webarkit/jsfeatNext',
