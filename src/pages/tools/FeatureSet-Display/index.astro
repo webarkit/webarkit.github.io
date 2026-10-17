@@ -17,6 +17,7 @@ import ToolLayout from '../../../layouts/ToolLayout.astro';
       Select all three files at once. Legend: <span class="fsd-swatch fsd-fset"></span> feature points
       (FeatureSet) · <span class="fsd-swatch fsd-fset3"></span> FeatureSet3 points.
     </p>
+    <p class="wk-tool__note fsd-status" id="fsdStatus" role="status"></p>
     <div id="cv" class="fsd-stage"></div>
   </div>
 
@@ -36,6 +37,13 @@ import ToolLayout from '../../../layouts/ToolLayout.astro';
     overflow: auto;
     background: var(--wk-camera);
     border-radius: var(--wk-radius-sm);
+  }
+  .fsd-status {
+    color: var(--wk-accent);
+    font-weight: 600;
+  }
+  .fsd-status:empty {
+    display: none;
   }
   .fsd-swatch {
     display: inline-block;
