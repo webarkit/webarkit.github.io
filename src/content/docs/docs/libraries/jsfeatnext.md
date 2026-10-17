@@ -10,7 +10,7 @@ FAST or YAPE detection → ORB descriptors → brute-force Hamming matching → 
 Its algorithms are checked against the original jsfeat with an automated test suite, every public class and method has TSDoc comments, and it comes as both a UMD and an ES module build.
 
 - Repository: [webarkit/jsfeatNext](https://github.com/webarkit/jsfeatNext)
-- npm: [`@webarkit/jsfeat-next`](https://www.npmjs.com/package/@webarkit/jsfeat-next)
+- npm: [`@webarkit/jsfeat-next`](https://www.npmjs.com/package/@webarkit/jsfeat-next), current version 1.1.0
 - Releases: [GitHub releases](https://github.com/webarkit/jsfeatNext/releases)
 - TypeScript examples: [jsfeatNext-examples](https://github.com/webarkit/jsfeatNext-examples)
 
