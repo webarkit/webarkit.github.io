@@ -27,7 +27,7 @@ export const ECOSYSTEM: EcosystemItem[] = [
     name: 'jsartoolkitNFT',
     category: 'tracking',
     description:
-      'ARToolKit NFT image tracking compiled to WebAssembly, with TypeScript types, SIMD and experimental threaded builds.',
+      'Emscripten port of WebARKitLib: NFT image tracking compiled to WebAssembly, with TypeScript types, SIMD and experimental threaded builds.',
     tags: ['WASM', 'TypeScript'],
     install: 'npm i @webarkit/jsartoolkit-nft',
     repo: 'https://github.com/webarkit/jsartoolkitNFT',

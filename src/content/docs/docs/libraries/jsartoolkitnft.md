@@ -1,9 +1,9 @@
 ---
 title: jsartoolkitNFT
-description: ARToolKit5 NFT image tracking compiled to WebAssembly, with TypeScript types.
+description: Emscripten port of WebARKitLib, NFT image tracking compiled to WebAssembly, with TypeScript types.
 ---
 
-**jsartoolkitNFT** is ARToolKit5's natural-feature-tracking engine compiled to WebAssembly with Emscripten — a lighter jsartoolkit5 with only NFT markerless support. It has TypeScript types and runs in browsers; Node.js support is experimental.
+**jsartoolkitNFT** is the Emscripten port of [WebARKitLib](https://github.com/webarkit/WebARKitLib) to JavaScript and TypeScript, compiled to WebAssembly: a modified, lighter version of jsartoolkit5 with only NFT (natural feature tracking) markerless support. It has TypeScript types and runs in browsers; Node.js support is experimental.
 
 - Repository: [webarkit/jsartoolkitNFT](https://github.com/webarkit/jsartoolkitNFT)
 - npm: [`@webarkit/jsartoolkit-nft`](https://www.npmjs.com/package/@webarkit/jsartoolkit-nft)
