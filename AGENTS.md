@@ -91,7 +91,7 @@ Full decisions are in [DESIGN.md](DESIGN.md). The ones agents break most often:
 
 ## Do not
 
-- Hand-edit the library builds in `public/dist/` and `public/examples/build/`. Replace them with a new build from the upstream repo.
+- Hand-edit the library builds in `public/dist/` and `public/examples/webarkit-testing/dist/`. Replace them with a new build from the upstream repo.
 - Commit `node_modules/`, `dist/` (the root one), `.astro/` or `.netlify/`.
 - Commit secrets, tokens or personal data.
 - Change `LICENSE` or `CODE_OF_CONDUCT.md`.

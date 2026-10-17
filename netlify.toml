@@ -42,6 +42,12 @@
   to = "/examples/#feature-trackers"
   status = 301
 
+# The jsartoolkit5 multi-NFT demo was replaced by the jsartoolkitNFT multi ES6 example.
+[[redirects]]
+  from = "/examples/multi_wasm_nft.html"
+  to = "/examples/#multi-nft"
+  status = 301
+
 # The Decap CMS admin edited the old Jekyll posts; blog posts are now Markdown in src/content/blog.
 [[redirects]]
   from = "/admin/*"

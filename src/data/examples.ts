@@ -67,11 +67,12 @@ export const EXAMPLES: Example[] = [
   },
   {
     id: 'multi-nft',
-    title: 'Multi-NFT in a worker',
-    library: 'jsartoolkit5',
-    description: 'Three markers and three 3D models, tracked in a Web Worker.',
-    url: '/examples/multi_wasm_nft.html',
-    source: `${SRC}/examples/multi_wasm_nft.html`,
+    title: 'Multi-NFT, ES6 modules',
+    library: 'jsartoolkitNFT',
+    description:
+      'Three NFT markers loaded together, each with its own 3D shape: a sphere on Pinball, a cube on Chalk and a cone on Kuva.',
+    url: '/examples/ARtoolkitNFT_multi_ES6_example.html',
+    source: `${SRC}/examples/ARtoolkitNFT_multi_ES6_example.html`,
     markers: [PINBALL, CHALK, KUVA],
   },
   {
