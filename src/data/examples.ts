@@ -33,7 +33,18 @@ const PINBALL: Marker = { name: 'Pinball', image: '/examples/Data/pinball.jpg' }
 const CHALK: Marker = { name: 'Chalk', image: '/examples/Data/chalk_multi.jpg' };
 const KUVA: Marker = { name: 'Kuva', image: '/examples/Data/kuva.jpg' };
 
+// Grouped by library, in alphabetical order: ARnft, jsartoolkitNFT, webarkit-testing.
+// The home page shows the first four.
 export const EXAMPLES: Example[] = [
+  {
+    id: 'arnft',
+    title: 'ARnft + Three.js',
+    library: 'ARnft',
+    description: 'A red cube on the Pinball image, driven by ARnft events.',
+    url: '/examples/arNFT_example.html',
+    source: `${SRC}/examples/arNFT_example.html`,
+    markers: [PINBALL],
+  },
   {
     id: 'nft-es6',
     title: 'NFT tracking, ES6 modules',
@@ -55,15 +66,6 @@ export const EXAMPLES: Example[] = [
     markers: [PINBALL],
     isolated: true,
     note: 'Opens in a new tab: threads need a cross-origin isolated page.',
-  },
-  {
-    id: 'arnft',
-    title: 'ARnft + Three.js',
-    library: 'ARnft',
-    description: 'A red cube on the Pinball image, driven by ARnft events.',
-    url: '/examples/arNFT_example.html',
-    source: `${SRC}/examples/arNFT_example.html`,
-    markers: [PINBALL],
   },
   {
     id: 'multi-nft',
@@ -94,6 +96,6 @@ export const EXAMPLES: Example[] = [
     url: '/examples/webarkit-testing/threejs_teblid_webcam_ES6_example.html',
     source: 'https://github.com/webarkit/webarkit-testing',
     markers: [PINBALL],
-    note: 'Works best on desktop for now.',
+    note: 'Works best on desktop for now. Hold the camera very close to the Pinball marker.',
   },
 ];
