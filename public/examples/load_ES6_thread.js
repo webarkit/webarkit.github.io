@@ -45,13 +45,15 @@ function load_thread(msg) {
 
     ar.addEventListener("lostNFTMarker", function (ev) {
       filter.reset();
+      // Without this the renderer keeps the last pose and the model stays on screen.
+      window.dispatchEvent(new CustomEvent("markerLost"));
     });
 
     ar.loadNFTMarker(
       msg.marker,
       function (id) {
         ar.trackNFTMarkerId(id);
-        let marker = ar.getNFTData(ar.id, 0);
+        let marker = ar.getNFTData(id);
         console.log("nftMarker data: ", marker);
         const markerInfos = new CustomEvent("markerInfos", {
           detail: { marker: marker },

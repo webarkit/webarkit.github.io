@@ -129,17 +129,36 @@ export default function start(
 
   let world;
 
-  const found = function () {
-    window.addEventListener("markerFound", function (ev) {
-      world = ev.detail.matrixGL_RH;
-    });
-  };
+  // Registered once: draw() runs every frame, so listeners added there pile up.
+  window.addEventListener("markerFound", function (ev) {
+    world = ev.detail.matrixGL_RH;
+  });
+  window.addEventListener("markerLost", function () {
+    world = null;
+  });
+  window.addEventListener("endLoading", function (ev) {
+    if (ev.detail.end === true) {
+      // removing loader page if present
+      const loader = document.getElementById("loading");
+      if (loader) {
+        loader.querySelector(".loading-text").innerText = "Start the tracking!";
+        setTimeout(function () {
+          loader.parentElement.removeChild(loader);
+        }, 2000);
+      } else {
+        console.log("No loader found");
+      }
+    }
+  });
 
   let lasttime = Date.now();
   let time = 0;
 
   const setCameraMatrix = function () {
-    const proj = camera_matrix;
+    // Scale a copy: this runs on every frame, so scaling camera_matrix itself
+    // would compound by ratioW/ratioH each frame whenever the camera frame is
+    // not 4:3 (typical on phones), until the model is projected out of view.
+    const proj = Array.from(camera_matrix);
     const ratioW = pw / w;
     const ratioH = ph / h;
     proj[0] *= ratioW;
@@ -159,7 +178,6 @@ export default function start(
     const dt = now - lasttime;
     time += dt;
     lasttime = now;
-    found();
     if (camera_matrix) {
       setCameraMatrix();
     }
@@ -168,30 +186,11 @@ export default function start(
       sphere.visible = false;
     } else {
       sphere.visible = true;
-      console.log(world);
       sphere.position.y = ((marker.height / marker.dpi) * 2.54 * 10) / 2.0;
       sphere.position.x = ((marker.width / marker.dpi) * 2.54 * 10) / 2.0;
       // set matrix of 'root' by detected 'world' matrix
       setMatrix(root.matrix, world);
     }
-    window.addEventListener("endLoading", function (ev) {
-      if (ev.detail.end === true) {
-        // removing loader page if present
-        const loader = document.getElementById("loading");
-        if (loader) {
-          loader.querySelector(".loading-text").innerText =
-            "Start the tracking!";
-          setTimeout(function () {
-            if (loader) {
-              loader.querySelector(".loading-text").innerText = "";
-              loader.querySelector("img").src = "";
-            }
-          }, 2000);
-        } else {
-          console.log("No loader found");
-        }
-      }
-    });
     renderer.render(scene, camera);
   };
 

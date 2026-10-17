@@ -11,7 +11,7 @@
       {
         "imports": {
           "three": "./Data/js/third_party/three.js/three.module.min.js",
-          "three/addons/": "./js/third_party/three.js/"
+          "three/addons/": "./Data/js/third_party/three.js/"
         }
       }
     </script>
@@ -39,6 +39,7 @@
       <canvas id="canvas"></canvas>
     </div>
     <script src="Data/js/third_party/three.js/stats.min.js"></script>
+    <script async src="../dist/ARToolkitNFT_td.js"></script>
     <script src="index.js"></script>
     <script src="../js/OneEuroFilter.js"></script>
     <script src="load_ES6_thread.js"></script>
@@ -47,32 +48,6 @@
     <script type="module">
       import start from "./threejs_wasm_thread.js";
 
-      function loadScript(src) {
-        return new Promise((resolve, reject) => {
-          const script = document.createElement("script");
-          script.src = src;
-          script.onload = resolve;
-          script.onerror = () =>
-            reject(new Error(`Failed to load script: ${src}`));
-          document.head.appendChild(script);
-        });
-      }
-
-      function ensureCrossOriginIsolation() {
-        if (window.crossOriginIsolated) return true;
-
-        const reloadKey = "artoolkit-threading-coep-reload";
-        if (!sessionStorage.getItem(reloadKey)) {
-          sessionStorage.setItem(reloadKey, "1");
-          window.location.reload();
-          return false;
-        }
-
-        throw new Error(
-          "Cross-origin isolation is still disabled. Threaded build cannot start.",
-        );
-      }
-
       /**
        * STATS
        */
@@ -80,16 +55,7 @@
       statsMain.showPanel(0); // 0: fps, 1: ms, 2: mb, 3+: custom
       document.getElementById("stats1").appendChild(statsMain.dom);
 
-      window.addEventListener("load", async () => {
-        try {
-          if (!ensureCrossOriginIsolation()) return;
-          await loadScript("../dist/ARToolkitNFT_td.js");
-          sessionStorage.removeItem("artoolkit-threading-coep-reload");
-        } catch (error) {
-          console.error(error);
-          return;
-        }
-
+      window.addEventListener("load", () => {
         console.log("init ARToolkitNFT...");
         initCamera()
           .then((video) => {
