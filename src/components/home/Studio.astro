@@ -1,13 +1,150 @@
 ---
-/** Teaser for WebARKit Studio, drawn as a small node graph. */
-const nodes = [
-  { id: 'cam', title: 'Camera', body: 'facing: environment', kind: 'source', x: 4, y: 14 },
-  { id: 'target', title: 'Image target', body: 'pinball.wnft', kind: 'data', x: 4, y: 58 },
-  { id: 'tracker', title: 'NFT Tracker', body: '→ pose · found / lost', kind: 'source', x: 41, y: 33 },
-  { id: 'model', title: 'GLTF model', body: 'duck.glb', kind: 'asset', x: 30, y: 74 },
-  { id: 'scene', title: 'Scene', body: 'Three.js', kind: 'out', x: 77, y: 18 },
-  { id: 'export', title: 'Export', body: 'static app', kind: 'out', x: 77, y: 62 },
+/**
+ * Teaser for WebARKit Studio: a small node graph drawn like the real editor
+ * (node names and ports follow webarkit-studio). It is one SVG, so it scales as a whole,
+ * and every wire is computed from the position of its two ports, so wires always touch
+ * the nodes they connect.
+ */
+type Socket = 'video' | 'dataset' | 'markers' | 'pose' | 'object' | 'scene';
+type Kind = 'source' | 'tracking' | 'scene' | 'output';
+
+interface Port {
+  id: string;
+  label: string;
+  type: Socket;
+}
+interface Row {
+  in?: Port;
+  out?: Port;
+  field?: [label: string, value: string];
+}
+interface GraphNode {
+  id: string;
+  title: string;
+  kind: Kind;
+  x: number;
+  y: number;
+  rows: Row[];
+}
+
+const W = 116; // node width
+const HEAD = 30; // header height
+const ROW = 22; // row height
+const PAD = 10; // space under the last row
+
+const nodes: GraphNode[] = [
+  {
+    id: 'camera',
+    title: 'Camera',
+    kind: 'source',
+    x: 6,
+    y: 34,
+    rows: [{ out: { id: 'video', label: 'Video', type: 'video' } }, { field: ['Facing', 'Back'] }],
+  },
+  {
+    id: 'dataset',
+    title: 'NFT Dataset',
+    kind: 'tracking',
+    x: 6,
+    y: 330,
+    rows: [{ out: { id: 'dataset', label: 'Dataset', type: 'dataset' } }, { field: ['Name', 'pinball'] }],
+  },
+  {
+    id: 'controller',
+    title: 'ARControllerNFT',
+    kind: 'tracking',
+    x: 154,
+    y: 176,
+    rows: [
+      {
+        in: { id: 'video', label: 'Video', type: 'video' },
+        out: { id: 'markers', label: 'Markers', type: 'markers' },
+      },
+      { in: { id: 'datasets', label: 'Datasets', type: 'dataset' } },
+    ],
+  },
+  {
+    id: 'select',
+    title: 'Select Marker',
+    kind: 'tracking',
+    x: 302,
+    y: 176,
+    rows: [
+      {
+        in: { id: 'markers', label: 'Markers', type: 'markers' },
+        out: { id: 'pose', label: 'Pose', type: 'pose' },
+      },
+      { field: ['Marker', 'pinball'] },
+    ],
+  },
+  {
+    id: 'primitive',
+    title: 'Primitive',
+    kind: 'scene',
+    x: 302,
+    y: 330,
+    rows: [{ out: { id: 'object', label: 'Object', type: 'object' } }, { field: ['Shape', 'Box'] }],
+  },
+  {
+    id: 'anchor',
+    title: 'Marker Anchor',
+    kind: 'scene',
+    x: 450,
+    y: 176,
+    rows: [
+      {
+        in: { id: 'pose', label: 'Pose', type: 'pose' },
+        out: { id: 'anchor', label: 'Anchor', type: 'scene' },
+      },
+      { in: { id: 'object', label: 'Object', type: 'object' } },
+    ],
+  },
+  {
+    id: 'view',
+    title: 'AR View',
+    kind: 'output',
+    x: 598,
+    y: 34,
+    rows: [
+      { in: { id: 'video', label: 'Video', type: 'video' } },
+      { in: { id: 'scene', label: 'Scene', type: 'scene' } },
+    ],
+  },
 ];
+
+// [from "node.port", to "node.port"]
+const links: [string, string][] = [
+  ['camera.video', 'controller.video'],
+  ['camera.video', 'view.video'],
+  ['dataset.dataset', 'controller.datasets'],
+  ['controller.markers', 'select.markers'],
+  ['select.pose', 'anchor.pose'],
+  ['primitive.object', 'anchor.object'],
+  ['anchor.anchor', 'view.scene'],
+];
+
+const height = (n: GraphNode) => HEAD + n.rows.length * ROW + PAD;
+
+// Position of every port, keyed "node.port" (centre of its socket).
+const ports = new Map<string, { x: number; y: number; type: Socket }>();
+for (const n of nodes) {
+  n.rows.forEach((row, i) => {
+    const y = n.y + HEAD + i * ROW + ROW / 2;
+    if (row.in) ports.set(`${n.id}.${row.in.id}`, { x: n.x, y, type: row.in.type });
+    if (row.out) ports.set(`${n.id}.${row.out.id}`, { x: n.x + W, y, type: row.out.type });
+  });
+}
+
+const wires = links.map(([from, to]) => {
+  const a = ports.get(from);
+  const b = ports.get(to);
+  if (!a || !b) throw new Error(`Studio graph: unknown port in ${from} -> ${to}`);
+  const k = Math.max(24, Math.abs(b.x - a.x) * 0.5);
+  return { d: `M${a.x} ${a.y} C${a.x + k} ${a.y} ${b.x - k} ${b.y} ${b.x} ${b.y}`, type: a.type };
+});
+
+const VIEW_W = 720;
+const VIEW_H = Math.max(...nodes.map((n) => n.y + height(n))) + 26;
 ---
 
 <section id="studio" class="wk-section wk-section--alt">
@@ -23,22 +160,62 @@ const nodes = [
       <a class="wk-btn" href="https://github.com/webarkit/webarkit-studio">Follow on GitHub</a>
     </div>
 
-    <div class="wk-studio__graph" role="img" aria-label="Example Studio graph: Camera and Image target feed an NFT Tracker, which drives a Three.js scene with a GLTF model, then exports a static app">
-      <svg viewBox="0 0 720 380" preserveAspectRatio="none" aria-hidden="true">
-        <path d="M196 92 C 260 92, 250 168, 300 168" class="w-a"></path>
-        <path d="M196 262 C 260 262, 250 196, 300 196" class="w-b"></path>
-        <path d="M480 182 C 520 182, 520 104, 556 104" class="w-c"></path>
-        <path d="M480 182 C 520 182, 520 270, 556 270" class="w-c"></path>
-        <path d="M376 300 C 440 300, 500 120, 556 116" class="w-d"></path>
+    <div
+      class="wk-studio__graph"
+      role="img"
+      aria-label="Example Studio graph: a Camera and an NFT Dataset feed an ARControllerNFT tracker; Select Marker passes the marker pose to a Marker Anchor, which places a Primitive in the AR View"
+    >
+      <svg viewBox={`0 0 ${VIEW_W} ${VIEW_H}`} aria-hidden="true" focusable="false">
+        <g class="wires">
+          {wires.map((w) => <path d={w.d} class={`wire s-${w.type}`} />)}
+        </g>
+        {
+          nodes.map((n) => (
+            <g class={`node k-${n.kind}`}>
+              <rect class="node__body" x={n.x} y={n.y} width={W} height={height(n)} rx="8" />
+              <rect class="node__tag" x={n.x + 10} y={n.y} width="22" height="3" rx="1.5" />
+              <text class="node__title" x={n.x + 10} y={n.y + 19}>
+                {n.title}
+              </text>
+              <line class="node__rule" x1={n.x} y1={n.y + HEAD} x2={n.x + W} y2={n.y + HEAD} />
+              {n.rows.map((row, i) => {
+                const cy = n.y + HEAD + i * ROW + ROW / 2;
+                return (
+                  <>
+                    {row.in && (
+                      <>
+                        <text class="node__label" x={n.x + 11} y={cy + 3.5}>
+                          {row.in.label}
+                        </text>
+                        <circle class={`socket s-${row.in.type}`} cx={n.x} cy={cy} r="4.5" />
+                      </>
+                    )}
+                    {row.out && (
+                      <>
+                        <text class="node__label node__label--out" x={n.x + W - 11} y={cy + 3.5}>
+                          {row.out.label}
+                        </text>
+                        <circle class={`socket s-${row.out.type}`} cx={n.x + W} cy={cy} r="4.5" />
+                      </>
+                    )}
+                    {row.field && (
+                      <>
+                        <text class="node__label" x={n.x + 11} y={cy + 3.5}>
+                          {row.field[0]}
+                        </text>
+                        <rect class="node__input" x={n.x + W - 58} y={cy - 7} width="50" height="14" rx="3" />
+                        <text class="node__value" x={n.x + W - 54} y={cy + 3}>
+                          {row.field[1]}
+                        </text>
+                      </>
+                    )}
+                  </>
+                );
+              })}
+            </g>
+          ))
+        }
       </svg>
-      {
-        nodes.map((n) => (
-          <div class={`wk-gnode wk-gnode--${n.kind}`} style={`left:${n.x}%;top:${n.y}%`} aria-hidden="true">
-            <div class="wk-gnode__head">{n.title}</div>
-            <div class="wk-gnode__body">{n.body}</div>
-          </div>
-        ))
-      }
     </div>
   </div>
 </section>
@@ -71,9 +248,16 @@ const nodes = [
     margin: 0 0 24px;
   }
   .wk-studio__graph {
+    /* Socket and wire colours, one per type, derived from the site tokens. */
+    --s-video: var(--wk-link);
+    --s-dataset: var(--wk-accent);
+    --s-markers: var(--wk-green);
+    --s-pose: color-mix(in srgb, var(--wk-link) 55%, var(--wk-accent));
+    --s-object: color-mix(in srgb, var(--wk-green) 55%, var(--wk-link));
+    --s-scene: color-mix(in srgb, var(--wk-accent) 55%, var(--wk-text-3));
+
     flex: 2 1 540px;
     min-width: 0;
-    position: relative;
     height: 380px;
     border: 1px solid var(--wk-line-strong);
     border-radius: 16px;
@@ -81,65 +265,103 @@ const nodes = [
     background-image: radial-gradient(var(--wk-line-strong) 1px, transparent 1px);
     background-size: 22px 22px;
     overflow: hidden;
+    padding: 12px;
   }
   .wk-studio__graph svg {
-    position: absolute;
-    inset: 0;
+    display: block;
     width: 100%;
     height: 100%;
   }
-  .wk-studio__graph path {
+
+  .wire {
     fill: none;
-    stroke-width: 2.5;
-    vector-effect: non-scaling-stroke;
+    stroke-width: 2;
+    stroke-linecap: round;
   }
-  .w-a {
-    stroke: var(--wk-link);
+  .node__body {
+    fill: var(--wk-surface-2);
+    stroke: var(--wk-line-node);
+    stroke-width: 1;
   }
-  .w-b {
-    stroke: var(--wk-accent);
+  .node__rule {
+    stroke: var(--wk-line-node);
+    stroke-width: 1;
   }
-  .w-c {
-    stroke: var(--wk-green);
-  }
-  .w-d {
-    stroke: #c98af0;
-  }
-  .wk-gnode {
-    position: absolute;
-    width: 22%;
-    min-width: 110px;
-    background: var(--wk-surface-2);
-    border: 1px solid var(--wk-line-node);
-    border-radius: 10px;
-    font-size: 13px;
-    overflow: hidden;
-  }
-  .wk-gnode__head {
-    padding: 6px 10px;
+  .node__title {
+    font-family: var(--wk-font-body);
+    font-size: 12px;
     font-weight: 600;
-    color: #fff;
-    background: var(--wk-brand);
+    fill: var(--wk-text);
   }
-  .wk-gnode--data .wk-gnode__head {
-    background: #5e2140;
+  .node__label {
+    font-family: var(--wk-font-body);
+    font-size: 11px;
+    fill: var(--wk-text-3);
   }
-  .wk-gnode--asset .wk-gnode__head {
-    background: #4a2a63;
+  .node__label--out {
+    text-anchor: end;
   }
-  .wk-gnode--out .wk-gnode__head {
-    background: #1d4a36;
+  .node__input {
+    fill: var(--wk-bg);
+    stroke: var(--wk-line-node);
+    stroke-width: 1;
   }
-  .wk-gnode__body {
-    padding: 8px 10px;
-    color: var(--wk-text-3);
+  .node__value {
+    font-family: var(--wk-font-mono);
+    font-size: 9.5px;
+    fill: var(--wk-text);
   }
+  .socket {
+    stroke: var(--wk-surface-2);
+    stroke-width: 1.5;
+  }
+  .k-source .node__tag {
+    fill: var(--wk-link);
+  }
+  .k-tracking .node__tag {
+    fill: var(--wk-accent);
+  }
+  .k-scene .node__tag {
+    fill: var(--s-pose);
+  }
+  .k-output .node__tag {
+    fill: var(--wk-green);
+  }
+  .wire.s-video,
+  .socket.s-video {
+    --c: var(--s-video);
+  }
+  .wire.s-dataset,
+  .socket.s-dataset {
+    --c: var(--s-dataset);
+  }
+  .wire.s-markers,
+  .socket.s-markers {
+    --c: var(--s-markers);
+  }
+  .wire.s-pose,
+  .socket.s-pose {
+    --c: var(--s-pose);
+  }
+  .wire.s-object,
+  .socket.s-object {
+    --c: var(--s-object);
+  }
+  .wire.s-scene,
+  .socket.s-scene {
+    --c: var(--s-scene);
+  }
+  .wire {
+    stroke: var(--c);
+  }
+  .socket {
+    fill: var(--c);
+  }
+
   @media (max-width: 600px) {
     .wk-studio__graph {
       height: 300px;
-    }
-    .wk-gnode {
-      font-size: 11px;
+      padding: 8px;
     }
   }
 </style>
