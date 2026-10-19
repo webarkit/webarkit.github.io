@@ -37,7 +37,7 @@ npm run preview   # serve dist/
 
 ## Contribute
 
-- Branch from `dev` and open pull requests against `dev`. `master` is production and is published by Netlify.
+- Branch from `dev` and open pull requests against `dev`. `master` is production and is published by Netlify. For now, while the Astro redesign is not in `dev` yet, use `feat/astro-redesign` instead of `dev`, for both.
 - Write commit messages and PR titles as [Conventional Commits](https://www.conventionalcommits.org/) (`feat(home): add studio teaser`).
 - Run `npm run build` before each commit. Every PR gets a Netlify deploy preview to check.
 

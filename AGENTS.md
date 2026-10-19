@@ -44,7 +44,8 @@ There is no test or lint script: **`npm run build` is the check.** It must finis
 
 ## Git workflow
 
-- **Branch from `dev` and open pull requests against `dev`.** `master` is production: only maintainers merge `dev` into it. Never push to `dev` or `master` directly.
+- **For now, while the redesign is not in `dev` yet:** the Astro site lives on the integration branch `feat/astro-redesign`. Branch from `feat/astro-redesign` and open pull requests against it. Remove this bullet once the maintainer has merged that branch into `dev`.
+- **Normal rule: branch from `dev` and open pull requests against `dev`.** `master` is production: only maintainers merge `dev` into it. Never push to `feat/astro-redesign`, `dev` or `master` directly.
 - `dev` should always contain everything that is in `master`. If `origin/dev` is behind `origin/master`, tell the maintainer instead of working around it.
 - Name branches `type/short-description`, for example `feat/studio-page` or `fix/mobile-nav`.
 - Continuing on an open PR (for example a long-lived feature branch): keep committing to that branch.
