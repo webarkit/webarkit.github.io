@@ -51,6 +51,7 @@ export const ECOSYSTEM: EcosystemItem[] = [
       'Natural-feature tracking for planar image targets, in TypeScript, with the new .wnft marker format. Pre-release, not on npm yet.',
     tags: ['TypeScript', '.wnft'],
     repo: 'https://github.com/webarkit/webarkit/tree/master/packages/nft-tracker',
+    docs: '/docs/libraries/nft-tracker/',
   },
   {
     name: 'WebARKitLib-rs',
@@ -60,6 +61,7 @@ export const ECOSYSTEM: EcosystemItem[] = [
     tags: ['Rust', 'WASM'],
     install: 'cargo add webarkitlib-rs',
     repo: 'https://github.com/webarkit/WebARKitLib-rs',
+    docs: '/docs/libraries/webarkitlib-rs/',
   },
   {
     name: 'purecv',
@@ -69,6 +71,7 @@ export const ECOSYSTEM: EcosystemItem[] = [
     tags: ['Rust', 'SIMD'],
     install: 'cargo add purecv',
     repo: 'https://github.com/webarkit/purecv',
+    docs: '/docs/libraries/purecv/',
   },
   {
     name: 'jsfeatNext',
@@ -78,6 +81,7 @@ export const ECOSYSTEM: EcosystemItem[] = [
     tags: ['TypeScript'],
     install: 'npm i @webarkit/jsfeat-next',
     repo: 'https://github.com/webarkit/jsfeatNext',
+    docs: '/docs/libraries/jsfeatnext/',
   },
   {
     name: 'NFT Marker Creator',
