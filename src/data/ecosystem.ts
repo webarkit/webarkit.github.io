@@ -28,7 +28,7 @@ export const ECOSYSTEM: EcosystemItem[] = [
     category: 'tracking',
     description:
       'Emscripten port of WebARKitLib: NFT image tracking compiled to WebAssembly, with TypeScript types, SIMD and experimental threaded builds.',
-    tags: ['WASM', 'TypeScript'],
+    tags: ['WASM', 'TypeScript', 'Python'],
     install: 'npm i @webarkit/jsartoolkit-nft',
     repo: 'https://github.com/webarkit/jsartoolkitNFT',
     docs: '/docs/libraries/jsartoolkitnft/',
@@ -56,6 +56,7 @@ export const ECOSYSTEM: EcosystemItem[] = [
   {
     name: 'WebARKitLib-rs',
     category: 'cv',
+    status: 'experimental',
     description:
       'A memory-safe Rust port of WebARKitLib (ARToolKit): the full NFT tracking engine, for native targets and WebAssembly.',
     tags: ['Rust', 'WASM'],
@@ -66,6 +67,7 @@ export const ECOSYSTEM: EcosystemItem[] = [
   {
     name: 'purecv',
     category: 'cv',
+    status: 'experimental',
     description:
       'A pure-Rust reimplementation of OpenCV modules: memory-safe, SIMD-accelerated, portable from WebAssembly to no_std.',
     tags: ['Rust', 'SIMD'],
