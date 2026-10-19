@@ -64,7 +64,7 @@ const learn = [
             <article class={`wk-card wk-eco wk-eco--${item.category}`}>
               <p class="wk-kicker">
                 {CATEGORY_LABEL[item.category]}
-                {item.status === 'next' && ' · next'}
+                {item.status && <span class="wk-eco__status"> · {item.status}</span>}
               </p>
               <h3>{item.name}</h3>
               <p class="wk-eco__desc">{item.description}</p>
@@ -205,6 +205,9 @@ const learn = [
   }
   .wk-eco .wk-kicker {
     margin: 0;
+  }
+  .wk-eco__status {
+    color: var(--wk-text-3);
   }
   .wk-eco h3 {
     font-family: var(--wk-font-mono);
