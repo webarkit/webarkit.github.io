@@ -40,7 +40,7 @@ A JavaScript library built on jsartoolkitNFT. It creates the video and canvas fo
 
 ## jsartoolkitNFT
 
-The tracking core: an Emscripten port of [WebARKitLib](https://github.com/webarkit/WebARKitLib), compiled to WebAssembly, with TypeScript types. You feed it RGBA frames and get back the marker pose. It ships a SIMD build and an experimental threaded (pthread) build, and runs in browsers (Node.js support is experimental).
+The tracking core: an Emscripten port of [WebARKitLib](https://github.com/webarkit/WebARKitLib), compiled to WebAssembly, with TypeScript types. You feed it RGBA frames and get back the marker pose. It ships a SIMD build and an experimental threaded (pthread) build, and runs in browsers (Node.js support is experimental). There are also experimental [Python bindings](/docs/libraries/jsartoolkitnft/#python-bindings), on PyPI as `artoolkitnft`.
 
 ## The next-generation stack
 
