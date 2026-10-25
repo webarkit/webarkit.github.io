@@ -1,0 +1,68 @@
+---
+/** A marker image drawn as a "tracked" thumbnail (outline + corners in the accent colour). */
+import { getImage } from 'astro:assets';
+import pinball from '../assets/markers/pinball.jpg';
+import chalk from '../assets/markers/chalk_multi.jpg';
+import kuva from '../assets/markers/kuva.jpg';
+
+const SOURCES: Record<string, ImageMetadata> = {
+  '/examples/Data/pinball.jpg': pinball,
+  '/examples/Data/chalk_multi.jpg': chalk,
+  '/examples/Data/kuva.jpg': kuva,
+};
+
+interface Props {
+  images: string[];
+  height?: number;
+}
+const { images, height = 150 } = Astro.props;
+const thumbs = await Promise.all(
+  images
+    .map((src) => SOURCES[src])
+    .filter(Boolean)
+    .map((src) => getImage({ src, height: height * 2, format: 'webp', quality: 70 })),
+);
+---
+
+<div class="wk-thumb" style={`height:${height}px`} aria-hidden="true">
+  {
+    thumbs.map((t) => (
+      <span class="wk-thumb__img">
+        <img src={t.src} width={t.attributes.width} height={t.attributes.height} alt="" loading="lazy" decoding="async" />
+      </span>
+    ))
+  }
+</div>
+
+<style>
+  .wk-thumb {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    background: var(--wk-camera);
+    padding: 16px;
+    overflow: hidden;
+  }
+  .wk-thumb__img {
+    position: relative;
+    height: 100%;
+    min-width: 0;
+    display: flex;
+    transform: perspective(500px) rotateX(14deg) rotateZ(-4deg);
+  }
+  .wk-thumb__img img {
+    height: 100%;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+    display: block;
+    opacity: 0.9;
+  }
+  .wk-thumb__img::after {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border: 2px solid #e0559a;
+  }
+</style>

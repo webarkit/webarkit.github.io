@@ -1,0 +1,128 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import { getPosts, postUrl, formatDate } from '../../lib/blog';
+
+const posts = await getPosts();
+const tags = [...new Set(posts.flatMap((p) => p.data.tags))].sort();
+---
+
+<BaseLayout
+  title="Blog"
+  description="News from the WebARKit project: releases, experiments and community updates about open-source WebAR."
+>
+  <PageHero eyebrow="Blog" title="News from the project">
+    Releases, experiments and community updates. Subscribe via <a href="/feed.xml">RSS</a>.
+  </PageHero>
+
+  <section class="wk-container wk-blog">
+    {
+      tags.length > 0 && (
+        <div class="wk-blog__tags" role="group" aria-label="Filter by tag">
+          <button type="button" class="wk-chip" aria-pressed="true" data-tag="">
+            All
+          </button>
+          {tags.map((t) => (
+            <button type="button" class="wk-chip" aria-pressed="false" data-tag={t}>
+              {t}
+            </button>
+          ))}
+        </div>
+      )
+    }
+
+    <ol class="wk-blog__list">
+      {
+        posts.map((post) => (
+          <li data-tags={post.data.tags.join(' ')}>
+            <a href={postUrl(post)} class="wk-blog__item">
+              <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
+              <span class="wk-blog__body">
+                <span class="wk-blog__title">{post.data.title}</span>
+                <span class="wk-blog__desc">{post.data.description}</span>
+              </span>
+              <span class="wk-blog__chips">
+                {post.data.tags.map((t) => (
+                  <span class="wk-tag">{t}</span>
+                ))}
+              </span>
+            </a>
+          </li>
+        ))
+      }
+    </ol>
+  </section>
+</BaseLayout>
+
+<script>
+  const chips = document.querySelectorAll<HTMLButtonElement>('.wk-blog__tags .wk-chip');
+  const items = document.querySelectorAll<HTMLLIElement>('.wk-blog__list > li');
+  chips.forEach((chip) =>
+    chip.addEventListener('click', () => {
+      const tag = chip.dataset.tag ?? '';
+      chips.forEach((c) => c.setAttribute('aria-pressed', String(c === chip)));
+      items.forEach((li) => {
+        const tags = (li.dataset.tags ?? '').split(' ');
+        li.hidden = tag !== '' && !tags.includes(tag);
+      });
+    }),
+  );
+</script>
+
+<style>
+  .wk-blog {
+    padding-bottom: 96px;
+  }
+  .wk-blog__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+  .wk-blog__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-bottom: 1px solid var(--wk-line);
+  }
+  .wk-blog__item {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 32px;
+    padding: 22px 0;
+    border-top: 1px solid var(--wk-line);
+    color: var(--wk-text);
+  }
+  .wk-blog__item:hover {
+    color: var(--wk-text);
+  }
+  .wk-blog__item:hover .wk-blog__title {
+    color: var(--wk-link);
+  }
+  .wk-blog__item time {
+    font-family: var(--wk-font-mono);
+    font-size: 14px;
+    color: var(--wk-text-3);
+    width: 120px;
+    padding-top: 3px;
+  }
+  .wk-blog__body {
+    flex: 1 1 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .wk-blog__title {
+    font-size: 19px;
+    font-weight: 600;
+  }
+  .wk-blog__desc {
+    color: var(--wk-text-3);
+    font-size: 15px;
+  }
+  .wk-blog__chips {
+    display: flex;
+    gap: 6px;
+    align-items: flex-start;
+  }
+</style>

@@ -1,0 +1,76 @@
+---
+/**
+ * Wrapper for the in-browser tools under /tools/. The tool scripts live in
+ * public/tools/<Tool>/ and are loaded with relative URLs, so these pages must be
+ * served from /tools/<Tool>/ (trailing slash).
+ */
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  docs?: string;
+}
+const { title, description, docs } = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+  <div class="wk-container wk-tool">
+    <header class="wk-tool__head">
+      <a href="/tools/" class="wk-tool__back">← All tools</a>
+      <h1>{title}</h1>
+      <p>{description}</p>
+      {docs && <a href={docs}>How to use this tool →</a>}
+    </header>
+    <slot />
+  </div>
+</BaseLayout>
+
+<style is:global>
+  .wk-tool {
+    padding-top: 48px;
+    padding-bottom: 96px;
+  }
+  .wk-tool__head {
+    max-width: 720px;
+    margin-bottom: 32px;
+  }
+  .wk-tool__back {
+    font-size: 14px;
+  }
+  .wk-tool__head h1 {
+    font-size: clamp(32px, 5vw, 44px);
+    margin: 18px 0 10px;
+  }
+  .wk-tool__head p {
+    color: var(--wk-text-2);
+    font-size: 17px;
+    margin: 0 0 12px;
+  }
+  .wk-tool__panel {
+    background: var(--wk-surface);
+    border: 1px solid var(--wk-line);
+    border-radius: var(--wk-radius);
+    padding: 24px;
+  }
+  .wk-tool__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .wk-tool .wk-btn[disabled] {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+  .wk-tool__note {
+    color: var(--wk-text-3);
+    font-size: 14px;
+  }
+  .wk-tool__note strong {
+    color: var(--wk-accent);
+  }
+  .wk-tool canvas {
+    max-width: 100%;
+  }
+</style>

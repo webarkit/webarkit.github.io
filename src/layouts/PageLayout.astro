@@ -1,0 +1,25 @@
+---
+/** Layout for simple Markdown pages in src/pages (project, about us, contact). */
+import BaseLayout from './BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+
+interface Props {
+  frontmatter: { title: string; eyebrow?: string; subtitle?: string; description?: string };
+}
+const { frontmatter } = Astro.props;
+---
+
+<BaseLayout title={frontmatter.title} description={frontmatter.description}>
+  <PageHero eyebrow={frontmatter.eyebrow} title={frontmatter.title}>{frontmatter.subtitle}</PageHero>
+  <div class="wk-container wk-page">
+    <div class="wk-prose">
+      <slot />
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .wk-page {
+    padding-bottom: 96px;
+  }
+</style>

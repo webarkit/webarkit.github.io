@@ -1,0 +1,105 @@
+---
+import Logo from './Logo.astro';
+import { SITE } from '../data/site';
+
+const columns = [
+  {
+    title: 'Learn',
+    links: [
+      { label: 'Docs', href: '/docs/' },
+      { label: 'Examples', href: '/examples/' },
+      { label: 'Tools', href: '/tools/' },
+    ],
+  },
+  {
+    title: 'Project',
+    links: [
+      { label: 'Blog', href: '/blog/' },
+      { label: 'About the project', href: '/project/' },
+      { label: 'About us', href: '/about-us/' },
+      { label: 'Contact', href: '/contact/' },
+    ],
+  },
+  {
+    title: 'Community',
+    links: [
+      { label: 'GitHub', href: SITE.github },
+      { label: 'Discord', href: SITE.discord },
+      { label: 'X / Twitter', href: SITE.twitter },
+      { label: 'RSS feed', href: '/feed.xml' },
+    ],
+  },
+];
+---
+
+<footer class="wk-footer">
+  <div class="wk-container wk-footer__inner">
+    <div class="wk-footer__brand">
+      <Logo />
+      <p>A new dimension for open-source WebAR.</p>
+    </div>
+    {
+      columns.map((col) => (
+        <nav class="wk-footer__col" aria-label={col.title}>
+          <h2>{col.title}</h2>
+          <ul>
+            {col.links.map((l) => (
+              <li>
+                <a href={l.href}>{l.label}</a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      ))
+    }
+  </div>
+  <div class="wk-container wk-footer__legal">
+    Hosted on <a href="https://www.netlify.com">Netlify</a>. Code on <a href={SITE.github}>GitHub</a>.
+  </div>
+</footer>
+
+<style>
+  .wk-footer {
+    border-top: 1px solid var(--wk-line);
+    font-size: 14px;
+  }
+  .wk-footer__inner {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    padding-top: 48px;
+    padding-bottom: 32px;
+  }
+  .wk-footer__brand {
+    flex: 2 1 260px;
+    color: var(--wk-text-3);
+  }
+  .wk-footer__brand p {
+    margin: 12px 0 0;
+  }
+  .wk-footer__col {
+    flex: 1 1 140px;
+  }
+  .wk-footer__col h2 {
+    font-family: var(--wk-font-mono);
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0;
+    text-transform: uppercase;
+    color: var(--wk-text-4);
+    margin: 0 0 8px;
+  }
+  .wk-footer__col ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .wk-footer__legal {
+    padding-bottom: 32px;
+    color: var(--wk-text-4);
+    font-size: 13px;
+  }
+</style>
