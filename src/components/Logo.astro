@@ -1,0 +1,53 @@
+---
+/**
+ * WebARKit logo (proposal D2a): flat cube mark + "WebARKit" wordmark.
+ * Colours come from CSS tokens, so it follows the dark/light theme.
+ */
+interface Props {
+  size?: number;
+  wordmark?: boolean;
+}
+const { size = 34, wordmark = true } = Astro.props;
+---
+
+<span class="wk-logo">
+  <svg
+    width={size}
+    height={size}
+    viewBox="14 2 36 38"
+    aria-hidden={wordmark ? 'true' : undefined}
+    role={wordmark ? undefined : 'img'}
+    aria-label={wordmark ? undefined : 'WebARKit'}
+  >
+    <path d="M32 4 L46 12 L32 20 L18 12 Z" style="fill: var(--wk-accent)" fill-opacity="0.6"></path>
+    <path d="M18 12 L32 20 L32 38 L18 30 Z" style="fill: var(--wk-accent)"></path>
+    <path d="M32 20 L46 12 L46 30 L32 38 Z" style="fill: var(--wk-mark-right)"></path>
+    <polyline
+      points="23.5,17 27.5,30.5 32,22.5 36.5,30.5 40.5,17"
+      fill="none"
+      stroke="#FFFFFF"
+      stroke-width="4"
+      stroke-linecap="round"
+      stroke-linejoin="round"></polyline>
+  </svg>
+  {wordmark && <span class="wk-wordmark">Web<span class="wk-ar">AR</span>Kit</span>}
+</span>
+
+<style>
+  .wk-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--wk-text);
+  }
+  .wk-wordmark {
+    font-family: var(--wk-font-display);
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+  .wk-ar {
+    color: var(--wk-accent);
+  }
+</style>

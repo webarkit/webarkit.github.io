@@ -1,10 +1,11 @@
 [build]
-  command = "bundle exec jekyll build"
-  publish = "_site"
+  command = "npm run build"
+  publish = "dist"
 
 [build.environment]
-  JEKYLL_ENV = "production"
+  NODE_VERSION = "22"
 
+# --- Cross-origin isolation for the threaded (pthread) jsartoolkitNFT example ---
 [[headers]]
   for = "/examples/ARToolkitNFT_ES6_threading_example*"
   [headers.values]
@@ -17,6 +18,7 @@
     Cross-Origin-Embedder-Policy = "require-corp"
     Cross-Origin-Resource-Policy = "same-origin"
 
+# --- MIME types for ES modules ---
 [[headers]]
   for = "/examples/Data/js/*.mjs"
   [headers.values]
@@ -26,3 +28,39 @@
   for = "/dist/*.mjs"
   [headers.values]
     Content-Type = "application/javascript; charset=utf-8"
+
+# --- Long cache for Astro's fingerprinted assets ---
+[[headers]]
+  for = "/_astro/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# --- Redirects for URLs of the old Jekyll site ---
+# The webarkit-testing intro page is now part of the examples gallery.
+[[redirects]]
+  from = "/examples/webarkit-testing/"
+  to = "/examples/#feature-trackers"
+  status = 301
+
+# The jsartoolkit5 multi-NFT demo was replaced by the jsartoolkitNFT multi ES6 example.
+[[redirects]]
+  from = "/examples/multi_wasm_nft.html"
+  to = "/examples/#multi-nft"
+  status = 301
+
+# The Decap CMS admin edited the old Jekyll posts; blog posts are now Markdown in src/content/blog.
+[[redirects]]
+  from = "/admin/*"
+  to = "/blog/"
+  status = 301
+
+# Linked from the jsartoolkitNFT README.
+[[redirects]]
+  from = "/examples/artoolkitnft_es6_example"
+  to = "/examples/ARToolkitNFT_ES6_example.html"
+  status = 301
+
+[[redirects]]
+  from = "/blog/page:num"
+  to = "/blog/"
+  status = 301

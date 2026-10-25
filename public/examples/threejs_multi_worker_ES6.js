@@ -1,0 +1,251 @@
+import * as THREE from "three";
+
+function isMobile() {
+  return /Android|mobile|iPad|iPhone/i.test(navigator.userAgent);
+}
+
+const setMatrix = function (matrix, value) {
+  const array = [];
+  for (const key in value) {
+    array[key] = value[key];
+  }
+  if (typeof matrix.elements.set === "function") {
+    matrix.elements.set(array);
+  } else {
+    matrix.elements = [].slice.call(array);
+  }
+};
+
+export default function start(
+  markerUrls,
+  video,
+  input_width,
+  input_height,
+  render_update,
+  track_update,
+) {
+  let vw, vh;
+  let sw, sh;
+  let pscale, sscale;
+  let w, h;
+  let pw, ph;
+  let ox, oy;
+  let worker;
+  const camera_para = "./../examples/Data/camera_para.dat";
+
+  const canvas_process = document.createElement("canvas");
+  const context_process = canvas_process.getContext("2d", {
+    willReadFrequently: true,
+  });
+  const targetCanvas = document.querySelector("#canvas");
+
+  const renderer = new THREE.WebGLRenderer({
+    canvas: targetCanvas,
+    alpha: true,
+    antialias: true,
+  });
+  renderer.setPixelRatio(window.devicePixelRatio);
+
+  const scene = new THREE.Scene();
+
+  let fov = (0.8 * 180) / Math.PI;
+  let ratio = input_width / input_height;
+
+  const cameraConfig = {
+    fov: fov,
+    aspect: ratio,
+    near: 0.01,
+    far: 1000,
+  };
+
+  const camera = new THREE.PerspectiveCamera(cameraConfig);
+  camera.matrixAutoUpdate = false;
+
+  scene.add(camera);
+
+  const sphere = new THREE.Mesh(
+    new THREE.SphereGeometry(0.5, 8, 8),
+    new THREE.MeshNormalMaterial(),
+  );
+
+  const cube = new THREE.Mesh(
+    new THREE.BoxGeometry(0.5),
+    new THREE.MeshNormalMaterial(),
+  );
+
+  const cone = new THREE.Mesh(
+    new THREE.ConeGeometry(0.5, 1, 32),
+    new THREE.MeshNormalMaterial(),
+  );
+
+  sphere.material.flatShading;
+  sphere.scale.set(200, 200, 200);
+
+  cube.material.flatShading;
+  cube.scale.set(200, 200, 200);
+
+  cone.material.flatShading;
+  // Stand the cone upright on the marker: turn its axis from +y to the marker's
+  // +z (rotations are in radians), then lift it by half its height (1 * 200),
+  // since ConeGeometry is centred on its mid-height.
+  cone.rotation.x = Math.PI / 2;
+  cone.position.z = 100;
+  cone.scale.set(200, 200, 200);
+
+  // One model per marker, in marker-index order, each under its own root so
+  // every tracked marker is drawn at once with its own pose.
+  const models = [sphere, cube, cone];
+  const roots = models.map(function (model) {
+    const root = new THREE.Object3D();
+    root.matrixAutoUpdate = false;
+    root.visible = false;
+    root.add(model);
+    scene.add(root);
+    return root;
+  });
+
+  const load = function () {
+    vw = input_width;
+    vh = input_height;
+
+    pscale = 320 / Math.max(vw, (vh / 3) * 4);
+    sscale = isMobile() ? window.outerWidth / input_width : 1;
+
+    sw = vw * sscale;
+    sh = vh * sscale;
+
+    w = vw * pscale;
+    h = vh * pscale;
+    pw = Math.max(w, (h / 3) * 4);
+    ph = Math.max(h, (w / 4) * 3);
+    ox = (pw - w) / 2;
+    oy = (ph - h) / 2;
+    canvas_process.style.clientWidth = pw + "px";
+    canvas_process.style.clientHeight = ph + "px";
+    canvas_process.width = pw;
+    canvas_process.height = ph;
+
+    renderer.setSize(sw, sh);
+
+    worker = new Worker("../js/artoolkitNFT_multi_ES6.worker.js");
+
+    worker.postMessage({
+      type: "load",
+      pw: pw,
+      ph: ph,
+      camera_para: camera_para,
+      marker: markerUrls,
+    });
+
+    worker.onmessage = function (ev) {
+      const msg = ev.data;
+      switch (msg.type) {
+        case "loaded": {
+          const proj = JSON.parse(msg.proj);
+          const ratioW = pw / w;
+          const ratioH = ph / h;
+          proj[0] *= ratioW;
+          proj[4] *= ratioW;
+          proj[8] *= ratioW;
+          proj[12] *= ratioW;
+          proj[1] *= ratioH;
+          proj[5] *= ratioH;
+          proj[9] *= ratioH;
+          proj[13] *= ratioH;
+          setMatrix(camera.projectionMatrix, proj);
+          break;
+        }
+        case "endLoading": {
+          if (msg.end === true) {
+            // removing loader page if present
+            const loader = document.getElementById("loading");
+            if (loader) {
+              loader.querySelector(".loading-text").innerText =
+                "Start the tracking!";
+              setTimeout(function () {
+                loader.parentElement.removeChild(loader);
+              }, 2000);
+            }
+          }
+          break;
+        }
+        case "found": {
+          found(msg);
+          break;
+        }
+        case "not found": {
+          found(null);
+          break;
+        }
+        case "markerInfos": {
+          // Centre each model on its own marker: half the marker's size in mm.
+          msg.markers.forEach(function (marker, i) {
+            const model = models[i];
+            if (!model) return;
+            model.position.x = ((marker.width / marker.dpi) * 2.54 * 10) / 2.0;
+            model.position.y = ((marker.height / marker.dpi) * 2.54 * 10) / 2.0;
+          });
+        }
+      }
+      track_update();
+      process();
+    };
+  };
+
+  // Latest pose of each tracked marker, keyed by marker index.
+  let worlds = new Map();
+
+  const found = function (msg) {
+    worlds = new Map();
+    if (!msg) return;
+    msg.markers.forEach(function (marker) {
+      worlds.set(
+        marker.index,
+        typeof marker.matrixGL_RH === "string"
+          ? JSON.parse(marker.matrixGL_RH)
+          : marker.matrixGL_RH,
+      );
+    });
+  };
+
+  let lasttime = Date.now();
+  let time = 0;
+
+  const draw = function () {
+    render_update();
+    const now = Date.now();
+    const dt = now - lasttime;
+    time += dt;
+    lasttime = now;
+
+    // Show each marker's model at that marker's pose, and hide the untracked ones.
+    roots.forEach(function (root, i) {
+      const world = worlds.get(i);
+      root.visible = world !== undefined;
+      if (world) {
+        setMatrix(root.matrix, world);
+      }
+    });
+    renderer.render(scene, camera);
+  };
+
+  const process = function () {
+    context_process.fillStyle = "black";
+    context_process.fillRect(0, 0, pw, ph);
+    context_process.drawImage(video, 0, 0, vw, vh, ox, oy, w, h);
+
+    var imageData = context_process.getImageData(0, 0, pw, ph);
+    worker.postMessage({ type: "process", imagedata: imageData }, [
+      imageData.data.buffer,
+    ]);
+  };
+
+  const tick = function () {
+    draw();
+    requestAnimationFrame(tick);
+  };
+
+  load();
+  tick();
+  process();
+}

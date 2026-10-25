@@ -1,5 +1,9 @@
-_site
-.sass-cache
-.jekyll-cache
-.jekyll-metadata
-vendor
+# build output (the root one only: public/dist holds example libraries)
+/dist/
+.astro/
+node_modules/
+.netlify/
+.DS_Store
+
+# personal notes for AI coding agents
+CLAUDE.local.md

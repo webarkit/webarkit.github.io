@@ -1,0 +1,54 @@
+/* WebARKit theme for the Starlight docs (/docs). Values mirror src/styles/tokens.css. */
+
+/* Dark mode */
+:root {
+  --sl-font: 'IBM Plex Sans', system-ui, sans-serif;
+  --sl-font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+
+  --sl-color-accent-low: #2a1830;
+  --sl-color-accent: #e0559a;
+  --sl-color-accent-high: #f6c4dc;
+
+  --sl-color-white: #ffffff;
+  --sl-color-gray-1: #e8ebf7;
+  --sl-color-gray-2: #c9cee6;
+  --sl-color-gray-3: #a3abcb;
+  --sl-color-gray-4: #6e78a3;
+  --sl-color-gray-5: #26305a;
+  --sl-color-gray-6: #10152b;
+  --sl-color-black: #090c1a;
+
+  --sl-color-text-accent: #8c9bff;
+}
+
+/* Light mode */
+:root[data-theme='light'] {
+  --sl-color-accent-low: #f7dbe7;
+  --sl-color-accent: #b8336a;
+  --sl-color-accent-high: #6e1a3e;
+
+  --sl-color-white: #0f1638;
+  --sl-color-gray-1: #1e2a5a;
+  --sl-color-gray-2: #2a3366;
+  --sl-color-gray-3: #4a5480;
+  --sl-color-gray-4: #7a84ad;
+  --sl-color-gray-5: #c3ccea;
+  --sl-color-gray-6: #e3e8f8;
+  --sl-color-gray-7: #eef1fb;
+  --sl-color-black: #ffffff;
+
+  --sl-color-text-accent: #2f3fb8;
+}
+
+/* Headings use the display face, like the rest of the site. */
+.sl-markdown-content :is(h1, h2, h3, h4),
+h1#_top {
+  font-family: 'Sora', system-ui, sans-serif;
+  letter-spacing: -0.02em;
+}
+
+.site-title {
+  font-family: 'Sora', system-ui, sans-serif;
+  font-weight: 700;
+  color: var(--sl-color-white);
+}
