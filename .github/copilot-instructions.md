@@ -2,7 +2,7 @@
 
 This repo is the source of www.webarkit.org: an **Astro 7** + **Starlight** static site (docs at `/docs`), hosted on **Netlify**. The full instructions are in [AGENTS.md](../AGENTS.md); the design decisions are in [DESIGN.md](../DESIGN.md). The essentials:
 
-- **Branches and PRs:** branch from `dev` and open PRs against `dev`. For now, while the Astro redesign is not in `dev` yet, use `feat/astro-redesign` instead of `dev`, for both. `master` is production. Never push to these branches directly.
+- **Branches and PRs:** branch from `dev` and open PRs against `dev`. `master` is production. Never push to either directly.
 - **Commits and PR titles:** [Conventional Commits](https://www.conventionalcommits.org/) (`feat(home): add studio teaser`). Small commits, English, imperative, lower case.
 - **Check:** `npm run build` must pass with no errors (there is no test or lint script). Node.js 22.
 - **Language:** everything in the repo is in English (code, comments, docs, commits, PR text).
