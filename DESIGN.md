@@ -30,6 +30,9 @@ Files in `public/brand/`:
 | `webarkit-mark-white.svg` | One-colour outline, for print, stamps, merch |
 | `/favicon.svg`, `icon-192/512.png`, `apple-touch-icon.png` | Cube on a brand-blue tile |
 | `/og/webarkit-og.png` | Default social card (1200×630) |
+| `social/webarkit-avatar-1024.png` | Profile picture for the GitHub organization (cube on brand blue, safe for round crops) |
+| `social/webarkit-avatar-400.png` | Same, at the size X/Twitter asks for |
+| `social/webarkit-x-header-1500x500.png` | X/Twitter header; content sits on the right, clear of the profile picture |
 
 Rules:
 
