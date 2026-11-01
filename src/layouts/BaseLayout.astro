@@ -17,6 +17,12 @@ interface Props {
   image?: string;
   type?: 'website' | 'article';
   publishedTime?: Date;
+  /**
+   * Fill the window below the header and leave out the footer. For pages whose content
+   * scrolls on its own, such as the embedded API reference: with the footer under it, the
+   * page would scroll too and show two scrollbars.
+   */
+  fullHeight?: boolean;
 }
 
 const {
@@ -25,6 +31,7 @@ const {
   image = '/og/webarkit-og.png',
   type = 'website',
   publishedTime,
+  fullHeight = false,
 } = Astro.props;
 
 const fullTitle = title ? `${title} | ${SITE.name}` : `${SITE.name} | ${SITE.tagline}`;
@@ -83,13 +90,13 @@ const imageUrl = new URL(image, Astro.site);
     </script>
     <slot name="head" />
   </head>
-  <body>
+  <body class:list={{ 'wk-full-height': fullHeight }}>
     <a class="wk-skip" href="#main">Skip to content</a>
     <Header />
     <main id="main">
       <slot />
     </main>
-    <Footer />
+    {!fullHeight && <Footer />}
   </body>
 </html>
 
@@ -106,5 +113,19 @@ const imageUrl = new URL(image, Astro.site);
   }
   .wk-skip:focus {
     top: 12px;
+  }
+  /* The header keeps its height and main takes the rest, so only main's content scrolls.
+     dvh, not vh: on mobile vh includes the space under the browser's address bar. */
+  .wk-full-height {
+    display: flex;
+    flex-direction: column;
+    height: 100dvh;
+    overflow: hidden;
+  }
+  .wk-full-height > main {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    min-height: 0;
   }
 </style>

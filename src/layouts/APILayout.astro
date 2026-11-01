@@ -1,0 +1,148 @@
+---
+/**
+ * Shows a TypeDoc API reference, a static site under public/, inside the site layout.
+ *
+ * The reference is generated in the library's own repository and copied here, so it is
+ * embedded in an iframe rather than rebuilt as Astro pages. The script below keeps the
+ * two documents in step: the address bar follows the page open in the frame (so a class
+ * page can be linked), links that leave the reference open in the whole tab, and the
+ * reference uses the site's light or dark theme.
+ */
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  /** Where the reference is served, with a trailing slash, e.g. /api/jsartoolkitnft/. */
+  base: string;
+}
+
+const { title, description, base } = Astro.props;
+---
+
+<BaseLayout title={title} description={description} fullHeight>
+  <div class="wk-api-bar">
+    <div class="wk-container wk-api-bar__inner">
+      <span class="wk-api-bar__title">{title}</span>
+      <a class="wk-api-bar__open" href={base} data-api-open>Open full page ↗</a>
+    </div>
+  </div>
+  <iframe class="wk-api-frame" src={`${base}index.html`} title={title} data-api-base={base}
+  ></iframe>
+</BaseLayout>
+
+<script>
+  const frame = document.querySelector<HTMLIFrameElement>('[data-api-base]')!;
+  const open = document.querySelector<HTMLAnchorElement>('[data-api-open]')!;
+  const base = frame.dataset.apiBase!;
+  const pageTitle = document.title;
+  // BaseLayout's title is "<title> | <site>"; TypeDoc's already names the package.
+  const siteName = pageTitle.split(' | ').pop();
+
+  // The outer URL holds the frame's page as #/<path>[#<anchor>], e.g.
+  // #/classes/_webarkit_jsartoolkit-nft.ARControllerNFT.html#process. Only plain relative
+  // paths (word characters, dots and dashes, no "..") are accepted, so the hash cannot
+  // point the frame anywhere else.
+  //
+  // The ".html" is optional: Netlify's pretty URLs redirect every .html page to a
+  // lowercase path without the extension (classes/_webarkit_jsartoolkit-nft.arcontrollernft),
+  // and that is the address the frame reports and the link carries. Netlify serves it,
+  // so a shared or reloaded link must accept it. `astro dev` keeps the .html.
+  const SAFE_PATH = /^(?:[\w.-]+\/)*[\w.-]+(?:#[\w.-]*)?$/;
+  // The reference's front page, as each server names it: Netlify serves it at the base
+  // itself (or "index"), astro dev at index.html. None of them needs a hash.
+  const INDEX = new Set(['', 'index', 'index.html']);
+  function fromHash(): string | null {
+    const path = location.hash.startsWith('#/') ? location.hash.slice(2) : '';
+    if (!SAFE_PATH.test(path) || path.split(/[/#]/).includes('..')) return null;
+    return base + path;
+  }
+
+  const initial = fromHash();
+  if (initial) frame.src = initial;
+  addEventListener('hashchange', () => {
+    const target = fromHash();
+    if (target && frame.contentWindow?.location.href !== new URL(target, location.href).href) {
+      frame.src = target;
+    }
+  });
+
+  // Mirror the frame's page in the address bar and the tab title. replaceState, not
+  // pushState: the frame's own navigation already adds the history entries, so Back works.
+  function sync() {
+    const loc = frame.contentWindow?.location;
+    if (!loc || !loc.pathname.startsWith(base)) return;
+    // Empty on Netlify's front page; named, so an anchor on it still makes a valid link.
+    const page = loc.pathname.slice(base.length) || 'index.html';
+    const hash = INDEX.has(page) && !loc.hash ? '' : `#/${page}${loc.hash}`;
+    history.replaceState(history.state, '', location.pathname + location.search + hash);
+    open.href = loc.href;
+    const inner = frame.contentDocument?.title;
+    document.title = hash && inner ? `${inner} | ${siteName}` : pageTitle;
+  }
+
+  // TypeDoc keeps its own theme setting (light, dark or OS); use the site's instead.
+  function applyTheme() {
+    const doc = frame.contentDocument;
+    const theme = document.documentElement.dataset.theme;
+    if (doc && theme) doc.documentElement.dataset.theme = theme;
+  }
+  new MutationObserver(applyTheme).observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['data-theme'],
+  });
+
+  frame.addEventListener('load', () => {
+    const win = frame.contentWindow;
+    const doc = frame.contentDocument;
+    if (!win || !doc) return;
+    sync();
+    applyTheme();
+    win.addEventListener('hashchange', sync);
+    // Links out of the reference (GitHub sources, npm, the rest of this site) would open
+    // inside the frame, and GitHub refuses to be framed. Delegated, because TypeDoc builds
+    // its navigation tree with JavaScript after load.
+    doc.addEventListener('click', (event) => {
+      const link = (event.target as Element | null)?.closest?.('a[href]') as
+        | HTMLAnchorElement
+        | null;
+      if (!link || link.target) return;
+      const url = new URL(link.href);
+      if (url.origin !== location.origin || !url.pathname.startsWith(base)) {
+        link.target = '_top';
+      }
+    });
+  });
+</script>
+
+<style>
+  .wk-api-bar {
+    border-bottom: 1px solid var(--wk-line);
+    background: var(--wk-bg-alt);
+    font-size: 14px;
+  }
+  .wk-api-bar__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    min-height: 40px;
+  }
+  .wk-api-bar__title {
+    color: var(--wk-text-2);
+  }
+  .wk-api-frame {
+    display: block;
+    flex: 1 1 auto;
+    width: 100%;
+    min-height: 0;
+    border: 0;
+  }
+  /* On a phone the site header and TypeDoc's toolbar already take two rows; the reference
+     has its own search and menu, so this bar would only add a third. */
+  @media (max-width: 820px) {
+    .wk-api-bar {
+      display: none;
+    }
+  }
+</style>

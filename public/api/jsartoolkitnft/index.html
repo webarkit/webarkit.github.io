@@ -1,0 +1,777 @@
+<!DOCTYPE html><html class="default" lang="en" data-base="./"><head><meta charset="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>@webarkit/jsartoolkit-nft</title><meta name="description" content="Documentation for @webarkit/jsartoolkit-nft"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script defer src="assets/main.js"></script><script async src="assets/icons.js" id="tsd-icons-script"></script><script async src="assets/search.js" id="tsd-search-script"></script><script async src="assets/navigation.js" id="tsd-nav-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os";document.body.style.display="none";setTimeout(() => window.app?app.showPage():document.body.style.removeProperty("display"),500)</script><header class="tsd-page-toolbar">
+<div class="tsd-toolbar-contents container"><a href="index.html" class="title">@webarkit/jsartoolkit-nft</a>
+<div id="tsd-toolbar-links"></div><button id="tsd-search-trigger" class="tsd-widget" aria-label="Search"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><use href="assets/icons.svg#icon-search"></use></svg></button><dialog id="tsd-search" aria-label="Search"><input role="combobox" id="tsd-search-input" aria-controls="tsd-search-results" aria-autocomplete="list" aria-expanded="true" autocapitalize="off" autocomplete="off" placeholder="Search the docs" maxLength="100"/>
+<ul role="listbox" id="tsd-search-results"></ul>
+<div id="tsd-search-status" aria-live="polite" aria-atomic="true">
+<div>Preparing search index...</div></div></dialog><a href="#" class="tsd-widget menu" id="tsd-toolbar-menu-trigger" data-toggle="menu" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><use href="assets/icons.svg#icon-menu"></use></svg></a></div></header>
+<div class="container container-main">
+<div class="col-content">
+<div class="tsd-page-title">
+<h1>@webarkit/jsartoolkit-nft</h1></div>
+<div class="tsd-panel tsd-typography"><p><img src="https://flat.badgen.net/github/release/webarkit/jsartoolkitNFT" alt="github releases">
+<img src="https://flat.badgen.net/github/stars/webarkit/jsartoolkitNFT" alt="github stars">
+<img src="https://flat.badgen.net/github/forks/webarkit/jsartoolkitNFT" alt="github forks">
+<img src="https://flat.badgen.net/npm/v/@webarkit/jsartoolkit-nft" alt="npm package version">
+<img src="https://flat.badgen.net/pypi/v/artoolkitnft" alt="PyPI package version">
+<img src="https://flat.badgen.net/github/dependabot/webarkit/jsartoolkitNFT" alt="Dependabot Badge">
+<a href="https://vitest.dev/"><img src="https://img.shields.io/badge/tested_with-Vitest-6E9F18.svg?logo=vitest&amp;logoColor=white" alt="Tested with Vitest"></a>
+<a href="https://github.com/webarkit/jsartoolkitNFT/actions/workflows/CI.yml"><img src="https://github.com/webarkit/jsartoolkitNFT/actions/workflows/CI.yml/badge.svg" alt="CI"></a>
+<a href="https://github.com/webarkit/jsartoolkitNFT/actions/workflows/main.yml"><img src="https://github.com/webarkit/jsartoolkitNFT/actions/workflows/main.yml/badge.svg" alt="Build jsartoolkitNFT CI"></a>
+<a href="https://codecov.io/gh/webarkit/jsartoolkitNFT"><img src="https://codecov.io/gh/webarkit/jsartoolkitNFT/graph/badge.svg" alt="codecov"></a></p>
+<h1 id="jsartoolkitnft" class="tsd-anchor-link">JSARToolKitNFT<a href="#jsartoolkitnft" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h1>
+<p>Emscripten port of <a href="https://github.com/webarkit/WebARKitLib">WebARKitLib</a> to JavaScript.
+Modified and lighter version of <a href="https://github.com/artoolkitx/jsartoolkit5">JSARToolKit5</a>.</p>
+<p>Try the example !! <a href="https://www.webarkit.org/examples/artoolkitnft_es6_example">www.webarkit.org/examples/artoolkitnft_es6_example</a></p>
+<h2 id="features" class="tsd-anchor-link">Features<a href="#features" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<h3 id="markers-types" class="tsd-anchor-link">Markers Types<a href="#markers-types" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<p><strong>JSARToolKitNFT</strong> support only this type of marker:</p>
+<ul>
+<li>NFT (natural feature tracking) markers ✅ 🎉 🎨</li>
+<li>Multi NFT markers !!!</li>
+</ul>
+<h3 id="multi-marker-tracking" class="tsd-anchor-link">Multi-marker tracking<a href="#multi-marker-tracking" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<p>Load several NFT markers with <code>loadNFTMarkers()</code> and every one in view is tracked at the same
+time: <code>getNFTMarker</code> fires once per visible marker each frame, with that marker's <code>index</code> and its
+own pose, and <code>lostNFTMarker</code> fires for each marker on its own when it leaves the view.</p>
+<p>Detection — finding a marker that is not tracked yet — is far more expensive than tracking one
+that is: a detection pass costs the full detection time on the frame where it runs. So it follows
+a policy:</p>
+<ul>
+<li>while no marker is tracked, detection runs on every frame;</li>
+<li>while at least one marker is tracked and another loaded marker is not, it runs at most once per
+detection interval, counted from the end of the previous pass, so a marker entering the view is
+still picked up and every pass is followed by tracking-only frames, however long a pass takes;</li>
+<li>while every loaded marker is tracked, it does not run.</li>
+</ul>
+<p>Two setters on <code>ARControllerNFT</code> tune this:</p>
+<ul>
+<li><code>setContinuousDetection(enabled)</code> — default <code>true</code>. With <code>false</code>, no detection runs once any
+marker is tracked, until tracking is lost (the single-marker behaviour of 1.12.0 and earlier).</li>
+<li><code>setDetectionInterval(ms)</code> — the interval above, in milliseconds. Default <code>300</code> in the default
+and SIMD builds. <code>0</code> detects on every frame; negative values count as <code>0</code>.</li>
+</ul>
+<p>The threaded (Pthread) build detects on a worker thread, off the main thread, so its default
+interval is <code>0</code>; both setters work there too, and an interval saves worker CPU. The Node.js build
+runs the same native code as the default build, so it tracks several markers and honours both
+setters, with the same <code>300</code> ms default interval.</p>
+<p>Note for upgraders: <code>getTransformationMatrix()</code> now returns a fresh array for each frame a marker
+is found, instead of updating one array in place. Read it each frame rather than keeping a
+reference and expecting it to change.</p>
+<h3 id="runtime-settings" class="tsd-anchor-link">Runtime settings: <code>configure()</code><a href="#runtime-settings" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<p><code>configure(patch)</code> changes several settings at once, on <code>ARControllerNFT</code> and <code>ARToolkitNFT</code>, in
+every build. <code>getRuntimeSettings()</code> returns all of them, with the values in effect:</p>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Default</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>near</code>, <code>far</code></td>
+<td><code>0.1</code>, <code>1000</code></td>
+<td>Projection planes. <code>getCameraMatrix()</code> follows them at once.</td>
+</tr>
+<tr>
+<td><code>continuousDetection</code></td>
+<td><code>true</code></td>
+<td>As <code>setContinuousDetection()</code> above.</td>
+</tr>
+<tr>
+<td><code>detectionInterval</code></td>
+<td><code>300</code> (<code>0</code> threaded)</td>
+<td>As <code>setDetectionInterval()</code> above, in ms.</td>
+</tr>
+<tr>
+<td><code>filtering</code></td>
+<td><code>true</code></td>
+<td>Pose filtering, as <code>setFiltering()</code>.</td>
+</tr>
+<tr>
+<td><code>logLevel</code></td>
+<td><code>ARLogLevel.Info</code> (1)</td>
+<td>As <code>setLogLevel()</code>.</td>
+</tr>
+<tr>
+<td><code>ar2</code></td>
+<td>see below</td>
+<td>AR2 tracking: <code>trackingThresh</code> 5, <code>simThresh</code> 0.5, <code>searchFeatureNum</code> 16, <code>templateSize1</code> / <code>templateSize2</code> 6, <code>searchSize</code> 6 or 12, depending on the build and CPU count (the preset's choice).</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="javascript"><span class="hl-0">ar</span><span class="hl-1">.</span><span class="hl-2">configure</span><span class="hl-1">({ </span><span class="hl-0">near:</span><span class="hl-1"> </span><span class="hl-3">1</span><span class="hl-1">, </span><span class="hl-0">far:</span><span class="hl-1"> </span><span class="hl-3">5000</span><span class="hl-1">, </span><span class="hl-0">ar2:</span><span class="hl-1"> { </span><span class="hl-0">simThresh:</span><span class="hl-1"> </span><span class="hl-3">0.6</span><span class="hl-1"> } });</span><br/><span class="hl-0">ar</span><span class="hl-1">.</span><span class="hl-2">getRuntimeSettings</span><span class="hl-1">().</span><span class="hl-0">far</span><span class="hl-1">; </span><span class="hl-4">// 5000</span>
+</code><button type="button">Copy</button></pre>
+
+<p>The patch is merged into the current settings (<code>ar2</code> field by field), checked, and applied in one
+step: if any value is wrong, nothing changes. An unknown key, a value of the wrong type or a
+non-integer for an integer setting throws a <code>TypeError</code>; this includes the square-marker keys
+<code>threshold</code>, <code>thresholdMode</code>, <code>imageProcMode</code> and <code>debugMode</code>, which do nothing on NFT. A value
+out of range throws a <code>RangeError</code>. The individual setters keep working as before.</p>
+<p>Behaviour changes in this release:</p>
+<ul>
+<li><code>getCameraMatrix()</code> right after initialisation is built with the near plane <code>0.1</code>, the value
+<code>ARControllerNFT</code> always reported, instead of <code>0.0001</code>. <code>setProjectionNearPlane()</code> and
+<code>setProjectionFarPlane()</code> now rebuild the matrix at once, so <code>recalculateCameraLens()</code> is no
+longer needed.</li>
+<li>The threaded build now filters poses by default, like the other builds, and <code>setFiltering()</code>
+takes effect there (#692). Before, it was ignored.</li>
+</ul>
+<h3 id="log-level-at-initialisation" class="tsd-anchor-link">Log level at initialisation<a href="#log-level-at-initialisation" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<p><code>initWithDimensions()</code>, <code>initWithImage()</code> and <code>customInit()</code> take a last, optional
+<code>{ logLevel }</code> argument. It is applied before the native core is created, so the start-up output
+follows it:</p>
+<pre><code class="javascript"><span class="hl-5">import</span><span class="hl-1"> { </span><span class="hl-0">ARControllerNFT</span><span class="hl-1">, </span><span class="hl-0">ARLogLevel</span><span class="hl-1"> } </span><span class="hl-5">from</span><span class="hl-1"> </span><span class="hl-6">&#39;@webarkit/jsartoolkit-nft&#39;</span><br/><br/><span class="hl-7">const</span><span class="hl-1"> </span><span class="hl-8">ar</span><span class="hl-1"> = </span><span class="hl-5">await</span><span class="hl-1"> </span><span class="hl-0">ARControllerNFT</span><span class="hl-1">.</span><span class="hl-2">initWithDimensions</span><span class="hl-1">(</span><span class="hl-3">640</span><span class="hl-1">, </span><span class="hl-3">480</span><span class="hl-1">, </span><span class="hl-6">&#39;camera_para.dat&#39;</span><span class="hl-1">, </span><span class="hl-7">false</span><span class="hl-1">, {</span><br/><span class="hl-1">  </span><span class="hl-0">logLevel:</span><span class="hl-1"> </span><span class="hl-0">ARLogLevel</span><span class="hl-1">.</span><span class="hl-0">Error</span><span class="hl-1">,</span><br/><span class="hl-1">});</span>
+</code><button type="button">Copy</button></pre>
+
+<p>(In the Node build, which has no <code>internalLuma</code> argument, the options are the fourth argument.)</p>
+<p>The version line is logged at <code>ARLogLevel.RelInfo</code>, so it still prints at <code>Error</code>. The camera
+parameter table that the native camera loader prints is not gated yet; it is tracked in
+<a href="https://github.com/webarkit/WebARKitLib/issues/113">webarkit/WebARKitLib#113</a>. The level belongs
+to each controller, since each one runs in its own WASM module.</p>
+<h2 id="wasm" class="tsd-anchor-link">WASM<a href="#wasm" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p>has <strong>WASM</strong> embedded in a single file!</p>
+<h2 id="zft" class="tsd-anchor-link">ZFT<a href="#zft" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p><strong>JSARToolKitNFT</strong> now supports loading NFT markers from <code>.zft</code> compressed files. This allows for faster loading times and reduced file sizes.</p>
+<p>A URL that ends in <code>.zft</code> is downloaded directly, once. A URL without an extension (<code>path/to/marker</code>) is
+checked for a <code>.zft</code> with one asynchronous request, and falls back to the <code>.iset</code>, <code>.fset</code> and <code>.fset3</code>
+files when there is none. Any HTTP error status on that check means &quot;no <code>.zft</code>&quot;, so storage services that
+answer 403 for a missing object still work. A marker without a <code>.zft</code> logs one 404 in the console; pass
+<code>probeZFT: false</code> to skip the check (see below).</p>
+<h2 id="loading-nft-markers" class="tsd-anchor-link">Loading NFT markers<a href="#loading-nft-markers" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p><code>loadNFTMarker</code> and <code>loadNFTMarkers</code> return a Promise that resolves with the marker ids <strong>once the files are
+downloaded and registered</strong>, so tracking can start right after the <code>await</code>:</p>
+<pre><code class="javascript"><span class="hl-7">const</span><span class="hl-1"> [</span><span class="hl-8">id</span><span class="hl-1">] = </span><span class="hl-5">await</span><span class="hl-1"> </span><span class="hl-0">arController</span><span class="hl-1">.</span><span class="hl-2">loadNFTMarker</span><span class="hl-1">(</span><span class="hl-6">&#39;path/to/marker&#39;</span><span class="hl-1">)</span><br/><span class="hl-7">const</span><span class="hl-1"> </span><span class="hl-8">ids</span><span class="hl-1"> = </span><span class="hl-5">await</span><span class="hl-1"> </span><span class="hl-0">arController</span><span class="hl-1">.</span><span class="hl-2">loadNFTMarkers</span><span class="hl-1">([</span><span class="hl-6">&#39;path/to/a&#39;</span><span class="hl-1">, </span><span class="hl-6">&#39;path/to/b&#39;</span><span class="hl-1">])</span>
+</code><button type="button">Copy</button></pre>
+
+<p>A failure rejects with an <code>NFTLoadError</code>. Its <code>kind</code> is one of <code>http</code>, <code>network</code>, <code>missing</code>, <code>format</code>,
+<code>rejected</code> or <code>argument</code>, and it carries the <code>url</code>, the HTTP <code>status</code> and the <code>cause</code> when there are any.
+<code>NFTLoadError</code> is exported from every entry point. Test <code>err.name === 'NFTLoadError'</code> rather than <code>instanceof</code>, because each bundle carries its own copy of the class.</p>
+<pre><code class="javascript"><span class="hl-5">try</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-5">await</span><span class="hl-1"> </span><span class="hl-0">arController</span><span class="hl-1">.</span><span class="hl-2">loadNFTMarker</span><span class="hl-1">(</span><span class="hl-6">&#39;path/to/marker&#39;</span><span class="hl-1">)</span><br/><span class="hl-1">} </span><span class="hl-5">catch</span><span class="hl-1"> (</span><span class="hl-0">err</span><span class="hl-1">) {</span><br/><span class="hl-1">  </span><span class="hl-5">if</span><span class="hl-1"> (</span><span class="hl-0">err</span><span class="hl-1">.</span><span class="hl-0">name</span><span class="hl-1"> === </span><span class="hl-6">&#39;NFTLoadError&#39;</span><span class="hl-1"> &amp;&amp; </span><span class="hl-0">err</span><span class="hl-1">.</span><span class="hl-0">kind</span><span class="hl-1"> === </span><span class="hl-6">&#39;http&#39;</span><span class="hl-1">) {</span><br/><span class="hl-1">    </span><span class="hl-0">console</span><span class="hl-1">.</span><span class="hl-2">error</span><span class="hl-1">(</span><span class="hl-6">&#39;Not found:&#39;</span><span class="hl-1">, </span><span class="hl-0">err</span><span class="hl-1">.</span><span class="hl-0">url</span><span class="hl-1">, </span><span class="hl-0">err</span><span class="hl-1">.</span><span class="hl-0">status</span><span class="hl-1">)</span><br/><span class="hl-1">  }</span><br/><span class="hl-1">}</span>
+</code><button type="button">Copy</button></pre>
+
+<p>The callbacks still work but are deprecated. A call that passes a callback never rejects for a load failure (a throw from your own callback still rejects): a failure goes to
+<code>onError</code> once (or to <code>console.error</code> when there is no <code>onError</code>) and the Promise resolves <code>[]</code>.</p>
+<pre><code class="javascript"><span class="hl-0">arController</span><span class="hl-1">.</span><span class="hl-2">loadNFTMarker</span><span class="hl-1">(</span><span class="hl-6">&#39;path/to/marker&#39;</span><span class="hl-1">, (</span><span class="hl-0">id</span><span class="hl-1">) </span><span class="hl-7">=&gt;</span><span class="hl-1"> { </span><span class="hl-4">/* loaded */</span><span class="hl-1"> }, (</span><span class="hl-0">code</span><span class="hl-1">) </span><span class="hl-7">=&gt;</span><span class="hl-1"> { </span><span class="hl-4">/* HTTP status, or -1 */</span><span class="hl-1"> })</span>
+</code><button type="button">Copy</button></pre>
+
+<p>In the browser builds (default, <code>simd</code>, <code>td</code>) a fourth argument takes options. <code>signal</code> cancels the load, and
+<code>AbortSignal.timeout()</code> gives a timeout; an aborted load rejects with the signal's reason. <code>probeZFT: false</code>
+skips the <code>.zft</code> check for markers that have none.</p>
+<pre><code class="javascript"><span class="hl-5">await</span><span class="hl-1"> </span><span class="hl-0">arController</span><span class="hl-1">.</span><span class="hl-2">loadNFTMarker</span><span class="hl-1">(</span><span class="hl-6">&#39;path/to/marker&#39;</span><span class="hl-1">, </span><span class="hl-7">undefined</span><span class="hl-1">, </span><span class="hl-7">undefined</span><span class="hl-1">, {</span><br/><span class="hl-1">  </span><span class="hl-0">signal:</span><span class="hl-1"> </span><span class="hl-0">AbortSignal</span><span class="hl-1">.</span><span class="hl-2">timeout</span><span class="hl-1">(</span><span class="hl-3">10000</span><span class="hl-1">),</span><br/><span class="hl-1">  </span><span class="hl-0">probeZFT:</span><span class="hl-1"> </span><span class="hl-7">false</span><span class="hl-1">,</span><br/><span class="hl-1">})</span>
+</code><button type="button">Copy</button></pre>
+
+<p><code>fetch</code> replaces <code>XMLHttpRequest</code> and <code>axios</code>, so a <code>file://</code> URL no longer loads. WebAR needs a secure
+context anyway, and Cordova and Capacitor serve over a custom scheme. The Node build reads local files and has
+no <code>signal</code> or <code>probeZFT</code>; its <code>loadNFTMarker(s)</code> return an already-settled Promise. The deprecated legacy
+APIs in <code>build/</code> keep their callback-only signatures.</p>
+<h2 id="tracker-facade" class="tsd-anchor-link">Tracker facade<a href="#tracker-facade" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p><code>createNFTTracker</code> and <code>createNFTTrackerWorker</code> wrap the core in one small API: create a tracker, add
+targets, then call <code>process(frame, timestampMs)</code> once per camera frame. <code>createNFTTracker</code> runs on the
+calling thread, and every build exports it, Node included. <code>createNFTTrackerWorker</code> runs the same tracker
+in a dedicated worker. It is in the browser builds only, and every method returns a Promise. <code>ARControllerNFT</code>
+is unchanged and keeps working.</p>
+<p>In both samples, <code>imageData</code> is a 320 × 240 frame of the camera, e.g. the video drawn (letterboxed) into a
+320 × 240 canvas and read back with <code>ctx.getImageData(0, 0, 320, 240)</code>; see
+<a href="#projection-projectionfor-and-framegeometry">Projection</a> and the example below.</p>
+<p>Same thread:</p>
+<pre><code class="javascript"><span class="hl-7">const</span><span class="hl-1"> </span><span class="hl-8">tracker</span><span class="hl-1"> = </span><span class="hl-5">await</span><span class="hl-1"> </span><span class="hl-2">createNFTTracker</span><span class="hl-1">({ </span><span class="hl-0">width:</span><span class="hl-1"> </span><span class="hl-3">320</span><span class="hl-1">, </span><span class="hl-0">height:</span><span class="hl-1"> </span><span class="hl-3">240</span><span class="hl-1">, </span><span class="hl-0">cameraParam:</span><span class="hl-1"> </span><span class="hl-6">&#39;Data/camera_para.dat&#39;</span><span class="hl-1"> })</span><br/><span class="hl-7">const</span><span class="hl-1"> [</span><span class="hl-8">load</span><span class="hl-1">] = </span><span class="hl-5">await</span><span class="hl-1"> </span><span class="hl-0">tracker</span><span class="hl-1">.</span><span class="hl-2">addNFTTargets</span><span class="hl-1">([</span><span class="hl-6">&#39;DataNFT/pinball&#39;</span><span class="hl-1">])</span><br/><span class="hl-7">const</span><span class="hl-1"> </span><span class="hl-8">result</span><span class="hl-1"> = </span><span class="hl-0">tracker</span><span class="hl-1">.</span><span class="hl-2">process</span><span class="hl-1">(</span><span class="hl-0">imageData</span><span class="hl-1">, </span><span class="hl-0">performance</span><span class="hl-1">.</span><span class="hl-2">now</span><span class="hl-1">())</span>
+</code><button type="button">Copy</button></pre>
+
+<p>In a worker, the same calls, each returning a Promise:</p>
+<pre><code class="javascript"><span class="hl-7">const</span><span class="hl-1"> </span><span class="hl-8">tracker</span><span class="hl-1"> = </span><span class="hl-5">await</span><span class="hl-1"> </span><span class="hl-2">createNFTTrackerWorker</span><span class="hl-1">(</span><br/><span class="hl-1">  { </span><span class="hl-0">width:</span><span class="hl-1"> </span><span class="hl-3">320</span><span class="hl-1">, </span><span class="hl-0">height:</span><span class="hl-1"> </span><span class="hl-3">240</span><span class="hl-1">, </span><span class="hl-0">cameraParam:</span><span class="hl-1"> </span><span class="hl-6">&#39;Data/camera_para.dat&#39;</span><span class="hl-1"> },</span><br/><span class="hl-1">  { </span><span class="hl-0">workerBase:</span><span class="hl-1"> </span><span class="hl-6">&#39;/dist/&#39;</span><span class="hl-1"> },</span><br/><span class="hl-1">)</span><br/><span class="hl-7">const</span><span class="hl-1"> [</span><span class="hl-8">load</span><span class="hl-1">] = </span><span class="hl-5">await</span><span class="hl-1"> </span><span class="hl-0">tracker</span><span class="hl-1">.</span><span class="hl-2">addNFTTargets</span><span class="hl-1">([</span><span class="hl-6">&#39;DataNFT/pinball&#39;</span><span class="hl-1">])</span><br/><span class="hl-7">const</span><span class="hl-1"> </span><span class="hl-8">result</span><span class="hl-1"> = </span><span class="hl-5">await</span><span class="hl-1"> </span><span class="hl-0">tracker</span><span class="hl-1">.</span><span class="hl-2">process</span><span class="hl-1">(</span><span class="hl-0">imageData</span><span class="hl-1">, </span><span class="hl-0">performance</span><span class="hl-1">.</span><span class="hl-2">now</span><span class="hl-1">())</span><br/><span class="hl-5">if</span><span class="hl-1"> (!</span><span class="hl-0">result</span><span class="hl-1">.</span><span class="hl-0">skipped</span><span class="hl-1">) { </span><span class="hl-4">/* use result */</span><span class="hl-1"> }</span>
+</code><button type="button">Copy</button></pre>
+
+<p><a href="media/ARToolkitNFT_ES6_tracker_example.html"><code>examples/ARToolkitNFT_ES6_tracker_example.html</code></a> is a
+complete page: camera, worker tracker and three.js. Run <code>npm install</code> first: the page imports
+<code>@webarkit/camera-view</code>, a devDependency, from <code>node_modules/</code>. Then serve the repository root with
+<code>python python-server.py</code> and open <code>/examples/ARToolkitNFT_ES6_tracker_example.html</code>.</p>
+<p>Relative URLs (<code>cameraParam</code>, the target sources, a filter <code>module</code>) resolve against the page, with
+<code>createNFTTrackerWorker</code> as with <code>createNFTTracker</code>: the wrapper resolves them before it posts them to the
+worker.</p>
+<h3 id="frames-and-results" class="tsd-anchor-link">Frames and results<a href="#frames-and-results" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<p><code>process()</code> takes an <code>ImageData</code>, an <code>ImageBitmap</code> or <code>{ data, width, height }</code> (RGBA). The frame must be
+exactly <code>width</code> × <code>height</code> of the config, and any other size throws a <code>RangeError</code>. In the worker the frame
+is transferred, not copied, so the caller's buffer is empty afterwards. A <code>data</code> view of only part of its
+buffer (a frame inside a bigger buffer, or inside WebAssembly memory) or of a <code>SharedArrayBuffer</code> is copied
+instead, and the caller keeps its buffer.</p>
+<p><code>timestampMs</code> is your clock, normally <code>performance.now()</code>. It drives <code>lostTimeout</code> and the filters.</p>
+<pre><code class="typescript"><span class="hl-7">interface</span><span class="hl-1"> </span><span class="hl-9">FrameResult</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-0">time</span><span class="hl-1">: </span><span class="hl-9">number</span><span class="hl-1">                 </span><span class="hl-4">// the timestampMs you passed</span><br/><span class="hl-1">  </span><span class="hl-0">processMs</span><span class="hl-1">: </span><span class="hl-9">number</span><span class="hl-1">            </span><span class="hl-4">// time spent in process()</span><br/><span class="hl-1">  </span><span class="hl-0">targets</span><span class="hl-1">: { </span><span class="hl-0">id</span><span class="hl-1">: </span><span class="hl-9">number</span><span class="hl-1">; </span><span class="hl-0">found</span><span class="hl-1">: </span><span class="hl-9">boolean</span><span class="hl-1">; </span><span class="hl-0">pose</span><span class="hl-1">: </span><span class="hl-9">Float64Array</span><span class="hl-1"> | </span><span class="hl-9">null</span><span class="hl-1">; </span><span class="hl-0">error</span><span class="hl-1">: </span><span class="hl-9">number</span><span class="hl-1"> | </span><span class="hl-9">null</span><span class="hl-1"> }[]</span><br/><span class="hl-1">  </span><span class="hl-0">transitions</span><span class="hl-1">: { </span><span class="hl-0">type</span><span class="hl-1">: </span><span class="hl-6">&#39;found&#39;</span><span class="hl-1"> | </span><span class="hl-6">&#39;lost&#39;</span><span class="hl-1">; </span><span class="hl-0">id</span><span class="hl-1">: </span><span class="hl-9">number</span><span class="hl-1"> }[]</span><br/><span class="hl-1">}</span>
+</code><button type="button">Copy</button></pre>
+
+<p><code>pose</code> is a column-major 4×4 model-view matrix in millimetres, the same matrix as <code>matrixGL_RH</code> in
+<code>ARControllerNFT</code>'s events. It is ready for <code>Matrix4.fromArray()</code> in three.js.</p>
+<p><strong>Found and lost.</strong> <code>targets</code> reports this frame's raw tracking. <code>transitions</code> is debounced:</p>
+<ul>
+<li><code>found</code> comes on the first tracked frame, at the start or after a <code>lost</code>;</li>
+<li><code>lost</code> comes once a target has been untracked for longer than <code>lostTimeout</code> (default <code>200</code> ms).</li>
+</ul>
+<p>Between the two, in the grace window, the target has <code>found: false</code> and <code>pose: null</code>, but no <code>lost</code> has
+fired yet. To keep showing the last pose until <code>lost</code>, keep it yourself.</p>
+<h3 id="adding-targets" class="tsd-anchor-link">Adding targets<a href="#adding-targets" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<p><code>addNFTTargets(sources, { origin })</code> loads the sources one at a time and resolves to one result per source,
+in order. A failure stays local to its source, and the call itself does not reject for a load failure:</p>
+<pre><code class="javascript"><span class="hl-4">// { status: &#39;loaded&#39;, info: { id, url, widthPx, heightPx, dpi, widthMm, heightMm, origin } }</span><br/><span class="hl-4">// { status: &#39;error&#39;, url, reason, message }</span>
+</code><button type="button">Copy</button></pre>
+
+<table>
+<thead>
+<tr>
+<th><code>reason</code></th>
+<th>When</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>'network'</code></td>
+<td>An HTTP error, a network failure or a missing file.</td>
+</tr>
+<tr>
+<td><code>'format'</code></td>
+<td>A <code>.zft</code> that fails to decompress or decode.</td>
+</tr>
+<tr>
+<td><code>'capacity'</code></td>
+<td>The 20-target limit is reached.</td>
+</tr>
+<tr>
+<td><code>'unknown'</code></td>
+<td>The core refused the dataset (it may be unreadable, e.g. a corrupt <code>.fset</code>), or a bad argument.</td>
+</tr>
+</tbody>
+</table>
+<p>The <code>id</code>s are the core's. They stay stable for the tracker's lifetime and are never reused.</p>
+<p><strong><code>origin</code></strong>: <code>'corner'</code> (the default) is ARToolKit's own origin, a corner of the image. <code>'center'</code> moves the
+pose's origin to the middle of the image, from <code>widthMm</code> / <code>heightMm</code> (mm = px / dpi × 25.4). That is the
+offset each app used to compute by hand.</p>
+<p><strong><code>probeZFT</code></strong> (browser only, default <code>true</code>): as with <code>addNFTMarkers</code>, a source without an extension is
+first checked for a <code>.zft</code>, which logs a 404 for targets that have none. Pass <code>probeZFT: false</code> to skip the
+check when your targets have no <code>.zft</code>.</p>
+<p><code>dispose()</code> cancels a load still in progress: its target is never registered, and the call rejects with
+the &quot;disposed&quot; error.</p>
+<h3 id="projection-and" class="tsd-anchor-link">Projection: <code>projectionFor</code> and <code>FrameGeometry</code><a href="#projection-and" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<p><code>cameraMatrix</code> is the projection for the processing frame. <code>projectionFor(viewport, geometry?)</code> maps it onto
+what you display:</p>
+<pre><code class="javascript"><span class="hl-0">camera</span><span class="hl-1">.</span><span class="hl-0">projectionMatrix</span><span class="hl-1">.</span><span class="hl-2">fromArray</span><span class="hl-1">(</span><br/><span class="hl-1">  </span><span class="hl-0">tracker</span><span class="hl-1">.</span><span class="hl-2">projectionFor</span><span class="hl-1">({ </span><span class="hl-0">width:</span><span class="hl-1"> </span><span class="hl-0">innerWidth</span><span class="hl-1">, </span><span class="hl-0">height:</span><span class="hl-1"> </span><span class="hl-0">innerHeight</span><span class="hl-1">, </span><span class="hl-0">fit:</span><span class="hl-1"> </span><span class="hl-6">&#39;cover&#39;</span><span class="hl-1"> }, </span><span class="hl-0">geometry</span><span class="hl-1">),</span><br/><span class="hl-1">)</span>
+</code><button type="button">Copy</button></pre>
+
+<p><code>fit</code> is <code>'contain'</code> (the default: the whole frame shows, letterboxed) or <code>'cover'</code> (the frame fills the
+viewport, cropped). The worker tracker computes it on the page, with no round trip.</p>
+<p>The tracker does not fit the camera video into the processing frame: the camera side does. <code>FrameGeometry</code>
+says where it drew the video, so that <code>projectionFor</code> can undo the letterbox and the portrait rotation:</p>
+<pre><code class="typescript"><span class="hl-7">interface</span><span class="hl-1"> </span><span class="hl-9">FrameGeometry</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-0">frameWidth</span><span class="hl-1">: </span><span class="hl-9">number</span><span class="hl-1">; </span><span class="hl-0">frameHeight</span><span class="hl-1">: </span><span class="hl-9">number</span><span class="hl-1">             </span><span class="hl-4">// the processing frame</span><br/><span class="hl-1">  </span><span class="hl-0">videoWidth</span><span class="hl-1">: </span><span class="hl-9">number</span><span class="hl-1">; </span><span class="hl-0">videoHeight</span><span class="hl-1">: </span><span class="hl-9">number</span><span class="hl-1">             </span><span class="hl-4">// the source video</span><br/><span class="hl-1">  </span><span class="hl-0">x</span><span class="hl-1">: </span><span class="hl-9">number</span><span class="hl-1">; </span><span class="hl-0">y</span><span class="hl-1">: </span><span class="hl-9">number</span><span class="hl-1">; </span><span class="hl-0">width</span><span class="hl-1">: </span><span class="hl-9">number</span><span class="hl-1">; </span><span class="hl-0">height</span><span class="hl-1">: </span><span class="hl-9">number</span><span class="hl-1"> </span><span class="hl-4">// where the video was drawn</span><br/><span class="hl-1">  </span><span class="hl-0">rotated</span><span class="hl-1">: </span><span class="hl-9">boolean</span><span class="hl-1">                                    </span><span class="hl-4">// a portrait video drawn rotated 90 degrees</span><br/><span class="hl-1">}</span>
+</code><button type="button">Copy</button></pre>
+
+<p><a href="https://github.com/webarkit/camera-view"><code>@webarkit/camera-view</code></a> produces it: <code>CameraView.geometry</code>, or
+<code>toFrameGeometry(vw, vh, getProcessGeometry(vw, vh, false, true))</code>, which the example uses. The last
+argument, <code>floor</code>, rounds the sizes down to integers, so the frame size matches the canvas and its
+<code>ImageData</code> exactly (<code>CameraView</code> does the same). Without a geometry, the processing frame itself is the
+source.</p>
+<h3 id="running-in-a-worker" class="tsd-anchor-link">Running in a worker<a href="#running-in-a-worker" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<p><code>createNFTTrackerWorker(config, { build, workerBase })</code> picks the build at run time:</p>
+<ul>
+<li><code>td</code> (threaded) when the page is cross-origin isolated (COOP and COEP headers);</li>
+<li>otherwise <code>simd</code> when WebAssembly SIMD is supported;</li>
+<li>otherwise <code>default</code>.</li>
+</ul>
+<p><code>build: 'default' | 'simd' | 'td'</code> forces one. <code>workerBase</code> is the URL of the <strong>folder</strong> that holds the
+worker files. Without it, that folder is the one of the script that loaded the bundle. An app that
+re-bundles the library normally passes it. Serve these files from that folder:</p>
+<ul>
+<li><code>NFTTracker.worker.js</code></li>
+<li><code>NFTTracker_simd.worker.js</code></li>
+<li><code>NFTTracker_td.worker.js</code></li>
+<li><code>NFTTracker_td.pthread.js</code>, which the td worker loads itself.</li>
+</ul>
+<p><strong>Skipped frames.</strong> One <code>process()</code> runs at a time. A call made while another is in flight resolves
+<code>{ skipped: true }</code> at once, and that frame is neither sent nor transferred. The frames are dropped, not
+queued, so feeding the tracker every camera frame never builds up latency. Ignore the skipped results.</p>
+<p><strong><code>dispose()</code></strong> waits at most 2 seconds for the worker to dispose its tracker, then terminates the worker
+anyway. Calls still pending reject with a &quot;disposed&quot; error. It never rejects, and every call returns the same
+Promise, which settles once the worker is terminated: after <code>await tracker.dispose()</code> a new tracker never
+runs alongside the old worker.</p>
+<p><strong>Threaded build limitation.</strong> On <code>td</code>, <code>dispose()</code> skips the native teardown, because the threaded
+detector's destructor joins a pthread and hangs
+(<a href="https://github.com/webarkit/jsartoolkitNFT/issues/695">#695</a>). The WASM memory is freed only when the
+worker, or the page for <code>createNFTTracker</code>, goes away. The worker tracker terminates its worker, so its
+memory is freed.</p>
+<p><strong>Vite dev server.</strong> Serving the UMD bundles (<code>ARToolkitNFT*.js</code>) through the Vite dev server transforms
+them: it rewrites the filter module's <code>import()</code> and turns the file into an ES module, which then fails as a
+<code>&lt;script&gt;</code>. Serve them from <code>public/</code> or a CDN. See the comment in <code>vite.lib.config.mjs</code>.</p>
+<h3 id="pose-filters" class="tsd-anchor-link">Pose filters<a href="#pose-filters" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<p>The <code>filter</code> setting chooses how poses are smoothed:</p>
+<table>
+<thead>
+<tr>
+<th><code>filter</code></th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>'native'</code> (default)</td>
+<td>The core's own filter. The poses match <code>ARControllerNFT</code>'s for a controller created with <code>internalLuma = true</code>, which is the luma path the tracker uses.</td>
+</tr>
+<tr>
+<td><code>{ type: 'oneEuro', minCutOff, beta, warmUp }</code></td>
+<td>A OneEuro filter per target, reset on <code>lost</code>. Defaults <code>0.0001</code>, <code>0.01</code>, <code>0</code>.</td>
+</tr>
+<tr>
+<td><code>'none'</code></td>
+<td>No filtering.</td>
+</tr>
+<tr>
+<td><code>{ module, options }</code></td>
+<td>Your own filter, loaded by URL (see below).</td>
+</tr>
+<tr>
+<td><code>{ create, options }</code></td>
+<td>Your own factory function, on the same thread only.</td>
+</tr>
+</tbody>
+</table>
+<p>Every filter other than <code>'native'</code> turns the core's filter off, so poses are never filtered twice. Set it
+with <code>filter</code>, at creation or with <code>configure({ filter })</code>. The <code>filtering</code> key throws a <code>TypeError</code> here,
+and so does a key the form does not take (a misspelt <code>minCutoff</code>, say). A <code>{ create }</code> factory is called
+once when the filter is set, as a module's is, so a factory that throws fails there, not on a later frame.</p>
+<p>The <code>'native'</code> filter resets on the core's first untracked frame, not on the tracker's <code>lost</code>
+(<code>lostTimeout</code>). The tracker cannot change that. The JS filters (OneEuro and yours) reset on <code>lost</code>.</p>
+<p><strong>OneEuro</strong> uses <a href="https://github.com/webarkit/oneeurofilter-ts"><code>@webarkit/oneeurofilter-ts</code></a>, bundled into
+the library, with its units: time in milliseconds, and <code>minCutOff</code> and <code>beta</code> passed to it unchanged, as
+ARnft does. aframe-nft divides <code>minCutOff</code> by 1000 before passing it, so divide a value taken from
+aframe-nft's settings by 1000 to get the same filter here. OneEuro expects increasing timestamps, so pass
+<code>performance.now()</code>. A time that does not increase returns the previous output. <code>warmUp</code> passes the first
+<code>warmUp</code> poses after a reset through unfiltered, while still feeding them to the filter.</p>
+<p>To compare the poses of two cores frame by frame, pin <code>Date.now</code>: AR2 seeds <code>rand</code> with <code>time(NULL)</code>.</p>
+<h2 id="writing-a-pose-filter" class="tsd-anchor-link">Writing a pose filter<a href="#writing-a-pose-filter" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p>A filter module is an <strong>ES module</strong> that exports <code>createPoseFilter</code>. The tracker creates one filter per
+target and calls <code>reset()</code> when that target is lost:</p>
+<pre><code class="typescript"><span class="hl-7">interface</span><span class="hl-1"> </span><span class="hl-9">PoseFilter</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-2">filter</span><span class="hl-1">(</span><span class="hl-0">timeMs</span><span class="hl-1">: </span><span class="hl-9">number</span><span class="hl-1">, </span><span class="hl-0">pose</span><span class="hl-1">: </span><span class="hl-9">Float64Array</span><span class="hl-1">): </span><span class="hl-9">Float64Array</span><span class="hl-1"> </span><span class="hl-4">// the 16 pose values in, filtered values out</span><br/><span class="hl-1">  </span><span class="hl-2">reset</span><span class="hl-1">(): </span><span class="hl-9">void</span><br/><span class="hl-1">}</span><br/><span class="hl-7">interface</span><span class="hl-1"> </span><span class="hl-9">PoseFilterModule</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-2">createPoseFilter</span><span class="hl-1">(</span><span class="hl-0">options</span><span class="hl-1">: </span><span class="hl-9">unknown</span><span class="hl-1">): </span><span class="hl-9">PoseFilter</span><br/><span class="hl-1">}</span>
+</code><button type="button">Copy</button></pre>
+
+<p><a href="media/average-filter.js"><code>examples/filters/average-filter.js</code></a> is a template to copy:</p>
+<pre><code class="javascript"><span class="hl-7">const</span><span class="hl-1"> </span><span class="hl-8">tracker</span><span class="hl-1"> = </span><span class="hl-5">await</span><span class="hl-1"> </span><span class="hl-2">createNFTTrackerWorker</span><span class="hl-1">({</span><br/><span class="hl-1">  </span><span class="hl-0">width:</span><span class="hl-1"> </span><span class="hl-3">320</span><span class="hl-1">, </span><span class="hl-0">height:</span><span class="hl-1"> </span><span class="hl-3">240</span><span class="hl-1">, </span><span class="hl-0">cameraParam:</span><span class="hl-1"> </span><span class="hl-6">&#39;Data/camera_para.dat&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-4">// A relative path resolves against the page, here a page in examples/.</span><br/><span class="hl-1">  </span><span class="hl-0">filter:</span><span class="hl-1"> { </span><span class="hl-0">module:</span><span class="hl-1"> </span><span class="hl-6">&#39;filters/average-filter.js&#39;</span><span class="hl-1">, </span><span class="hl-0">options:</span><span class="hl-1"> { </span><span class="hl-0">weight:</span><span class="hl-1"> </span><span class="hl-3">0.5</span><span class="hl-1"> } },</span><br/><span class="hl-1">})</span>
+</code><button type="button">Copy</button></pre>
+
+<ul>
+<li>The module is loaded with <code>import()</code>, so it must be an ES module reachable by URL.</li>
+<li>A module that fails to load, has no <code>createPoseFilter</code>, or whose <code>createPoseFilter</code> throws rejects
+<code>createNFTTracker</code>, <code>createNFTTrackerWorker</code> or <code>configure({ filter })</code> with an <code>Error</code> naming the URL.</li>
+<li><strong>COEP.</strong> On a cross-origin isolated page (needed by the <code>td</code> build), a module served from another origin
+needs CORS plus a <code>Cross-Origin-Resource-Policy</code> header. A same-origin module needs nothing.</li>
+<li><code>{ create: (options) =&gt; PoseFilter }</code> passes a factory directly, but only on the same thread: a function
+cannot be posted to a worker, so <code>createNFTTrackerWorker</code> rejects it with a <code>TypeError</code>.</li>
+<li><code>filter()</code> must return exactly 16 values, or <code>process()</code> throws a <code>TypeError</code>. The tracker copies the
+returned pose, so a filter may reuse one output array across calls.</li>
+<li>A malformed <code>filter</code> config (an unknown string, an unknown <code>type</code>, an empty <code>module</code>) is refused with a
+<code>TypeError</code> before anything loads: <code>createNFTTracker</code>, <code>createNFTTrackerWorker</code> and <code>configure({ filter })</code>
+reject with it.</li>
+</ul>
+<h2 id="es6" class="tsd-anchor-link">ES6<a href="#es6" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p>❕From 0.8.0 version has <strong>ES6</strong> feature 🎉 😻</p>
+<h2 id="typescript" class="tsd-anchor-link">Typescript<a href="#typescript" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p>❕From 0.9.0 version has <strong>Typescript</strong> feature 💖 💣</p>
+<h2 id="pthread" class="tsd-anchor-link">Pthread<a href="#pthread" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p>From 1.6.0 version has <strong>Pthread</strong> experimental feature 🎉 🎉 🎉</p>
+<p>❕❕❕ ATTENTION: this feature is experimental, and it is not well tested yet. It is not recommended to use it in production.
+You need to set up a server with COOP and COEP headers to use this feature. Read this <a href="https://emscripten.org/docs/porting/pthreads.html#pthreads-support">Emscripten article</a></p>
+<h3 id="threaded-build-deploying" class="tsd-anchor-link">Threaded build: deploying<a href="#threaded-build-deploying" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<p>The threaded build is two files, and the worker must be served <strong>next to the script that loads the bundle</strong>: with a plain <code>&lt;script&gt;</code> tag that is the bundle's own folder, with <code>importScripts()</code> it is the calling worker script's folder, and in re-bundled apps it is the folder of the last <code>&lt;script src&gt;</code> on the page (details below):</p>
+<ul>
+<li><code>dist/ARToolkitNFT_td.js</code>: the bundle you load;</li>
+<li><code>dist/ARToolkitNFT_td.worker.js</code>: the pthread worker (an ES module worker, fixed name), which the bundle loads from the folder above.</li>
+</ul>
+<p>Serve them with the <code>Cross-Origin-Opener-Policy: same-origin</code> and <code>Cross-Origin-Embedder-Policy: require-corp</code> headers.</p>
+<p>With a <code>&lt;script&gt;</code> tag, keep the two files side by side and you are done. With <code>importScripts()</code> in a worker, the bundle URL is the URL of the worker script that calls <code>importScripts</code> (the same rule as webpack), so <code>ARToolkitNFT_td.worker.js</code> must sit in the folder of that calling worker script, not next to the bundle. If you <strong>re-bundle</strong> it with your own build (Vite, webpack, ...), the bundler copies <code>ARToolkitNFT_td.js</code> into your output but does not know about the worker, so copy it next to the output bundle yourself:</p>
+<pre><code class="javascript"><span class="hl-4">// Vite: vite.config.js, with vite-plugin-static-copy</span><br/><span class="hl-5">import</span><span class="hl-1"> { </span><span class="hl-0">viteStaticCopy</span><span class="hl-1"> } </span><span class="hl-5">from</span><span class="hl-1"> </span><span class="hl-6">&#39;vite-plugin-static-copy&#39;</span><br/><br/><span class="hl-5">export</span><span class="hl-1"> </span><span class="hl-5">default</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-0">plugins:</span><span class="hl-1"> [</span><br/><span class="hl-1">    </span><span class="hl-2">viteStaticCopy</span><span class="hl-1">({</span><br/><span class="hl-1">      </span><span class="hl-0">targets:</span><span class="hl-1"> [{ </span><span class="hl-0">src:</span><span class="hl-1"> </span><span class="hl-6">&#39;node_modules/@webarkit/jsartoolkit-nft/dist/ARToolkitNFT_td.worker.js&#39;</span><span class="hl-1">, </span><span class="hl-0">dest:</span><span class="hl-1"> </span><span class="hl-6">&#39;assets&#39;</span><span class="hl-1"> }],  </span><span class="hl-4">// = build.assetsDir</span><br/><span class="hl-1">    }),</span><br/><span class="hl-1">  ],</span><br/><span class="hl-1">}</span>
+</code><button type="button">Copy</button></pre>
+
+<p>The worker is resolved next to the script that loads the bundle. For module or re-bundled apps that is the last <code>&lt;script src&gt;</code> on the page, which in a Vite production build is <code>/assets/index-*.js</code>, hence <code>dest: 'assets'</code>. (A <code>public/</code> placement works only with <code>build.assetsDir: ''</code>.) In <code>vite dev</code> the location differs (under <code>/src/</code>), so test the threaded build with <code>vite build &amp;&amp; vite preview</code>.</p>
+<pre><code class="javascript"><span class="hl-4">// webpack: webpack.config.js, with copy-webpack-plugin</span><br/><span class="hl-7">const</span><span class="hl-1"> </span><span class="hl-8">CopyPlugin</span><span class="hl-1"> = </span><span class="hl-2">require</span><span class="hl-1">(</span><span class="hl-6">&#39;copy-webpack-plugin&#39;</span><span class="hl-1">)</span><br/><br/><span class="hl-9">module</span><span class="hl-1">.</span><span class="hl-9">exports</span><span class="hl-1"> = {</span><br/><span class="hl-1">  </span><span class="hl-0">plugins:</span><span class="hl-1"> [</span><br/><span class="hl-1">    </span><span class="hl-7">new</span><span class="hl-1"> </span><span class="hl-2">CopyPlugin</span><span class="hl-1">({</span><br/><span class="hl-1">      </span><span class="hl-0">patterns:</span><span class="hl-1"> [{ </span><span class="hl-0">from:</span><span class="hl-1"> </span><span class="hl-6">&#39;node_modules/@webarkit/jsartoolkit-nft/dist/ARToolkitNFT_td.worker.js&#39;</span><span class="hl-1">, </span><span class="hl-0">to:</span><span class="hl-1"> </span><span class="hl-6">&#39;.&#39;</span><span class="hl-1"> }],</span><br/><span class="hl-1">    }),</span><br/><span class="hl-1">  ],</span><br/><span class="hl-1">}</span>
+</code><button type="button">Copy</button></pre>
+
+<p>The symptom of a missing worker is a 404 for <code>ARToolkitNFT_td.worker.js</code> in the network panel, and detection that never finishes.</p>
+<h2 id="internalluma-with-simd" class="tsd-anchor-link">InternalLuma with simd<a href="#internalluma-with-simd" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p>Enable internal luma calculation with simd instructions. This feature is experimental and it is not well tested yet. Set the internalLuma flag to true in the ARControllerNFT constructor, or in the <code>initWithDimensions / initWithImage</code> static methods.</p>
+<h2 id="using-the-library-💥" class="tsd-anchor-link">Using the library 💥<a href="#using-the-library-💥" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p>You can use <a href="http://raw.githack.com">raw.githack.com</a> links:</p>
+<p><strong>WASM</strong> version of the library (deprecated it will be removed in a future release):</p>
+<pre><code class="html"><span class="hl-10">&lt;</span><span class="hl-11">script</span><span class="hl-12"> </span><span class="hl-13">src</span><span class="hl-12">=</span><span class="hl-14">&quot;https://raw.githack.com/webarkit/jsartoolkitNFT/master/build/artoolkitNFT_wasm.js&quot;</span><span class="hl-10">&gt;</span>
+</code><button type="button">Copy</button></pre>
+
+<p><strong>WASM</strong> version of the library as a Module:</p>
+<pre><code class="html"><span class="hl-10">&lt;</span><span class="hl-11">script</span><span class="hl-12"> </span><span class="hl-13">src</span><span class="hl-12">=</span><span class="hl-14">&quot;https://raw.githack.com/webarkit/jsartoolkitNFT/master/build/artoolkitNFT_ES6_wasm.js&quot;</span><span class="hl-10">&gt;</span>
+</code><button type="button">Copy</button></pre>
+
+<p><strong>WASM</strong> version of the library as a Module with new ES6 feature:</p>
+<pre><code class="html"><span class="hl-10">&lt;</span><span class="hl-11">script</span><span class="hl-12"> </span><span class="hl-13">src</span><span class="hl-12">=</span><span class="hl-14">&quot;https://raw.githack.com/webarkit/jsartoolkitNFT/master/build/artoolkitNFT_embed_ES6_wasm.js&quot;</span><span class="hl-10">&gt;</span>
+</code><button type="button">Copy</button></pre>
+
+<p><strong>NO WASM</strong> minified (deprecated it will be removed in a future release):</p>
+<pre><code class="html"><span class="hl-10">&lt;</span><span class="hl-11">script</span><span class="hl-12"> </span><span class="hl-13">src</span><span class="hl-12">=</span><span class="hl-14">&quot;https://raw.githack.com/webarkit/jsartoolkitNFT/master/build/artoolkitNFT.min.js&quot;</span><span class="hl-10">&gt;</span>
+</code><button type="button">Copy</button></pre>
+
+<p>or (recommended) use the <strong>UMD</strong> library:</p>
+<pre><code class="html"><span class="hl-10">&lt;</span><span class="hl-11">script</span><span class="hl-12"> </span><span class="hl-13">src</span><span class="hl-12">=</span><span class="hl-14">&quot;https://raw.githack.com/webarkit/jsartoolkitNFT/master/dist/ARToolkitNFT.js&quot;</span><span class="hl-10">&gt;</span>
+</code><button type="button">Copy</button></pre>
+
+<p>or you can install with npm and use as a module:</p>
+<pre><code class="bash"><span class="hl-2">npm</span><span class="hl-1"> </span><span class="hl-6">i</span><span class="hl-1"> </span><span class="hl-6">@webarkit/jsartoolkit-nft</span>
+</code><button type="button">Copy</button></pre>
+
+<p>then:</p>
+<pre><code class="javascript"><span class="hl-5">import</span><span class="hl-1"> { </span><span class="hl-0">ARToolkitNFT</span><span class="hl-1">, </span><span class="hl-0">ARControllerNFT</span><span class="hl-1"> } </span><span class="hl-5">from</span><span class="hl-1"> </span><span class="hl-6">&#39;@webarkit/jsartoolkit-nft&#39;</span>
+</code><button type="button">Copy</button></pre>
+
+<p>The package ships an <a href="https://nodejs.org/api/packages.html#package-entry-points"><code>exports</code></a> map, so the right build is picked automatically per environment:</p>
+<ul>
+<li>in a <strong>browser / bundler</strong>, <code>@webarkit/jsartoolkit-nft</code> resolves to the UMD build (<code>dist/ARToolkitNFT.js</code>);</li>
+<li>in <strong>Node.js</strong>, it resolves to the Node build: <code>dist/ARToolkitNFT_node.js</code> (CommonJS) for <code>require()</code>, and <code>dist/ARToolkitNFT_node.mjs</code> (a thin ES module wrapper over it) for <code>import</code>.</li>
+</ul>
+<pre><code class="javascript"><span class="hl-4">// browser / bundler -&gt; UMD build</span><br/><span class="hl-5">import</span><span class="hl-1"> { </span><span class="hl-0">ARToolkitNFT</span><span class="hl-1">, </span><span class="hl-0">ARControllerNFT</span><span class="hl-1"> } </span><span class="hl-5">from</span><span class="hl-1"> </span><span class="hl-6">&#39;@webarkit/jsartoolkit-nft&#39;</span><br/><br/><span class="hl-4">// Node.js, ES module -&gt; Node build, named imports</span><br/><span class="hl-5">import</span><span class="hl-1"> { </span><span class="hl-0">ARToolkitNFT</span><span class="hl-1">, </span><span class="hl-0">ARControllerNFT</span><span class="hl-1"> } </span><span class="hl-5">from</span><span class="hl-1"> </span><span class="hl-6">&#39;@webarkit/jsartoolkit-nft&#39;</span><br/><br/><span class="hl-4">// Node.js, CommonJS -&gt; Node build</span><br/><span class="hl-7">const</span><span class="hl-1"> { </span><span class="hl-8">ARToolkitNFT</span><span class="hl-1">, </span><span class="hl-8">ARControllerNFT</span><span class="hl-1"> } = </span><span class="hl-2">require</span><span class="hl-1">(</span><span class="hl-6">&#39;@webarkit/jsartoolkit-nft&#39;</span><span class="hl-1">)</span>
+</code><button type="button">Copy</button></pre>
+
+<p>You can also target a specific build through a named subpath:</p>
+<table>
+<thead>
+<tr>
+<th>Import</th>
+<th>Build</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>@webarkit/jsartoolkit-nft</code></td>
+<td>UMD (browser) / Node (Node.js)</td>
+</tr>
+<tr>
+<td><code>@webarkit/jsartoolkit-nft/simd</code></td>
+<td>SIMD WASM build</td>
+</tr>
+<tr>
+<td><code>@webarkit/jsartoolkit-nft/td</code></td>
+<td>threaded (pthread) build</td>
+</tr>
+<tr>
+<td><code>@webarkit/jsartoolkit-nft/node</code></td>
+<td>Node build</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="javascript"><span class="hl-5">import</span><span class="hl-1"> </span><span class="hl-6">&#39;@webarkit/jsartoolkit-nft/simd&#39;</span>
+</code><button type="button">Copy</button></pre>
+
+<p>The raw <code>dist/*</code> deep-imports (e.g. <code>@webarkit/jsartoolkit-nft/dist/ARToolkitNFT_simd.js</code>) still work, and <code>&lt;script&gt;</code> / <code>importScripts</code> URLs are not affected by the <code>exports</code> map. In Node both <code>require()</code> and a named <code>import { ... }</code> work: the ES module entry re-exports the CommonJS bundle, so the two share one instance of every class.</p>
+<p><strong>Note</strong>: All the examples in the repository are running the code inside a Worker (don't use it in the main thread!). So i you need to import the library in a worker you need to use the <code>importScripts</code> function.</p>
+<pre><code class="javascript"><span class="hl-4">// example of import in a worker with the wasm code lib</span><br/><span class="hl-2">importScripts</span><span class="hl-1">(</span><span class="hl-6">&quot;../build/artoolkitNFT_wasm.js&quot;</span><span class="hl-1">);</span><br/><span class="hl-4">// or the dist lib</span><br/><span class="hl-2">importScripts</span><span class="hl-1">(</span><span class="hl-6">&quot;../dist/ARToolkitNFT.js&quot;</span><span class="hl-1">);</span>
+</code><button type="button">Copy</button></pre>
+
+<h2 id="downloads" class="tsd-anchor-link">Downloads<a href="#downloads" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p>You can download the build libs in the <a href="https://github.com/webarkit/jsartoolkitNFT/releases">releases page</a>. Starting from version 0.8.0 it is possible to download <code>dist</code> or <code>build</code> zip packages and from 0.9.6 version only single libs (no zipped).</p>
+<p>or you can clone the repository with git, follow the instructions below:</p>
+<h2 id="clone-the-repository-🌀" class="tsd-anchor-link">Clone the repository 🌀<a href="#clone-the-repository-🌀" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<ol>
+<li>Clone this repository</li>
+<li>Clone WebARKitLib project to get the latest source files. From within JSARToolKitNFT directory do <code>git submodule update --init</code>. If you already cloned WebARKitLib to a different directory you can:</li>
+</ol>
+<ul>
+<li>create a link in the <code>jsartoolkitNFT/emscripten/</code> directory that points to WebARKitLib (<code>jsartoolkitNFT/emscripten/WebARKitLib</code>) (Linux and macOS only)</li>
+<li>or, set the <code>WEBARKITLIB_ROOT</code> environment variable to point to your WebARKitLib clone</li>
+<li>or, change the <code>tools/makem.js</code> file to point to your WebARKitLib clone (line 32-33)</li>
+</ul>
+<h2 id="documentation" class="tsd-anchor-link">Documentation<a href="#documentation" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p>You can build the documentation of the library. You need node and npm installed and then run these commands in a console:</p>
+<pre><code class="bash"><span class="hl-2">npm</span><span class="hl-1"> </span><span class="hl-6">install</span><br/><span class="hl-2">npm</span><span class="hl-1"> </span><span class="hl-6">run</span><span class="hl-1"> </span><span class="hl-6">docs</span>
+</code><button type="button">Copy</button></pre>
+
+<p>At this point you have build the docs in the <code>docs/</code> folder, you should run a server and then go to <code>docs/</code> folder.</p>
+<h2 id="using-with-react" class="tsd-anchor-link">Using with React<a href="#using-with-react" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p>Try <a href="https://github.com/j-era/react-three-arnft">react-three-arnft</a> a specific project that uses JsartoolkitNFT with React and Three.js.</p>
+<h2 id="arnft-library" class="tsd-anchor-link">ARnft library<a href="#arnft-library" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p><strong>JSARToolKitNFT</strong> is used by <a href="https://github.com/webarkit/ARnft">ARnft</a> a small library that helps developers to create <strong>WebAR</strong> apps.</p>
+<h2 id="python-bindings-🐍-experimental" class="tsd-anchor-link">Python bindings 🐍 (experimental)<a href="#python-bindings-🐍-experimental" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p>❕❕❕ ATTENTION: the Python bindings are experimental. The API may change without notice and they are not yet recommended for production use.</p>
+<p><strong>JSARToolKitNFT</strong> also provides Python bindings via <a href="https://github.com/pybind/pybind11">pybind11</a>, wrapping the same WebARKitLib C/C++ core used by the JavaScript build. They expose a high-level <code>ARControllerNFT</code> class and a lower-level <code>artoolkitnft_core</code> extension module so that NFT marker detection can be driven from Python.</p>
+<p>Install from <strong>PyPI</strong>:</p>
+<pre><code class="bash"><span class="hl-2">pip</span><span class="hl-1"> </span><span class="hl-6">install</span><span class="hl-1"> </span><span class="hl-6">artoolkitnft</span>
+</code><button type="button">Copy</button></pre>
+
+<h3 id="supported-platforms" class="tsd-anchor-link">Supported platforms<a href="#supported-platforms" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<table>
+<thead>
+<tr>
+<th>platform</th>
+<th>wheels</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Linux x86_64</td>
+<td>CPython 3.9-3.13</td>
+</tr>
+<tr>
+<td>macOS Apple silicon (arm64)</td>
+<td>CPython 3.9-3.13</td>
+</tr>
+<tr>
+<td>Windows x86_64</td>
+<td>CPython 3.9-3.13</td>
+</tr>
+<tr>
+<td>macOS Intel (x86_64)</td>
+<td><strong>none</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Wheels only — there is deliberately <strong>no source distribution</strong>, because the build compiles
+sources from outside the package directory and needs the WebARKitLib git submodule, neither
+of which survives an sdist. On an unsupported platform <code>pip</code> reports
+<code>no matching distribution found</code> rather than attempting a build that cannot succeed.
+Intel macOS is absent because GitHub retired its free Intel runner and removes x86_64 macOS
+entirely in August 2027; build from source if you need it.</p>
+<p><strong>TestPyPI</strong> carries rehearsal builds only, and should not be used to install the package:</p>
+<pre><code class="bash"><span class="hl-2">pip</span><span class="hl-1"> </span><span class="hl-6">install</span><span class="hl-1"> </span><span class="hl-7">-i</span><span class="hl-1"> </span><span class="hl-6">https://test.pypi.org/simple/</span><span class="hl-1"> </span><span class="hl-6">artoolkitnft</span>
+</code><button type="button">Copy</button></pre>
+
+<h3 id="what-works" class="tsd-anchor-link">What works<a href="#what-works" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul>
+<li>Loading NFT marker datasets (<code>.fset</code>, <code>.fset3</code>, <code>.iset</code>)</li>
+<li>KPM-based marker detection</li>
+<li>AR2 tracking with pose matrix output</li>
+<li>Projection near/far plane setters</li>
+<li>Threshold and image-processing mode</li>
+<li>Optional pre-computed grayscale input via <code>setGrayData</code></li>
+<li>Event listener for <code>getNFTMarker</code> / <code>lostNFTMarker</code></li>
+</ul>
+<h3 id="not-yet-implemented" class="tsd-anchor-link">Not yet implemented<a href="#not-yet-implemented" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul>
+<li>Live camera capture example (the current example processes a single static image)</li>
+<li><code>getKpmImageWidth</code> / <code>getKpmImageHeight</code> (temporarily excluded from the build)</li>
+<li><code>configure()</code> / <code>getRuntimeSettings()</code> (see <a href="#runtime-settings-configure">Runtime settings</a>).
+The plane setters already rebuild the camera matrix, as in JS.</li>
+</ul>
+<p>The bindings are built and tested on <strong>Linux</strong>, <strong>macOS</strong> (Apple silicon) and <strong>Windows</strong> via the
+<a href="https://github.com/webarkit/jsartoolkitNFT/actions/workflows/build-python.yml">Build and Test Python Bindings</a>
+workflow, and released by
+<a href="https://github.com/webarkit/jsartoolkitNFT/actions/workflows/publish-python.yml">Publish Python package</a>,
+which publishes to PyPI through trusted publishing (OIDC) on a <code>python/&lt;version&gt;</code> tag.</p>
+<p>For full build-from-source instructions, local development tips and the publishing workflow, see <a href="media/README.md"><code>python-bindings/README.md</code></a>.</p>
+<h2 id="nodejs-🟢-experimental" class="tsd-anchor-link">Node.js 🟢 (experimental)<a href="#nodejs-🟢-experimental" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p>❕❕❕ ATTENTION: Node.js support is experimental and under active development. The API may change without notice and it is not yet recommended for production use.</p>
+<p><strong>JSARToolKitNFT</strong> ships a dedicated Node.js build (<code>dist/ARToolkitNFT_node.js</code>), compiled from the same TypeScript sources and WebARKitLib C/C++ core as the browser build. It lets you run NFT marker detection server-side on static image data, without a browser, camera or <code>&lt;canvas&gt;</code>.</p>
+<p>When you install the package, Node automatically resolves to this build (see the <a href="#using-the-library-"><code>exports</code></a> map):</p>
+<pre><code class="javascript"><span class="hl-4">// ES module — named imports resolve to dist/ARToolkitNFT_node.mjs</span><br/><span class="hl-5">import</span><span class="hl-1"> { </span><span class="hl-0">ARControllerNFT</span><span class="hl-1"> } </span><span class="hl-5">from</span><span class="hl-1"> </span><span class="hl-6">&#39;@webarkit/jsartoolkit-nft&#39;</span><span class="hl-1">;</span><br/><span class="hl-4">// CommonJS — resolves to the Node build in Node.js</span><br/><span class="hl-7">const</span><span class="hl-1"> { </span><span class="hl-8">ARControllerNFT</span><span class="hl-1"> } = </span><span class="hl-2">require</span><span class="hl-1">(</span><span class="hl-6">&#39;@webarkit/jsartoolkit-nft&#39;</span><span class="hl-1">);</span><br/><span class="hl-4">// or the explicit subpath</span><br/><span class="hl-7">const</span><span class="hl-1"> { </span><span class="hl-8">ARControllerNFT</span><span class="hl-1"> } = </span><span class="hl-2">require</span><span class="hl-1">(</span><span class="hl-6">&#39;@webarkit/jsartoolkit-nft/node&#39;</span><span class="hl-1">);</span>
+</code><button type="button">Copy</button></pre>
+
+<p><code>process()</code> takes raw <strong>RGBA</strong> pixel data, so decoding the image is up to you. No decoder is
+bundled with the package — install the one the example you follow uses:</p>
+<pre><code class="bash"><span class="hl-4"># for the sharp example below</span><br/><span class="hl-2">npm</span><span class="hl-1"> </span><span class="hl-6">install</span><span class="hl-1"> </span><span class="hl-6">@webarkit/jsartoolkit-nft</span><span class="hl-1"> </span><span class="hl-6">sharp</span><br/><br/><span class="hl-4"># or, for the canvas example</span><br/><span class="hl-2">npm</span><span class="hl-1"> </span><span class="hl-6">install</span><span class="hl-1"> </span><span class="hl-6">@webarkit/jsartoolkit-nft</span><span class="hl-1"> </span><span class="hl-6">canvas</span>
+</code><button type="button">Copy</button></pre>
+
+<p>A minimal example decoding an image with <a href="https://github.com/lovell/sharp">sharp</a> and feeding the RGBA pixels to the controller:</p>
+<pre><code class="javascript"><span class="hl-7">const</span><span class="hl-1"> { </span><span class="hl-8">ARControllerNFT</span><span class="hl-1"> } = </span><span class="hl-2">require</span><span class="hl-1">(</span><span class="hl-6">&#39;@webarkit/jsartoolkit-nft&#39;</span><span class="hl-1">);</span><br/><span class="hl-7">const</span><span class="hl-1"> </span><span class="hl-8">sharp</span><span class="hl-1"> = </span><span class="hl-2">require</span><span class="hl-1">(</span><span class="hl-6">&#39;sharp&#39;</span><span class="hl-1">);</span><br/><br/><span class="hl-7">async</span><span class="hl-1"> </span><span class="hl-7">function</span><span class="hl-1"> </span><span class="hl-2">init</span><span class="hl-1">() {</span><br/><span class="hl-1">  </span><span class="hl-7">const</span><span class="hl-1"> </span><span class="hl-8">arControllerNFT</span><span class="hl-1"> = </span><span class="hl-5">await</span><span class="hl-1"> </span><span class="hl-7">new</span><span class="hl-1"> </span><span class="hl-2">ARControllerNFT</span><span class="hl-1">(</span><span class="hl-3">2000</span><span class="hl-1">, </span><span class="hl-3">1500</span><span class="hl-1">, </span><span class="hl-6">&#39;/camera_para.dat&#39;</span><span class="hl-1">);</span><br/><span class="hl-1">  </span><span class="hl-7">const</span><span class="hl-1"> </span><span class="hl-8">ar</span><span class="hl-1"> = </span><span class="hl-5">await</span><span class="hl-1"> </span><span class="hl-0">arControllerNFT</span><span class="hl-1">.</span><span class="hl-2">_initialize</span><span class="hl-1">();</span><br/><br/><span class="hl-1">  </span><span class="hl-4">// process() expects RGBA pixel data, so add the alpha channel.</span><br/><span class="hl-1">  </span><span class="hl-7">const</span><span class="hl-1"> </span><span class="hl-8">data</span><span class="hl-1"> = </span><span class="hl-5">await</span><span class="hl-1"> </span><span class="hl-2">sharp</span><span class="hl-1">(</span><span class="hl-6">&#39;pinball-demo.jpg&#39;</span><span class="hl-1">).</span><span class="hl-2">ensureAlpha</span><span class="hl-1">().</span><span class="hl-2">raw</span><span class="hl-1">().</span><span class="hl-2">toBuffer</span><span class="hl-1">();</span><br/><span class="hl-1">  </span><span class="hl-7">const</span><span class="hl-1"> </span><span class="hl-8">imageData</span><span class="hl-1"> = </span><span class="hl-7">new</span><span class="hl-1"> </span><span class="hl-2">Uint8Array</span><span class="hl-1">(</span><span class="hl-0">data</span><span class="hl-1">.</span><span class="hl-0">buffer</span><span class="hl-1">);</span><br/><br/><span class="hl-1">  </span><span class="hl-0">ar</span><span class="hl-1">.</span><span class="hl-2">on</span><span class="hl-1">(</span><span class="hl-6">&#39;getNFTMarker&#39;</span><span class="hl-1">, (</span><span class="hl-0">e</span><span class="hl-1">) </span><span class="hl-7">=&gt;</span><span class="hl-1"> </span><span class="hl-0">console</span><span class="hl-1">.</span><span class="hl-2">log</span><span class="hl-1">(</span><span class="hl-6">&#39;NFT marker detected: &#39;</span><span class="hl-1">, </span><span class="hl-0">e</span><span class="hl-1">));</span><br/><br/><span class="hl-1">  </span><span class="hl-0">ar</span><span class="hl-1">.</span><span class="hl-2">loadNFTMarker</span><span class="hl-1">(</span><span class="hl-6">&#39;DataNFT/pinball&#39;</span><span class="hl-1">, (</span><span class="hl-0">id</span><span class="hl-1">) </span><span class="hl-7">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">    </span><span class="hl-0">ar</span><span class="hl-1">.</span><span class="hl-2">trackNFTMarkerId</span><span class="hl-1">(</span><span class="hl-0">id</span><span class="hl-1">);</span><br/><span class="hl-1">    </span><span class="hl-4">// NFT tracking needs several iterations before it locks on.</span><br/><span class="hl-1">    </span><span class="hl-5">for</span><span class="hl-1"> (</span><span class="hl-7">let</span><span class="hl-1"> </span><span class="hl-0">i</span><span class="hl-1"> = </span><span class="hl-3">0</span><span class="hl-1">; </span><span class="hl-0">i</span><span class="hl-1"> &lt; </span><span class="hl-3">10</span><span class="hl-1">; </span><span class="hl-0">i</span><span class="hl-1">++) </span><span class="hl-0">ar</span><span class="hl-1">.</span><span class="hl-2">process</span><span class="hl-1">(</span><span class="hl-0">imageData</span><span class="hl-1">);</span><br/><span class="hl-1">  });</span><br/><span class="hl-1">}</span><br/><br/><span class="hl-2">init</span><span class="hl-1">();</span>
+</code><button type="button">Copy</button></pre>
+
+<h3 id="what-works-1" class="tsd-anchor-link">What works<a href="#what-works-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul>
+<li>Loading NFT marker datasets (<code>.fset</code>, <code>.fset3</code>, <code>.iset</code>). Camera and marker paths are read
+from disk relative to the working directory.</li>
+<li>KPM-based marker detection and AR2 tracking with pose matrix output</li>
+<li><a href="#multi-marker-tracking">Multi-marker tracking</a>: load several markers with
+<code>loadNFTMarkers(['DataNFT/pinball', 'DataNFT/kuva'], onSuccess, onError)</code> and each one in view
+is tracked, with <code>setContinuousDetection()</code> / <code>setDetectionInterval()</code> as in the browser builds.
+Markers can also be added in later calls: ids continue from the markers already loaded, and a
+call that fails leaves them in place.</li>
+<li>Event listeners for <code>getNFTMarker</code> and <code>lostNFTMarker</code></li>
+<li>Decoding image input via <a href="https://github.com/lovell/sharp">sharp</a> or the <a href="https://github.com/Automattic/node-canvas">canvas</a> package (<code>process()</code> expects <strong>RGBA</strong> pixel data). Neither is a dependency of this package — install whichever you prefer.</li>
+</ul>
+<h3 id="not-yet-implemented-1" class="tsd-anchor-link">Not yet implemented<a href="#not-yet-implemented-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul>
+<li>Live camera capture (the examples process a single static image)</li>
+</ul>
+<p>Runnable examples live in <a href="https://github.com/webarkit/jsartoolkitNFT/tree/master/examples/node"><code>examples/node</code></a>: <a href="media/example_dist.js"><code>example_dist.js</code></a> (sharp + the Node build) and <a href="media/example_canvas.js"><code>example_canvas.js</code></a> (the <a href="https://github.com/Automattic/node-canvas">canvas</a> package). Run one with:</p>
+<pre><code class="bash"><span class="hl-2">cd</span><span class="hl-1"> </span><span class="hl-6">examples/node</span><span class="hl-1"> &amp;&amp; </span><span class="hl-2">node</span><span class="hl-1"> </span><span class="hl-6">example_dist.js</span>
+</code><button type="button">Copy</button></pre>
+
+<h2 id="project-structure-📂" class="tsd-anchor-link">Project Structure 📂<a href="#project-structure-📂" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<ul>
+<li><code>build/</code> (compiled debug and minified versions of JSARToolKitNFT)</li>
+<li><code>dist/</code> (compiled UMD lib with ES6 of JSARToolKitNFT)</li>
+<li><code>emscripten/</code> (C/C++ source code for ARToolKitNFT)</li>
+<li><code>examples/</code> (demos and examples using JSARToolKitNFT)</li>
+<li><code>js/</code> (api and workers of JSARToolKitNFT.js for the standard api)</li>
+<li><code>python-bindings/</code> (experimental Python bindings — see section above)</li>
+<li><code>src/</code> (source code of ARToolKitNFT with Typescript)</li>
+<li><code>tests/</code> (the Vitest browser suite in <code>tests/vitest/</code> and the Node suite in <code>tests/node/</code> — see <a href="#running-the-tests-">Running the tests</a>)</li>
+<li><code>tools/</code> (build scripts for building JSARToolKitNFT with Emscripten)</li>
+<li><code>types/</code> (type definitions of ARToolKitNFT)</li>
+</ul>
+<h2 id="running-the-tests-🧪" class="tsd-anchor-link">Running the tests 🧪<a href="#running-the-tests-🧪" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p>Install dependencies, then fetch the browser the test suite drives:</p>
+<pre><code class="bash"><span class="hl-2">npm</span><span class="hl-1"> </span><span class="hl-6">ci</span><br/><span class="hl-2">npx</span><span class="hl-1"> </span><span class="hl-6">playwright</span><span class="hl-1"> </span><span class="hl-6">install</span><span class="hl-1"> </span><span class="hl-6">chromium</span>
+</code><button type="button">Copy</button></pre>
+
+<p>That second step is required. The browser suite runs in a real Chromium supplied by Playwright,
+and without it you get a missing-executable error before any spec starts. It is the only browser
+the tests need.</p>
+<pre><code class="bash"><span class="hl-2">npm</span><span class="hl-1"> </span><span class="hl-6">test</span><span class="hl-1">              </span><span class="hl-4"># everything: the browser suite, then the Node suite</span><br/><span class="hl-2">npm</span><span class="hl-1"> </span><span class="hl-6">run</span><span class="hl-1"> </span><span class="hl-6">test:vitest</span><span class="hl-1">   </span><span class="hl-4"># the browser suite only</span><br/><span class="hl-2">npm</span><span class="hl-1"> </span><span class="hl-6">run</span><span class="hl-1"> </span><span class="hl-6">test:node</span><span class="hl-1">     </span><span class="hl-4"># the Node suite only</span><br/><span class="hl-2">npm</span><span class="hl-1"> </span><span class="hl-6">run</span><span class="hl-1"> </span><span class="hl-6">test:coverage</span><span class="hl-1"> </span><span class="hl-4"># the browser suite, with an lcov report scoped to src/</span>
+</code><button type="button">Copy</button></pre>
+
+<p>CI runs the browser suite with coverage and uploads <code>coverage/lcov.info</code> to
+<a href="https://codecov.io/gh/webarkit/jsartoolkitNFT">Codecov</a>. The report covers <code>src/</code> only: the
+WebAssembly core and the committed bundles in <code>build/</code> are not instrumented. Coverage is
+reported, not enforced, so a drop does not fail a PR.</p>
+<p><code>npm run test:vitest:watch</code> re-runs on change while you work. To run a single file, pass its
+path:</p>
+<pre><code class="bash"><span class="hl-2">npx</span><span class="hl-1"> </span><span class="hl-6">vitest</span><span class="hl-1"> </span><span class="hl-6">run</span><span class="hl-1"> </span><span class="hl-6">tests/vitest/legacy-min.test.ts</span>
+</code><button type="button">Copy</button></pre>
+
+<p>What the suites cover:</p>
+<ul>
+<li><strong>The TypeScript API</strong> (<code>tests/vitest/</code> over <code>src/</code>): <code>ARControllerNFT</code> as consumers import
+it. This covers marker loading, <code>process()</code>, two markers detected in a real photo and
+marker-lost events, on the default, SIMD and threaded builds.</li>
+<li><strong>Every browser build</strong> (<code>legacy-*.test.ts</code>, <code>embed-es6.test.ts</code>, <code>module-surface.test.ts</code>):
+each committed artifact in <code>build/</code> loads, detects the pinball print in
+<code>examples/node/pinball-demo.jpg</code>, and exports what <code>src/</code> relies on (<code>HEAPU8</code>, <code>FS</code>,
+<code>_malloc</code>).</li>
+<li><strong>The published bundle</strong> (<code>dist-bundle.test.ts</code>): <code>dist/ARToolkitNFT.js</code> loaded with a script
+tag, the way a <code>&lt;script&gt;</code> consumer gets it.</li>
+<li><strong>The Node build</strong> (<code>tests/node/</code>), run with <code>node --test</code>.</li>
+</ul>
+<p>Tests run against the <strong>committed</strong> <code>build/</code> and <code>dist/</code> artifacts. If you change anything under
+<code>emscripten/</code> or <code>tools/makem.js</code>, rebuild before testing, or you will be testing stale
+WebAssembly. See <a href="media/AGENTS.md">AGENTS.md</a>.</p>
+<h2 id="webassembly-👋" class="tsd-anchor-link">WebAssembly 👋<a href="#webassembly-👋" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p><strong>JSARToolKitNFT</strong> supports WebAssembly. The library builds WebAssembly artifacts during the build process, <strong>WASM</strong> is embedded in a single file. This is <code>build/artoolkitNFT_wasm.js</code>. To use it, include the <code>artoolkitNFT_wasm.js</code> into your html page like this:</p>
+<pre><code class="html"><span class="hl-10">&lt;</span><span class="hl-11">script</span><span class="hl-12"> </span><span class="hl-13">src</span><span class="hl-12">=</span><span class="hl-14">&quot;../build/artoolkitNFT_wasm.js&quot;</span><span class="hl-10">&gt;&lt;/</span><span class="hl-11">script</span><span class="hl-10">&gt;</span>
+</code><button type="button">Copy</button></pre>
+
+<p>As loading the WebAssembly artifact is done asynchronously, there is a callback that is called when everything is ready.</p>
+<pre><code class="javascript"><span class="hl-0">window</span><span class="hl-1">.</span><span class="hl-2">addEventListener</span><span class="hl-1">(</span><span class="hl-6">&#39;artoolkitNFT-loaded&#39;</span><span class="hl-1">, () </span><span class="hl-7">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">    </span><span class="hl-4">//do artoolkit stuff here</span><br/><span class="hl-1">});</span>
+</code><button type="button">Copy</button></pre>
+
+<p>See the examples folder for details.</p>
+<h2 id="build-the-project-🔨" class="tsd-anchor-link">Build the project 🔨<a href="#build-the-project-🔨" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p>Go to the <a href="https://github.com/kalwalt/jsartoolkitNFT/wiki#build-instructions">wiki</a> for more information. Note that you only need to build the library if you make changes to the C++ core or TypeScript source code. The TypeScript bundles in <code>dist/</code> are built with <a href="https://vite.dev">Vite</a> (<code>npm run build-ts</code>), which also runs <code>tsc</code> for the declarations in <code>types/</code>. There are three ways to build the project:</p>
+<h3 id="1-natively-on-host-windows-macos-linux" class="tsd-anchor-link">1. Natively on Host (Windows, macOS, Linux)<a href="#1-natively-on-host-windows-macos-linux" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<p>To build natively, you must have the following tools installed and available in your environment's PATH:</p>
+<ul>
+<li><strong>Node.js</strong> (v22.18+ or v24.11+; <a href="media/.nvmrc"><code>.nvmrc</code></a> pins 24)</li>
+<li><strong>Emscripten SDK</strong> (v4.0.17+)</li>
+</ul>
+<p>Once set up, run:</p>
+<pre><code class="bash"><span class="hl-2">npm</span><span class="hl-1"> </span><span class="hl-6">install</span><br/><span class="hl-2">npm</span><span class="hl-1"> </span><span class="hl-6">run</span><span class="hl-1"> </span><span class="hl-6">build</span>
+</code><button type="button">Copy</button></pre>
+
+<hr>
+<h3 id="2-using-dev-containers-recommended" class="tsd-anchor-link">2. Using Dev Containers (Recommended)<a href="#2-using-dev-containers-recommended" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<p>If you use <strong>Visual Studio Code</strong>, you can build and develop inside a pre-configured Docker container using the <strong>Dev Containers</strong> extension:</p>
+<ol>
+<li>Install the <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers">Dev Containers</a> extension.</li>
+<li>Open this repository in Visual Studio Code.</li>
+<li>Click the green button in the bottom-left corner of the window (or press <code>Ctrl+Shift+P</code> / <code>Cmd+Shift+P</code> and search for <code>Dev Containers: Reopen in Container</code>).</li>
+<li>VS Code will build the Docker container and configure your environment with EMSDK, CMake, Ninja, Node.js, and all native compilation dependencies.</li>
+<li>In the container terminal, run:<pre><code class="bash"><span class="hl-2">npm</span><span class="hl-1"> </span><span class="hl-6">run</span><span class="hl-1"> </span><span class="hl-6">build</span>
+</code><button type="button">Copy</button></pre>
+
+</li>
+</ol>
+<hr>
+<h3 id="3-using-manual-docker-scripts" class="tsd-anchor-link">3. Using Manual Docker Scripts<a href="#3-using-manual-docker-scripts" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<p>If you prefer running Docker manually from the command line, you can use the built-in npm scripts:</p>
+<ol>
+<li>
+<p><strong>Start the background Docker container</strong>:</p>
+<pre><code class="bash"><span class="hl-2">npm</span><span class="hl-1"> </span><span class="hl-6">run</span><span class="hl-1"> </span><span class="hl-6">setup-docker</span>
+</code><button type="button">Copy</button></pre>
+
+<p>This resolves host workspace paths automatically (cross-platform on Windows, macOS, and Linux) and starts a persistent Emscripten container.</p>
+</li>
+<li>
+<p><strong>Build the library inside the container</strong>:</p>
+<pre><code class="bash"><span class="hl-2">npm</span><span class="hl-1"> </span><span class="hl-6">run</span><span class="hl-1"> </span><span class="hl-6">build-docker</span>
+</code><button type="button">Copy</button></pre>
+
+<p><em>(Or run <code>npm run build-docker-no-libar</code> if you want to skip building <code>libar.o</code>)</em></p>
+</li>
+</ol>
+<h3 id="notes" class="tsd-anchor-link">Notes<a href="#notes" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<p>The jsartoolkitNFT npm package is served until version <strong>0.9.4</strong> from <code>@kalwalt/jsartoolkit-nft</code>. By 0.9.5 version from <code>@webarkit/jsartoolkit-nft</code>.</p>
+</div></div>
+<div class="col-sidebar">
+<div class="page-menu">
+<div class="tsd-navigation settings">
+<details class="tsd-accordion"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="assets/icons.svg#icon-chevronDown"></use></svg>
+<h3>Settings</h3></summary>
+<div class="tsd-accordion-details">
+<div class="tsd-filter-visibility"><span class="settings-label">Member Visibility</span>
+<ul id="tsd-filter-options">
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-protected" name="protected"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Protected</span></label></li>
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-inherited" name="inherited" checked/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Inherited</span></label></li>
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-external" name="external"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>External</span></label></li></ul></div>
+<div class="tsd-theme-toggle"><label class="settings-label" for="tsd-theme">Theme</label><select id="tsd-theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div>
+<details open class="tsd-accordion tsd-page-navigation"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="assets/icons.svg#icon-chevronDown"></use></svg>
+<h3>On This Page</h3></summary>
+<div class="tsd-accordion-details"><a href="#jsartoolkitnft"><span>JSAR<wbr/>Tool<wbr/>Kit<wbr/>NFT</span></a>
+<ul>
+<li><a href="#features"><span>Features</span></a></li>
+<li>
+<ul>
+<li><a href="#markers-types"><span>Markers <wbr/>Types</span></a></li>
+<li><a href="#multi-marker-tracking"><span>Multi-<wbr/>marker tracking</span></a></li>
+<li><a href="#runtime-settings"><span>Runtime settings: </span></a></li>
+<li><a href="#log-level-at-initialisation"><span>Log level at initialisation</span></a></li></ul></li>
+<li><a href="#wasm"><span>WASM</span></a></li>
+<li><a href="#zft"><span>ZFT</span></a></li>
+<li><a href="#loading-nft-markers"><span>Loading <wbr/>NFT markers</span></a></li>
+<li><a href="#tracker-facade"><span>Tracker facade</span></a></li>
+<li>
+<ul>
+<li><a href="#frames-and-results"><span>Frames and results</span></a></li>
+<li><a href="#adding-targets"><span>Adding targets</span></a></li>
+<li><a href="#projection-and"><span>Projection:  and </span></a></li>
+<li><a href="#running-in-a-worker"><span>Running in a worker</span></a></li>
+<li><a href="#pose-filters"><span>Pose filters</span></a></li></ul></li>
+<li><a href="#writing-a-pose-filter"><span>Writing a pose filter</span></a></li>
+<li><a href="#es6"><span>ES6</span></a></li>
+<li><a href="#typescript"><span>Typescript</span></a></li>
+<li><a href="#pthread"><span>Pthread</span></a></li>
+<li>
+<ul>
+<li><a href="#threaded-build-deploying"><span>Threaded build: deploying</span></a></li></ul></li>
+<li><a href="#internalluma-with-simd"><span>Internal<wbr/>Luma with simd</span></a></li>
+<li><a href="#using-the-library-💥"><span>Using the library 💥</span></a></li>
+<li><a href="#downloads"><span>Downloads</span></a></li>
+<li><a href="#clone-the-repository-🌀"><span>Clone the repository 🌀</span></a></li>
+<li><a href="#documentation"><span>Documentation</span></a></li>
+<li><a href="#using-with-react"><span>Using with <wbr/>React</span></a></li>
+<li><a href="#arnft-library"><span>A<wbr/>Rnft library</span></a></li>
+<li><a href="#python-bindings-🐍-experimental"><span>Python bindings 🐍 (experimental)</span></a></li>
+<li>
+<ul>
+<li><a href="#supported-platforms"><span>Supported platforms</span></a></li>
+<li><a href="#what-works"><span>What works</span></a></li>
+<li><a href="#not-yet-implemented"><span>Not yet implemented</span></a></li></ul></li>
+<li><a href="#nodejs-🟢-experimental"><span>Node.js 🟢 (experimental)</span></a></li>
+<li>
+<ul>
+<li><a href="#what-works-1"><span>What works</span></a></li>
+<li><a href="#not-yet-implemented-1"><span>Not yet implemented</span></a></li></ul></li>
+<li><a href="#project-structure-📂"><span>Project <wbr/>Structure 📂</span></a></li>
+<li><a href="#running-the-tests-🧪"><span>Running the tests 🧪</span></a></li>
+<li><a href="#webassembly-👋"><span>Web<wbr/>Assembly 👋</span></a></li>
+<li><a href="#build-the-project-🔨"><span>Build the project 🔨</span></a></li>
+<li>
+<ul>
+<li><a href="#1-natively-on-host-windows-macos-linux"><span>1. <wbr/>Natively on <wbr/>Host (<wbr/>Windows, mac<wbr/>OS, <wbr/>Linux)</span></a></li>
+<li><a href="#2-using-dev-containers-recommended"><span>2. <wbr/>Using <wbr/>Dev <wbr/>Containers (<wbr/>Recommended)</span></a></li>
+<li><a href="#3-using-manual-docker-scripts"><span>3. <wbr/>Using <wbr/>Manual <wbr/>Docker <wbr/>Scripts</span></a></li>
+<li><a href="#notes"><span>Notes</span></a></li></ul></li></ul></div></details></div>
+<div class="site-menu">
+<nav class="tsd-navigation"><a href="modules.html">@webarkit/jsartoolkit-nft</a>
+<ul class="tsd-small-nested-navigation" id="tsd-nav-container">
+<li>Loading...</li></ul></nav></div></div></div><footer>
+<p class="tsd-generator">Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></footer>
+<div class="overlay"></div></body></html>

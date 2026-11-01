@@ -52,3 +52,11 @@ For the SIMD build import `dist/ARnft.simd.mjs` instead of `dist/ARnft.mjs`.
 ## Examples
 
 Start from the [first app guide](/docs/getting-started/first-app/), then see the [ARnft examples](https://github.com/webarkit/ARnft/tree/master/examples): glTF models, animated models, images, video, multiple markers, React.
+
+## API reference
+
+:::note[Under construction]
+A hosted API reference for ARnft is not available yet; publishing the WebARKit libraries' references on this site is tracked in [webarkit.github.io#49](https://github.com/webarkit/webarkit.github.io/issues/49).
+:::
+
+Meanwhile you can build it locally with TypeDoc. In a clone of the [repository](https://github.com/webarkit/ARnft), run `npm install`, then `npm run docs`, and open `docs/index.html`.
