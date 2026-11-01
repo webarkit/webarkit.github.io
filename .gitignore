@@ -7,3 +7,6 @@ node_modules/
 
 # personal notes for AI coding agents
 CLAUDE.local.md
+
+# editor settings
+.idea/
