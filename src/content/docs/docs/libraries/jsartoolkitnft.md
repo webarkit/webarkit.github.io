@@ -63,4 +63,4 @@ Wheels for CPython 3.9–3.13 are available for Linux x86_64, macOS on Apple sil
 
 ## API reference
 
-The full API reference can be generated from the repository with `npm run docs`. Publishing it here is planned.
+The [jsartoolkitNFT API reference](/jsartoolkitnft/api) documents every class, function and type that the package exports: `ARToolkitNFT`, `ARControllerNFT`, the NFT tracker (`createNFTTracker`, `createNFTTrackerWorker`) and their options. It has one module per build: `@webarkit/jsartoolkit-nft` (default), `/simd`, `/td` (threaded) and `/node`. It is generated with TypeDoc from the library's sources; to build it locally, run `npm run docs` in the repository.
