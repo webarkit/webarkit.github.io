@@ -1,0 +1,1180 @@
+<!DOCTYPE html><html class="default" lang="en" data-base="../"><head><meta charset="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>ARControllerNFT | @webarkit/jsartoolkit-nft</title><meta name="description" content="Documentation for @webarkit/jsartoolkit-nft"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="../assets/style.css"/><link rel="stylesheet" href="../assets/highlight.css"/><script defer src="../assets/main.js"></script><script async src="../assets/icons.js" id="tsd-icons-script"></script><script async src="../assets/search.js" id="tsd-search-script"></script><script async src="../assets/navigation.js" id="tsd-nav-script"></script><script async src="../assets/hierarchy.js" id="tsd-hierarchy-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os";document.body.style.display="none";setTimeout(() => window.app?app.showPage():document.body.style.removeProperty("display"),500)</script><header class="tsd-page-toolbar">
+<div class="tsd-toolbar-contents container"><a href="../index.html" class="title">@webarkit/jsartoolkit-nft</a>
+<div id="tsd-toolbar-links"></div><button id="tsd-search-trigger" class="tsd-widget" aria-label="Search"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-search"></use></svg></button><dialog id="tsd-search" aria-label="Search"><input role="combobox" id="tsd-search-input" aria-controls="tsd-search-results" aria-autocomplete="list" aria-expanded="true" autocapitalize="off" autocomplete="off" placeholder="Search the docs" maxLength="100"/>
+<ul role="listbox" id="tsd-search-results"></ul>
+<div id="tsd-search-status" aria-live="polite" aria-atomic="true">
+<div>Preparing search index...</div></div></dialog><a href="#" class="tsd-widget menu" id="tsd-toolbar-menu-trigger" data-toggle="menu" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-menu"></use></svg></a></div></header>
+<div class="container container-main">
+<div class="col-content">
+<div class="tsd-page-title">
+<ul class="tsd-breadcrumb" aria-label="Breadcrumb">
+<li><a href="../modules/ARControllerNFT.html">ARControllerNFT</a></li>
+<li><a href="" aria-current="page">ARControllerNFT</a></li></ul>
+<h1>Class ARControllerNFT</h1></div>
+<section class="tsd-panel tsd-comment">
+<div class="tsd-comment tsd-typography"><p>The controller shared by the browser builds (default, SIMD, threaded). Each
+build's <code>ARControllerNFT</code> subclass names its ARToolkitNFT class and declares
+the public constructors and static factories; everything else lives here,
+once (#734).</p>
+</div></section>
+<section class="tsd-panel tsd-hierarchy" data-refl="2118">
+<h4>Hierarchy (<a href="../hierarchy.html#ARControllerNFT.ARControllerNFT">View Summary</a>)</h4>
+<ul class="tsd-hierarchy">
+<li class="tsd-hierarchy-item"><a href="ARControllerNFTBase.ARControllerNFTBase.html" class="tsd-signature-type tsd-kind-class">ARControllerNFTBase</a>
+<ul class="tsd-hierarchy">
+<li class="tsd-hierarchy-item"><span class="tsd-hierarchy-target">ARControllerNFT</span></li></ul></li></ul></section><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/webarkit/jsartoolkitNFT/blob/887829790c68f034cec52cdb5d9d439e0b7459cd/src/ARControllerNFT.ts#L46">src/ARControllerNFT.ts:46</a></li></ul></aside>
+<section class="tsd-panel-group tsd-index-group">
+<section class="tsd-panel tsd-index-panel">
+<details class="tsd-index-content tsd-accordion" open><summary class="tsd-accordion-summary tsd-index-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>
+<h5 class="tsd-index-heading uppercase">Index</h5></summary>
+<div class="tsd-accordion-details">
+<section class="tsd-index-section">
+<h3 class="tsd-index-heading tsd-anchor-link" id="constructors">Constructors<a href="#constructors" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<div class="tsd-index-list"><a href="#constructor" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Constructor"><use href="../assets/icons.svg#icon-512"></use></svg><span>constructor</span></a>
+</div></section>
+<section class="tsd-index-section">
+<h3 class="tsd-index-heading tsd-anchor-link" id="accessors">Accessors<a href="#accessors" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<div class="tsd-index-list"><a href="#cameraparam" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>camera<wbr/>Param</span></a>
+<a href="#height" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>height</span></a>
+<a href="#width" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>width</span></a>
+</div></section>
+<section class="tsd-index-section">
+<h3 class="tsd-index-heading tsd-anchor-link" id="methods">Methods<a href="#methods" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<div class="tsd-index-list"><a href="#_initialize" class="tsd-index-link tsd-is-protected tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>_<wbr/>initialize</span></a>
+<a href="#addeventlistener" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>add<wbr/>Event<wbr/>Listener</span></a>
+<a href="#arglcameraviewrhf" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>argl<wbr/>Camera<wbr/>View<wbr/>R<wbr/>Hf</span></a>
+<a href="#configure" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>configure</span></a>
+<a href="#debugsetup" class="tsd-index-link deprecated tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>debug<wbr/>Setup</span></a>
+<a href="#detectnftmarker" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>detect<wbr/>NFT<wbr/>Marker</span></a>
+<a href="#dispatchevent" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>dispatch<wbr/>Event</span></a>
+<a href="#getcameramatrix" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Camera<wbr/>Matrix</span></a>
+<a href="#getdebugmode" class="tsd-index-link deprecated tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Debug<wbr/>Mode</span></a>
+<a href="#getimageprocmode" class="tsd-index-link deprecated tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Image<wbr/>Proc<wbr/>Mode</span></a>
+<a href="#getloglevel" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Log<wbr/>Level</span></a>
+<a href="#getnftdata" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>NFT<wbr/>Data</span></a>
+<a href="#getnftmarker" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>NFT<wbr/>Marker</span></a>
+<a href="#getprocessingimage" class="tsd-index-link deprecated tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Processing<wbr/>Image</span></a>
+<a href="#getprojectionfarplane" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Projection<wbr/>Far<wbr/>Plane</span></a>
+<a href="#getprojectionnearplane" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Projection<wbr/>Near<wbr/>Plane</span></a>
+<a href="#getruntimesettings" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Runtime<wbr/>Settings</span></a>
+<a href="#getthreshold" class="tsd-index-link deprecated tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Threshold</span></a>
+<a href="#getthresholdmode" class="tsd-index-link deprecated tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Threshold<wbr/>Mode</span></a>
+<a href="#gettransformationmatrix" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Transformation<wbr/>Matrix</span></a>
+<a href="#loadnftmarker" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>load<wbr/>NFT<wbr/>Marker</span></a>
+<a href="#loadnftmarkers" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>load<wbr/>NFT<wbr/>Markers</span></a>
+<a href="#process" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>process</span></a>
+<a href="#recalculatecameralens" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>recalculate<wbr/>Camera<wbr/>Lens</span></a>
+<a href="#removeeventlistener" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>remove<wbr/>Event<wbr/>Listener</span></a>
+<a href="#setcontinuousdetection" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>set<wbr/>Continuous<wbr/>Detection</span></a>
+<a href="#setdebugmode" class="tsd-index-link deprecated tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>set<wbr/>Debug<wbr/>Mode</span></a>
+<a href="#setdetectioninterval" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>set<wbr/>Detection<wbr/>Interval</span></a>
+<a href="#setfiltering" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>set<wbr/>Filtering</span></a>
+<a href="#setgraydata" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>set<wbr/>Gray<wbr/>Data</span></a>
+<a href="#setimageprocmode" class="tsd-index-link deprecated tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>set<wbr/>Image<wbr/>Proc<wbr/>Mode</span></a>
+<a href="#setloglevel" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>set<wbr/>Log<wbr/>Level</span></a>
+<a href="#setprojectionfarplane" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>set<wbr/>Projection<wbr/>Far<wbr/>Plane</span></a>
+<a href="#setprojectionnearplane" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>set<wbr/>Projection<wbr/>Near<wbr/>Plane</span></a>
+<a href="#setthreshold" class="tsd-index-link deprecated tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>set<wbr/>Threshold</span></a>
+<a href="#setthresholdmode" class="tsd-index-link deprecated tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>set<wbr/>Threshold<wbr/>Mode</span></a>
+<a href="#tracknftmarkerid" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>track<wbr/>NFT<wbr/>Marker<wbr/>Id</span></a>
+<a href="#transmattoglmat" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>trans<wbr/>Mat<wbr/>To<wbr/>GL<wbr/>Mat</span></a>
+<a href="#custominit" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>custom<wbr/>Init</span></a>
+<a href="#initwithdimensions" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>init<wbr/>With<wbr/>Dimensions</span></a>
+<a href="#initwithimage" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>init<wbr/>With<wbr/>Image</span></a>
+</div></section></div></details></section></section>
+<details class="tsd-panel-group tsd-member-group tsd-accordion" open><summary class="tsd-accordion-summary" data-key="section-Constructors"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>
+<h2 class="tsd-anchor-link" id="constructors-1">Constructors<a href="#constructors-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2></summary>
+<section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="constructor"><span>constructor</span><a href="#constructor" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="constructorarcontrollernft"><span class="tsd-signature-keyword">new</span> <span class="tsd-kind-constructor-signature">ARControllerNFT</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <a href="" class="tsd-signature-type tsd-kind-class">ARControllerNFT</a><a href="#constructorarcontrollernft" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>The ARControllerNFT default constructor. It has no params (see above).
+These properties are initialized:
+id, width, height, cameraParam, cameraId,
+cameraLoaded, artoolkitNFT, listeners, nftMarkers, transform_mat,
+transformGL_RH, videoWidth, videoHeight, videoSize,
+videoLuma, framesize, camera_mat.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">ARControllerNFT</a></h4><aside class="tsd-sources">
+<p>Overrides <a href="ARControllerNFTBase.ARControllerNFTBase.html">ARControllerNFTBase</a>.<a href="ARControllerNFTBase.ARControllerNFTBase.html#constructor">constructor</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/webarkit/jsartoolkitNFT/blob/887829790c68f034cec52cdb5d9d439e0b7459cd/src/ARControllerNFT.ts#L55">src/ARControllerNFT.ts:55</a></li></ul></aside></div></li>
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="constructorarcontrollernft-1"><span class="tsd-signature-keyword">new</span> <span class="tsd-kind-constructor-signature">ARControllerNFT</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">width</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">,</span> <span class="tsd-kind-parameter">height</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <a href="" class="tsd-signature-type tsd-kind-class">ARControllerNFT</a><a href="#constructorarcontrollernft-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>The ARControllerNFT default constructor. It has 2 params (see above).
+These properties are initialized:
+id, width, height, cameraParam, cameraId,
+cameraLoaded, artoolkitNFT, listeners, nftMarkers, transform_mat,
+transformGL_RH, videoWidth, videoHeight, videoSize,
+videoLuma, framesize, camera_mat.</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">width</span>: <span class="tsd-signature-type">number</span></span></li>
+<li><span><span class="tsd-kind-parameter">height</span>: <span class="tsd-signature-type">number</span></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">ARControllerNFT</a></h4><aside class="tsd-sources">
+<p>Overrides ARControllerNFTBase.constructor</p>
+<ul>
+<li>Defined in <a href="https://github.com/webarkit/jsartoolkitNFT/blob/887829790c68f034cec52cdb5d9d439e0b7459cd/src/ARControllerNFT.ts#L66">src/ARControllerNFT.ts:66</a></li></ul></aside></div></li>
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="constructorarcontrollernft-2"><span class="tsd-signature-keyword">new</span> <span class="tsd-kind-constructor-signature">ARControllerNFT</span><span class="tsd-signature-symbol">(</span><br/>    <span class="tsd-kind-parameter">width</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">height</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">cameraParam</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">internalLuma</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <a href="" class="tsd-signature-type tsd-kind-class">ARControllerNFT</a><a href="#constructorarcontrollernft-2" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>The ARControllerNFT constructor. It has 4 params (see above).
+These properties are initialized:
+id, width, height, cameraParam, cameraId,
+cameraLoaded, artoolkitNFT, listeners, nftMarkers, transform_mat,
+transformGL_RH, videoWidth, videoHeight, videoSize,
+framesize, camera_mat.</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">width</span>: <span class="tsd-signature-type">number</span></span></li>
+<li><span><span class="tsd-kind-parameter">height</span>: <span class="tsd-signature-type">number</span></span></li>
+<li><span><span class="tsd-kind-parameter">cameraParam</span>: <span class="tsd-signature-type">string</span></span></li>
+<li><span><span class="tsd-kind-parameter">internalLuma</span>: <span class="tsd-signature-type">boolean</span></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-class">ARControllerNFT</a></h4><aside class="tsd-sources">
+<p>Overrides ARControllerNFTBase.constructor</p>
+<ul>
+<li>Defined in <a href="https://github.com/webarkit/jsartoolkitNFT/blob/887829790c68f034cec52cdb5d9d439e0b7459cd/src/ARControllerNFT.ts#L79">src/ARControllerNFT.ts:79</a></li></ul></aside></div></li></ul></section></section></details>
+<details class="tsd-panel-group tsd-member-group tsd-accordion" open><summary class="tsd-accordion-summary" data-key="section-Accessors"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>
+<h2 class="tsd-anchor-link" id="accessors-1">Accessors<a href="#accessors-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2></summary>
+<section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="cameraparam"><span>camera<wbr/>Param</span><a href="#cameraparam" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li>
+<div class="tsd-signature" id="cameraparamcameraparam"><span class="tsd-signature-keyword">get</span> <span class="tsd-kind-get-signature">cameraParam</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+<div class="tsd-description">
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4><aside class="tsd-sources">
+<p>Inherited from ARControllerNFTBase.cameraParam</p>
+<ul>
+<li>Defined in <a href="https://github.com/webarkit/jsartoolkitNFT/blob/887829790c68f034cec52cdb5d9d439e0b7459cd/src/ARControllerNFTBase.ts#L172">src/ARControllerNFTBase.ts:172</a></li></ul></aside></div></li>
+<li>
+<div class="tsd-signature" id="cameraparamcameraparam-1"><span class="tsd-signature-keyword">set</span> <span class="tsd-kind-set-signature">cameraParam</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">cameraParam</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span></div>
+<div class="tsd-description">
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">cameraParam</span>: <span class="tsd-signature-type">string</span></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
+<p>Inherited from ARControllerNFTBase.cameraParam</p>
+<ul>
+<li>Defined in <a href="https://github.com/webarkit/jsartoolkitNFT/blob/887829790c68f034cec52cdb5d9d439e0b7459cd/src/ARControllerNFTBase.ts#L168">src/ARControllerNFTBase.ts:168</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="height"><span>height</span><a href="#height" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li>
+<div class="tsd-signature" id="heightheight"><span class="tsd-signature-keyword">get</span> <span class="tsd-kind-get-signature">height</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+<div class="tsd-description">
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4><aside class="tsd-sources">
+<p>Inherited from ARControllerNFTBase.height</p>
+<ul>
+<li>Defined in <a href="https://github.com/webarkit/jsartoolkitNFT/blob/887829790c68f034cec52cdb5d9d439e0b7459cd/src/ARControllerNFTBase.ts#L164">src/ARControllerNFTBase.ts:164</a></li></ul></aside></div></li>
+<li>
+<div class="tsd-signature" id="heightheight-1"><span class="tsd-signature-keyword">set</span> <span class="tsd-kind-set-signature">height</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">height</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span></div>
+<div class="tsd-description">
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">height</span>: <span class="tsd-signature-type">number</span></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
+<p>Inherited from ARControllerNFTBase.height</p>
+<ul>
+<li>Defined in <a href="https://github.com/webarkit/jsartoolkitNFT/blob/887829790c68f034cec52cdb5d9d439e0b7459cd/src/ARControllerNFTBase.ts#L160">src/ARControllerNFTBase.ts:160</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="width"><span>width</span><a href="#width" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li>
+<div class="tsd-signature" id="widthwidth"><span class="tsd-signature-keyword">get</span> <span class="tsd-kind-get-signature">width</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+<div class="tsd-description">
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4><aside class="tsd-sources">
+<p>Inherited from ARControllerNFTBase.width</p>
+<ul>
+<li>Defined in <a href="https://github.com/webarkit/jsartoolkitNFT/blob/887829790c68f034cec52cdb5d9d439e0b7459cd/src/ARControllerNFTBase.ts#L156">src/ARControllerNFTBase.ts:156</a></li></ul></aside></div></li>
+<li>
+<div class="tsd-signature" id="widthwidth-1"><span class="tsd-signature-keyword">set</span> <span class="tsd-kind-set-signature">width</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">width</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span></div>
+<div class="tsd-description">
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">width</span>: <span class="tsd-signature-type">number</span></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
+<p>Inherited from ARControllerNFTBase.width</p>
+<ul>
+<li>Defined in <a href="https://github.com/webarkit/jsartoolkitNFT/blob/887829790c68f034cec52cdb5d9d439e0b7459cd/src/ARControllerNFTBase.ts#L152">src/ARControllerNFTBase.ts:152</a></li></ul></aside></div></li></ul></section></section></details>
+<details class="tsd-panel-group tsd-member-group tsd-accordion" open><summary class="tsd-accordion-summary" data-key="section-Methods"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>
+<h2 class="tsd-anchor-link" id="methods-1">Methods<a href="#methods-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2></summary>
+<section>
+<section class="tsd-panel tsd-member tsd-is-protected tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="_initialize"><code class="tsd-tag">Protected</code><span>_<wbr/>initialize</span><a href="#_initialize" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-protected tsd-is-inherited">
+<li class="tsd-is-inherited">
+<div class="tsd-signature tsd-anchor-link" id="_initialize-1"><span class="tsd-kind-call-signature">_initialize</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">options</span><span class="tsd-signature-symbol">?:</span> <a href="../interfaces/abstractions_CommonInterfaces.ARInitOptions.html" class="tsd-signature-type tsd-kind-interface">ARInitOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="" class="tsd-signature-type tsd-kind-class">ARControllerNFT</a><span class="tsd-signature-symbol">&gt;</span><a href="#_initialize-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>This function init the ARControllerNFT with the necessary parmeters and variables.
+Don't call directly this but instead instantiate a new ARControllerNFT.</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><code class="tsd-tag">Optional</code><span class="tsd-kind-parameter">options</span>: <a href="../interfaces/abstractions_CommonInterfaces.ARInitOptions.html" class="tsd-signature-type tsd-kind-interface">ARInitOptions</a></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="" class="tsd-signature-type tsd-kind-class">ARControllerNFT</a><span class="tsd-signature-symbol">&gt;</span></h4><p>The initialized ARControllerNFT instance</p>
+<aside class="tsd-sources">
+<p>Inherited from <a href="ARControllerNFTBase.ARControllerNFTBase.html">ARControllerNFTBase</a>.<a href="ARControllerNFTBase.ARControllerNFTBase.html#_initialize">_initialize</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/webarkit/jsartoolkitNFT/blob/887829790c68f034cec52cdb5d9d439e0b7459cd/src/ARControllerNFTBase.ts#L835">src/ARControllerNFTBase.ts:835</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="addeventlistener"><span>add<wbr/>Event<wbr/>Listener</span><a href="#addeventlistener" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li class="tsd-is-inherited">
+<div class="tsd-signature tsd-anchor-link" id="addeventlistener-1"><span class="tsd-kind-call-signature">addEventListener</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">name</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">,</span> <span class="tsd-kind-parameter">callback</span><span class="tsd-signature-symbol">:</span> <a href="../types/abstractions_CommonInterfaces.NFTEventListener.html" class="tsd-signature-type tsd-kind-type-alias">NFTEventListener</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span><a href="#addeventlistener-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Add an event listener on this ARControllerNFT for the named event, calling the callback function
+whenever that event is dispatched.
+Possible events are:</p>
+<ul>
+<li>getNFTMarker - dispatched by process() for every NFT marker found in the frame</li>
+<li>lostNFTMarker - dispatched by process() once a tracked NFT marker has been out of
+view for longer than the lost threshold (a single missed frame is not a loss)</li>
+<li>load - dispatched when the ARControllerNFT is ready to use (useful if passing in a camera URL in the constructor)</li>
+</ul>
+<p>Listeners are kept in an array, not a set: registering the same callback twice
+makes it fire twice per event, and each removeEventListener() call drops one
+registration.</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">name</span>: <span class="tsd-signature-type">string</span></span>
+<div class="tsd-comment tsd-typography"><p>Name of the event to listen to.</p>
+</div></li>
+<li><span><span class="tsd-kind-parameter">callback</span>: <a href="../types/abstractions_CommonInterfaces.NFTEventListener.html" class="tsd-signature-type tsd-kind-type-alias">NFTEventListener</a></span>
+<div class="tsd-comment tsd-typography"><p>Callback function to call when an event with the given name is dispatched.</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
+<p>Inherited from <a href="ARControllerNFTBase.ARControllerNFTBase.html">ARControllerNFTBase</a>.<a href="ARControllerNFTBase.ARControllerNFTBase.html#addeventlistener">addEventListener</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/webarkit/jsartoolkitNFT/blob/887829790c68f034cec52cdb5d9d439e0b7459cd/src/ARControllerNFTBase.ts#L332">src/ARControllerNFTBase.ts:332</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="arglcameraviewrhf"><span>argl<wbr/>Camera<wbr/>View<wbr/>R<wbr/>Hf</span><a href="#arglcameraviewrhf" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li class="tsd-is-inherited">
+<div class="tsd-signature tsd-anchor-link" id="arglcameraviewrhf-1"><span class="tsd-kind-call-signature">arglCameraViewRHf</span><span class="tsd-signature-symbol">(</span><br/>    <span class="tsd-kind-parameter">glMatrix</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Float64Array</span><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">glRhMatrix</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">Float64Array</span><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">scale</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Float64Array</span><a href="#arglcameraviewrhf-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Converts the given 4x4 openGL matrix in the 16-element transMat array
+into a 4x4 OpenGL Right-Hand-View matrix and writes the result into the 16-element glMat array.
+If scale parameter is given, scales the transform of the glMat by the scale parameter.</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">glMatrix</span>: <span class="tsd-signature-type">Float64Array</span></span>
+<div class="tsd-comment tsd-typography"><p>The 4x4 marker transformation matrix.</p>
+</div></li>
+<li><span><code class="tsd-tag">Optional</code><span class="tsd-kind-parameter">glRhMatrix</span>: <span class="tsd-signature-type">Float64Array</span></span>
+<div class="tsd-comment tsd-typography"><p>The 4x4 GL right hand transformation matrix.</p>
+</div></li>
+<li><span><code class="tsd-tag">Optional</code><span class="tsd-kind-parameter">scale</span>: <span class="tsd-signature-type">number</span></span>
+<div class="tsd-comment tsd-typography"><p>The scale for the transform.</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Float64Array</span></h4><p>the modified gl matrix</p>
+<aside class="tsd-sources">
+<p>Inherited from <a href="ARControllerNFTBase.ARControllerNFTBase.html">ARControllerNFTBase</a>.<a href="ARControllerNFTBase.ARControllerNFTBase.html#arglcameraviewrhf">arglCameraViewRHf</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/webarkit/jsartoolkitNFT/blob/887829790c68f034cec52cdb5d9d439e0b7459cd/src/ARControllerNFTBase.ts#L407">src/ARControllerNFTBase.ts:407</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="configure"><span>configure</span><a href="#configure" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li class="tsd-is-inherited">
+<div class="tsd-signature tsd-anchor-link" id="configure-1"><span class="tsd-kind-call-signature">configure</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">patch</span><span class="tsd-signature-symbol">:</span> <a href="../types/abstractions_CommonInterfaces.NFTRuntimeSettingsPatch.html" class="tsd-signature-type tsd-kind-type-alias">NFTRuntimeSettingsPatch</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span><a href="#configure-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Changes several runtime settings at once (#720): the planes, the detection policy,
+filtering, the log level and the AR2 tracking parameters. The patch is deep-merged into
+<a href="ARControllerNFTBase.ARControllerNFTBase.html#getruntimesettings" class="tsd-kind-method">getRuntimeSettings</a> (<code>ar2</code> field by field) and applied in one native call, which
+validates everything first and changes nothing on failure. getCameraMatrix() reflects
+new planes at once.</p>
+<p><code>logLevel</code> is per controller: the level lives in the WASM module's globals, and each
+controller's init() creates its own module. The core takes 0..4 (or -1 for &quot;leave it&quot;),
+so a level above 4 is refused with a RangeError, except the controller's current level:
+that counts as no change, so a getRuntimeSettings() round trip succeeds at any level,
+a silenced one included. Set a level above 4 with setLogLevel() or the init option.</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">patch</span>: <a href="../types/abstractions_CommonInterfaces.NFTRuntimeSettingsPatch.html" class="tsd-signature-type tsd-kind-type-alias">NFTRuntimeSettingsPatch</a></span>
+<div class="tsd-comment tsd-typography"><p>any subset of the settings.</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+<div class="tsd-comment tsd-typography">
+<div class="tsd-tag-example">
+<h4 class="tsd-anchor-link" id="example">Example<a href="#example" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h4><pre><code class="ts"><span class="hl-0">ar</span><span class="hl-1">.</span><span class="hl-2">configure</span><span class="hl-1">({ </span><span class="hl-0">near:</span><span class="hl-1"> </span><span class="hl-3">1</span><span class="hl-1">, </span><span class="hl-0">far:</span><span class="hl-1"> </span><span class="hl-3">5000</span><span class="hl-1">, </span><span class="hl-0">ar2:</span><span class="hl-1"> { </span><span class="hl-0">simThresh:</span><span class="hl-1"> </span><span class="hl-3">0.6</span><span class="hl-1"> } });</span>
+</code><button type="button">Copy</button></pre>
+
+</div>
+<div class="tsd-tag-throws">
+<h4 class="tsd-anchor-link" id="throws">Throws<a href="#throws" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h4><p>on an unknown key (including the deprecated square-marker keys
+<code>threshold</code>, <code>thresholdMode</code>, <code>imageProcMode</code>, <code>debugMode</code>), a value of the wrong
+type, or a non-integer for an integer field (<code>logLevel</code>, <code>ar2.searchFeatureNum</code>,
+<code>ar2.templateSize1/2</code>, <code>ar2.searchSize</code>); nothing is changed.</p>
+</div>
+<div class="tsd-tag-throws">
+<h4 class="tsd-anchor-link" id="throws-1">Throws<a href="#throws-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h4><p>when the values are out of range; nothing is changed.</p>
+</div></div><aside class="tsd-sources">
+<p>Inherited from <a href="ARControllerNFTBase.ARControllerNFTBase.html">ARControllerNFTBase</a>.<a href="ARControllerNFTBase.ARControllerNFTBase.html#configure">configure</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/webarkit/jsartoolkitNFT/blob/887829790c68f034cec52cdb5d9d439e0b7459cd/src/ARControllerNFTBase.ts#L570">src/ARControllerNFTBase.ts:570</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="debugsetup"><span class="deprecated">debug<wbr/>Setup</span><a href="#debugsetup" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li class="tsd-is-inherited">
+<div class="tsd-signature tsd-anchor-link" id="debugsetup-1"><span class="tsd-kind-call-signature">debugSetup</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span><a href="#debugsetup-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Sets up the square-marker detector's debug image: enables debug mode
+and keeps the image's address.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+<div class="tsd-comment tsd-typography">
+<div class="tsd-tag-deprecated">
+<h4 class="tsd-anchor-link" id="deprecated">Deprecated<a href="#deprecated" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h4><p>The image is never filled for NFT tracking: only the
+square-marker labeling writes it, and NFT tracking never runs it. Will be
+removed in the next major version (#659).</p>
+</div></div><aside class="tsd-sources">
+<p>Inherited from <a href="ARControllerNFTBase.ARControllerNFTBase.html">ARControllerNFTBase</a>.<a href="ARControllerNFTBase.ARControllerNFTBase.html#debugsetup">debugSetup</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/webarkit/jsartoolkitNFT/blob/887829790c68f034cec52cdb5d9d439e0b7459cd/src/ARControllerNFTBase.ts#L376">src/ARControllerNFTBase.ts:376</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="detectnftmarker"><span>detect<wbr/>NFT<wbr/>Marker</span><a href="#detectnftmarker" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li class="tsd-is-inherited">
+<div class="tsd-signature tsd-anchor-link" id="detectnftmarker-1"><span class="tsd-kind-call-signature">detectNFTMarker</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><a href="#detectnftmarker-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Detects the NFT markers in the process() function,
+with the given tracked id.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4><aside class="tsd-sources">
+<p>Inherited from <a href="ARControllerNFTBase.ARControllerNFTBase.html">ARControllerNFTBase</a>.<a href="ARControllerNFTBase.ARControllerNFTBase.html#detectnftmarker">detectNFTMarker</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/webarkit/jsartoolkitNFT/blob/887829790c68f034cec52cdb5d9d439e0b7459cd/src/ARControllerNFTBase.ts#L256">src/ARControllerNFTBase.ts:256</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="dispatchevent"><span>dispatch<wbr/>Event</span><a href="#dispatchevent" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li class="tsd-is-inherited">
+<div class="tsd-signature tsd-anchor-link" id="dispatchevent-1"><span class="tsd-kind-call-signature">dispatchEvent</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">event</span><span class="tsd-signature-symbol">:</span> <a href="../interfaces/abstractions_CommonInterfaces.NFTEvent.html" class="tsd-signature-type tsd-kind-interface">NFTEvent</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span><a href="#dispatchevent-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Dispatches the given event to all listeners registered on <a href="http://event.name">event.name</a>, in
+registration order, with <code>this</code> bound to the controller. The listener list is
+snapshotted before the loop, so a listener that removes itself (or adds or
+removes other listeners) during dispatch does not change which listeners the
+current dispatch reaches; such changes apply from the next dispatch.</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">event</span>: <a href="../interfaces/abstractions_CommonInterfaces.NFTEvent.html" class="tsd-signature-type tsd-kind-interface">NFTEvent</a></span>
+<div class="tsd-comment tsd-typography"><p>Event to dispatch.</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
+<p>Inherited from <a href="ARControllerNFTBase.ARControllerNFTBase.html">ARControllerNFTBase</a>.<a href="ARControllerNFTBase.ARControllerNFTBase.html#dispatchevent">dispatchEvent</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/webarkit/jsartoolkitNFT/blob/887829790c68f034cec52cdb5d9d439e0b7459cd/src/ARControllerNFTBase.ts#L359">src/ARControllerNFTBase.ts:359</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="getcameramatrix"><span>get<wbr/>Camera<wbr/>Matrix</span><a href="#getcameramatrix" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li class="tsd-is-inherited">
+<div class="tsd-signature tsd-anchor-link" id="getcameramatrix-1"><span class="tsd-kind-call-signature">getCameraMatrix</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Float64Array</span><a href="#getcameramatrix-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Returns the projection matrix computed from camera parameters for the ARControllerNFT.
+It follows the near and far planes: it is built with them from initialisation on, and
+rebuilt by setProjectionNearPlane(), setProjectionFarPlane() and configure().</p>
+</div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Float64Array</span></h4><p>The 16-element WebGL camera matrix for the ARControllerNFT camera parameters.</p>
+<aside class="tsd-sources">
+<p>Inherited from <a href="ARControllerNFTBase.ARControllerNFTBase.html">ARControllerNFTBase</a>.<a href="ARControllerNFTBase.ARControllerNFTBase.html#getcameramatrix">getCameraMatrix</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/webarkit/jsartoolkitNFT/blob/887829790c68f034cec52cdb5d9d439e0b7459cd/src/ARControllerNFTBase.ts#L431">src/ARControllerNFTBase.ts:431</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="getdebugmode"><span class="deprecated">get<wbr/>Debug<wbr/>Mode</span><a href="#getdebugmode" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li class="tsd-is-inherited">
+<div class="tsd-signature tsd-anchor-link" id="getdebugmode-1"><span class="tsd-kind-call-signature">getDebugMode</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><a href="#getdebugmode-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Returns whether the square-marker detector's debug mode is enabled.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4><p>true when debug mode is enabled</p>
+
+<div class="tsd-comment tsd-typography">
+<div class="tsd-tag-deprecated">
+<h4 class="tsd-anchor-link" id="deprecated-1">Deprecated<a href="#deprecated-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h4><p>Has no effect on NFT tracking: only the square-marker labeling
+reads it, and NFT tracking never runs it. Will be removed in the next major
+version (#659).</p>
+</div></div><aside class="tsd-sources">
+<p>Inherited from <a href="ARControllerNFTBase.ARControllerNFTBase.html">ARControllerNFTBase</a>.<a href="ARControllerNFTBase.ARControllerNFTBase.html#getdebugmode">getDebugMode</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/webarkit/jsartoolkitNFT/blob/887829790c68f034cec52cdb5d9d439e0b7459cd/src/ARControllerNFTBase.ts#L456">src/ARControllerNFTBase.ts:456</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="getimageprocmode"><span class="deprecated">get<wbr/>Image<wbr/>Proc<wbr/>Mode</span><a href="#getimageprocmode" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li class="tsd-is-inherited">
+<div class="tsd-signature tsd-anchor-link" id="getimageprocmode-1"><span class="tsd-kind-call-signature">getImageProcMode</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><a href="#getimageprocmode-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Returns the square-marker detector's image processing mode.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4><p>The current image processing mode.</p>
+
+<div class="tsd-comment tsd-typography">
+<div class="tsd-tag-deprecated">
+<h4 class="tsd-anchor-link" id="deprecated-2">Deprecated<a href="#deprecated-2" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h4><p>Has no effect on NFT tracking: only the square-marker labeling
+reads it, and NFT tracking never runs it. Will be removed in the next major
+version (#659).</p>
+</div></div><aside class="tsd-sources">
+<p>Inherited from <a href="ARControllerNFTBase.ARControllerNFTBase.html">ARControllerNFTBase</a>.<a href="ARControllerNFTBase.ARControllerNFTBase.html#getimageprocmode">getImageProcMode</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/webarkit/jsartoolkitNFT/blob/887829790c68f034cec52cdb5d9d439e0b7459cd/src/ARControllerNFTBase.ts#L761">src/ARControllerNFTBase.ts:761</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="getloglevel"><span>get<wbr/>Log<wbr/>Level</span><a href="#getloglevel" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li class="tsd-is-inherited">
+<div class="tsd-signature tsd-anchor-link" id="getloglevel-1"><span class="tsd-kind-call-signature">getLogLevel</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><a href="#getloglevel-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Gets the logging level used by ARToolKit.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4><p>return the log level in use.</p>
+<aside class="tsd-sources">
+<p>Inherited from <a href="ARControllerNFTBase.ARControllerNFTBase.html">ARControllerNFTBase</a>.<a href="ARControllerNFTBase.ARControllerNFTBase.html#getloglevel">getLogLevel</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/webarkit/jsartoolkitNFT/blob/887829790c68f034cec52cdb5d9d439e0b7459cd/src/ARControllerNFTBase.ts#L496">src/ARControllerNFTBase.ts:496</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="getnftdata"><span>get<wbr/>NFT<wbr/>Data</span><a href="#getnftdata" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li class="tsd-is-inherited">
+<div class="tsd-signature tsd-anchor-link" id="getnftdata-1"><span class="tsd-kind-call-signature">getNFTData</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">index</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span><a href="#getnftdata-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p><strong>GetNFTData</strong> will return the width. height and dpi of the NFT marker.</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">index</span>: <span class="tsd-signature-type">number</span></span>
+<div class="tsd-comment tsd-typography"><p>the index of the NFT marker, in case you have multi NFT markers.</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">object</span></h4><aside class="tsd-sources">
+<p>Inherited from <a href="ARControllerNFTBase.ARControllerNFTBase.html">ARControllerNFTBase</a>.<a href="ARControllerNFTBase.ARControllerNFTBase.html#getnftdata">getNFTData</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/webarkit/jsartoolkitNFT/blob/887829790c68f034cec52cdb5d9d439e0b7459cd/src/ARControllerNFTBase.ts#L310">src/ARControllerNFTBase.ts:310</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="getnftmarker"><span>get<wbr/>NFT<wbr/>Marker</span><a href="#getnftmarker" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li class="tsd-is-inherited">
+<div class="tsd-signature tsd-anchor-link" id="getnftmarker-1"><span class="tsd-kind-call-signature">getNFTMarker</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">markerIndex</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <a href="../interfaces/abstractions_CommonInterfaces.INFTMarkerInfo.html" class="tsd-signature-type tsd-kind-interface">INFTMarkerInfo</a><a href="#getnftmarker-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Get the NFT marker info struct for the given NFT marker index in detected markers.
+The returned object is the global artoolkitNFT.NFTMarkerInfo object and will be overwritten
+by subsequent calls.
+Returns undefined if no marker was found.
+A markerIndex of -1 is used to access the global custom marker.</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">markerIndex</span>: <span class="tsd-signature-type">number</span></span>
+<div class="tsd-comment tsd-typography"><p>The index of the NFT marker to query.</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="../interfaces/abstractions_CommonInterfaces.INFTMarkerInfo.html" class="tsd-signature-type tsd-kind-interface">INFTMarkerInfo</a></h4><p>The NFTMarkerInfo struct.</p>
+<aside class="tsd-sources">
+<p>Inherited from <a href="ARControllerNFTBase.ARControllerNFTBase.html">ARControllerNFTBase</a>.<a href="ARControllerNFTBase.ARControllerNFTBase.html#getnftmarker">getNFTMarker</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/webarkit/jsartoolkitNFT/blob/887829790c68f034cec52cdb5d9d439e0b7459cd/src/ARControllerNFTBase.ts#L300">src/ARControllerNFTBase.ts:300</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="getprocessingimage"><span class="deprecated">get<wbr/>Processing<wbr/>Image</span><a href="#getprocessingimage" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li class="tsd-is-inherited">
+<div class="tsd-signature tsd-anchor-link" id="getprocessingimage-1"><span class="tsd-kind-call-signature">getProcessingImage</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><a href="#getprocessingimage-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Returns the Emscripten HEAP offset of the square-marker detector's
+debug image.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4><p>HEAP offset of the debug image.</p>
+
+<div class="tsd-comment tsd-typography">
+<div class="tsd-tag-deprecated">
+<h4 class="tsd-anchor-link" id="deprecated-3">Deprecated<a href="#deprecated-3" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h4><p>The image is never filled for NFT tracking: only the
+square-marker labeling writes it, and NFT tracking never runs it. Will be
+removed in the next major version (#659).</p>
+</div></div><aside class="tsd-sources">
+<p>Inherited from <a href="ARControllerNFTBase.ARControllerNFTBase.html">ARControllerNFTBase</a>.<a href="ARControllerNFTBase.ARControllerNFTBase.html#getprocessingimage">getProcessingImage</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/webarkit/jsartoolkitNFT/blob/887829790c68f034cec52cdb5d9d439e0b7459cd/src/ARControllerNFTBase.ts#L468">src/ARControllerNFTBase.ts:468</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="getprojectionfarplane"><span>get<wbr/>Projection<wbr/>Far<wbr/>Plane</span><a href="#getprojectionfarplane" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li class="tsd-is-inherited">
+<div class="tsd-signature tsd-anchor-link" id="getprojectionfarplane-1"><span class="tsd-kind-call-signature">getProjectionFarPlane</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><a href="#getprojectionfarplane-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Gets the value of the far plane of the camera with the give id.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4><p>the value of the far plane.</p>
+<aside class="tsd-sources">
+<p>Inherited from <a href="ARControllerNFTBase.ARControllerNFTBase.html">ARControllerNFTBase</a>.<a href="ARControllerNFTBase.ARControllerNFTBase.html#getprojectionfarplane">getProjectionFarPlane</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/webarkit/jsartoolkitNFT/blob/887829790c68f034cec52cdb5d9d439e0b7459cd/src/ARControllerNFTBase.ts#L534">src/ARControllerNFTBase.ts:534</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="getprojectionnearplane"><span>get<wbr/>Projection<wbr/>Near<wbr/>Plane</span><a href="#getprojectionnearplane" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li class="tsd-is-inherited">
+<div class="tsd-signature tsd-anchor-link" id="getprojectionnearplane-1"><span class="tsd-kind-call-signature">getProjectionNearPlane</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><a href="#getprojectionnearplane-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Gets the value of the near plane of the camera with the give id.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4><p>the value of the near plane.</p>
+<aside class="tsd-sources">
+<p>Inherited from <a href="ARControllerNFTBase.ARControllerNFTBase.html">ARControllerNFTBase</a>.<a href="ARControllerNFTBase.ARControllerNFTBase.html#getprojectionnearplane">getProjectionNearPlane</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/webarkit/jsartoolkitNFT/blob/887829790c68f034cec52cdb5d9d439e0b7459cd/src/ARControllerNFTBase.ts#L515">src/ARControllerNFTBase.ts:515</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="getruntimesettings"><span>get<wbr/>Runtime<wbr/>Settings</span><a href="#getruntimesettings" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li class="tsd-is-inherited">
+<div class="tsd-signature tsd-anchor-link" id="getruntimesettings-1"><span class="tsd-kind-call-signature">getRuntimeSettings</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <a href="../interfaces/abstractions_CommonInterfaces.NFTRuntimeSettings.html" class="tsd-signature-type tsd-kind-interface">NFTRuntimeSettings</a><a href="#getruntimesettings-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>The current runtime settings (#720), with the effective values: <code>detectionInterval</code>
+and <code>ar2.searchSize</code> are the build's resolved defaults when they were not set, and
+<code>logLevel</code> is this controller's current level.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <a href="../interfaces/abstractions_CommonInterfaces.NFTRuntimeSettings.html" class="tsd-signature-type tsd-kind-interface">NFTRuntimeSettings</a></h4><p>a fresh object; changing it changes nothing until passed to configure().</p>
+<aside class="tsd-sources">
+<p>Inherited from <a href="ARControllerNFTBase.ARControllerNFTBase.html">ARControllerNFTBase</a>.<a href="ARControllerNFTBase.ARControllerNFTBase.html#getruntimesettings">getRuntimeSettings</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/webarkit/jsartoolkitNFT/blob/887829790c68f034cec52cdb5d9d439e0b7459cd/src/ARControllerNFTBase.ts#L581">src/ARControllerNFTBase.ts:581</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="getthreshold"><span class="deprecated">get<wbr/>Threshold</span><a href="#getthreshold" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li class="tsd-is-inherited">
+<div class="tsd-signature tsd-anchor-link" id="getthreshold-1"><span class="tsd-kind-call-signature">getThreshold</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><a href="#getthreshold-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Returns the square-marker labeling threshold.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4><p>The current threshold value.</p>
+
+<div class="tsd-comment tsd-typography">
+<div class="tsd-tag-deprecated">
+<h4 class="tsd-anchor-link" id="deprecated-4">Deprecated<a href="#deprecated-4" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h4><p>Has no effect on NFT tracking: only the square-marker labeling
+reads it, and NFT tracking never runs it. Will be removed in the next major
+version (#659).</p>
+</div></div><aside class="tsd-sources">
+<p>Inherited from <a href="ARControllerNFTBase.ARControllerNFTBase.html">ARControllerNFTBase</a>.<a href="ARControllerNFTBase.ARControllerNFTBase.html#getthreshold">getThreshold</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/webarkit/jsartoolkitNFT/blob/887829790c68f034cec52cdb5d9d439e0b7459cd/src/ARControllerNFTBase.ts#L635">src/ARControllerNFTBase.ts:635</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="getthresholdmode"><span class="deprecated">get<wbr/>Threshold<wbr/>Mode</span><a href="#getthresholdmode" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li class="tsd-is-inherited">
+<div class="tsd-signature tsd-anchor-link" id="getthresholdmode-1"><span class="tsd-kind-call-signature">getThresholdMode</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><a href="#getthresholdmode-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Returns the square-marker labeling threshold mode.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4><p>The current threshold mode.</p>
+
+<div class="tsd-comment tsd-typography">
+<div class="tsd-tag-deprecated">
+<h4 class="tsd-anchor-link" id="deprecated-5">Deprecated<a href="#deprecated-5" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h4><p>Has no effect on NFT tracking: only the square-marker labeling
+reads it, and NFT tracking never runs it. Will be removed in the next major
+version (#659).</p>
+</div></div><aside class="tsd-sources">
+<p>Inherited from <a href="ARControllerNFTBase.ARControllerNFTBase.html">ARControllerNFTBase</a>.<a href="ARControllerNFTBase.ARControllerNFTBase.html#getthresholdmode">getThresholdMode</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/webarkit/jsartoolkitNFT/blob/887829790c68f034cec52cdb5d9d439e0b7459cd/src/ARControllerNFTBase.ts#L613">src/ARControllerNFTBase.ts:613</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="gettransformationmatrix"><span>get<wbr/>Transformation<wbr/>Matrix</span><a href="#gettransformationmatrix" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li class="tsd-is-inherited">
+<div class="tsd-signature tsd-anchor-link" id="gettransformationmatrix-1"><span class="tsd-kind-call-signature">getTransformationMatrix</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Float64Array</span><a href="#gettransformationmatrix-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Returns the 16-element WebGL transformation matrix used by ARControllerNFT.process to
+pass marker WebGL matrices to event listeners.
+Unique to each ARControllerNFT.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Float64Array</span></h4><p>The 16-element WebGL transformation matrix used by the ARControllerNFT.</p>
+<aside class="tsd-sources">
+<p>Inherited from <a href="ARControllerNFTBase.ARControllerNFTBase.html">ARControllerNFTBase</a>.<a href="ARControllerNFTBase.ARControllerNFTBase.html#gettransformationmatrix">getTransformationMatrix</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/webarkit/jsartoolkitNFT/blob/887829790c68f034cec52cdb5d9d439e0b7459cd/src/ARControllerNFTBase.ts#L421">src/ARControllerNFTBase.ts:421</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="loadnftmarker"><span>load<wbr/>NFT<wbr/>Marker</span><a href="#loadnftmarker" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li class="tsd-is-inherited">
+<div class="tsd-signature tsd-anchor-link" id="loadnftmarker-1"><span class="tsd-kind-call-signature">loadNFTMarker</span><span class="tsd-signature-symbol">(</span><br/>    <span class="tsd-kind-parameter">url</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">onSuccess</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">id</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span> <span class="tsd-signature-symbol">=&gt;</span> <span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">onError</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">code</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span> <span class="tsd-signature-symbol">=&gt;</span> <span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">opts</span><span class="tsd-signature-symbol">?:</span> <a href="../interfaces/abstractions_CommonInterfaces.NFTLoadOptions.html" class="tsd-signature-type tsd-kind-interface">NFTLoadOptions</a><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span><a href="#loadnftmarker-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Loads one NFT marker and resolves once it is registered, so tracking can
+start right after the <code>await</code>.</p>
+<p>Promise style (preferred): it rejects with an <code>NFTLoadError</code>, whose <code>kind</code>
+tells a missing file (&quot;http&quot;) from a bad one (&quot;format&quot;), or with the abort
+reason when <code>opts.signal</code> fires.</p>
+<pre><code class="typescript"><span class="hl-5">try</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-7">const</span><span class="hl-1"> [</span><span class="hl-8">id</span><span class="hl-1">] = </span><span class="hl-5">await</span><span class="hl-1"> </span><span class="hl-0">arController</span><span class="hl-1">.</span><span class="hl-2">loadNFTMarker</span><span class="hl-1">(</span><span class="hl-6">&quot;path/to/marker&quot;</span><span class="hl-1">);</span><br/><span class="hl-1">} </span><span class="hl-5">catch</span><span class="hl-1"> (</span><span class="hl-0">err</span><span class="hl-1">) {</span><br/><span class="hl-1">  </span><span class="hl-5">if</span><span class="hl-1"> (</span><span class="hl-0">err</span><span class="hl-1">.</span><span class="hl-0">kind</span><span class="hl-1"> === </span><span class="hl-6">&quot;http&quot;</span><span class="hl-1">) </span><span class="hl-0">console</span><span class="hl-1">.</span><span class="hl-2">error</span><span class="hl-1">(</span><span class="hl-6">&quot;Not found:&quot;</span><span class="hl-1">, </span><span class="hl-0">err</span><span class="hl-1">.</span><span class="hl-0">url</span><span class="hl-1">, </span><span class="hl-0">err</span><span class="hl-1">.</span><span class="hl-0">status</span><span class="hl-1">);</span><br/><span class="hl-1">}</span>
+</code><button type="button">Copy</button></pre>
+
+<p>Callback style (deprecated, kept for existing callers): it never rejects
+for a load failure; the failure goes to <code>onError</code>, or to <code>console.error</code>
+when there is no <code>onError</code>, and the Promise resolves <code>[]</code>.</p>
+<pre><code class="typescript"><span class="hl-0">arController</span><span class="hl-1">.</span><span class="hl-2">loadNFTMarker</span><span class="hl-1">(</span><span class="hl-6">&quot;path/to/marker&quot;</span><span class="hl-1">, (</span><span class="hl-0">id</span><span class="hl-1">) </span><span class="hl-7">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-0">console</span><span class="hl-1">.</span><span class="hl-2">log</span><span class="hl-1">(</span><span class="hl-6">&quot;Marker loaded with ID:&quot;</span><span class="hl-1">, </span><span class="hl-0">id</span><span class="hl-1">);</span><br/><span class="hl-1">}, (</span><span class="hl-0">code</span><span class="hl-1">) </span><span class="hl-7">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-0">console</span><span class="hl-1">.</span><span class="hl-2">error</span><span class="hl-1">(</span><span class="hl-6">&quot;Failed to load marker:&quot;</span><span class="hl-1">, </span><span class="hl-0">code</span><span class="hl-1">);</span><br/><span class="hl-1">});</span>
+</code><button type="button">Copy</button></pre>
+
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">url</span>: <span class="tsd-signature-type">string</span> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></span>
+<div class="tsd-comment tsd-typography"><p>The marker's base URL, or the list of its file URLs.</p>
+</div></li>
+<li><span><code class="tsd-tag">Optional</code><span class="tsd-kind-parameter">onSuccess</span>: <span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">id</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span> <span class="tsd-signature-symbol">=&gt;</span> <span class="tsd-signature-type">void</span></span>
+<div class="tsd-comment tsd-typography"><p>Deprecated. Called with the marker ID.</p>
+</div></li>
+<li><span><code class="tsd-tag">Optional</code><span class="tsd-kind-parameter">onError</span>: <span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">code</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span> <span class="tsd-signature-symbol">=&gt;</span> <span class="tsd-signature-type">void</span></span>
+<div class="tsd-comment tsd-typography"><p>Deprecated. Called with the HTTP status, or -1.</p>
+</div></li>
+<li><span><code class="tsd-tag">Optional</code><span class="tsd-kind-parameter">opts</span>: <a href="../interfaces/abstractions_CommonInterfaces.NFTLoadOptions.html" class="tsd-signature-type tsd-kind-interface">NFTLoadOptions</a></span>
+<div class="tsd-comment tsd-typography"><p>Loading options, such as an abort <code>signal</code>.</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4><p>A Promise that resolves to <code>[id]</code>.</p>
+<aside class="tsd-sources">
+<p>Inherited from <a href="ARControllerNFTBase.ARControllerNFTBase.html">ARControllerNFTBase</a>.<a href="ARControllerNFTBase.ARControllerNFTBase.html#loadnftmarker">loadNFTMarker</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/webarkit/jsartoolkitNFT/blob/887829790c68f034cec52cdb5d9d439e0b7459cd/src/ARControllerNFTBase.ts#L670">src/ARControllerNFTBase.ts:670</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="loadnftmarkers"><span>load<wbr/>NFT<wbr/>Markers</span><a href="#loadnftmarkers" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li class="tsd-is-inherited">
+<div class="tsd-signature tsd-anchor-link" id="loadnftmarkers-1"><span class="tsd-kind-call-signature">loadNFTMarkers</span><span class="tsd-signature-symbol">(</span><br/>    <span class="tsd-kind-parameter">urls</span><span class="tsd-signature-symbol">:</span> (<span class="tsd-signature-type">string</span> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span>)<span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">onSuccess</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">ids</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span> <span class="tsd-signature-symbol">=&gt;</span> <span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">onError</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">code</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span> <span class="tsd-signature-symbol">=&gt;</span> <span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">opts</span><span class="tsd-signature-symbol">?:</span> <a href="../interfaces/abstractions_CommonInterfaces.NFTLoadOptions.html" class="tsd-signature-type tsd-kind-interface">NFTLoadOptions</a><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span><a href="#loadnftmarkers-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Loads several NFT markers and resolves once they are all registered.</p>
+<p>Promise style (preferred): it rejects with an <code>NFTLoadError</code>, or with the
+abort reason when <code>opts.signal</code> fires. Nothing is registered on failure.</p>
+<pre><code class="typescript"><span class="hl-5">try</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-7">const</span><span class="hl-1"> </span><span class="hl-8">ids</span><span class="hl-1"> = </span><span class="hl-5">await</span><span class="hl-1"> </span><span class="hl-0">arController</span><span class="hl-1">.</span><span class="hl-2">loadNFTMarkers</span><span class="hl-1">([</span><span class="hl-6">&quot;path/to/a&quot;</span><span class="hl-1">, </span><span class="hl-6">&quot;path/to/b&quot;</span><span class="hl-1">]);</span><br/><span class="hl-1">} </span><span class="hl-5">catch</span><span class="hl-1"> (</span><span class="hl-0">err</span><span class="hl-1">) {</span><br/><span class="hl-1">  </span><span class="hl-5">if</span><span class="hl-1"> (</span><span class="hl-0">err</span><span class="hl-1">.</span><span class="hl-0">kind</span><span class="hl-1"> === </span><span class="hl-6">&quot;http&quot;</span><span class="hl-1">) </span><span class="hl-0">console</span><span class="hl-1">.</span><span class="hl-2">error</span><span class="hl-1">(</span><span class="hl-6">&quot;Not found:&quot;</span><span class="hl-1">, </span><span class="hl-0">err</span><span class="hl-1">.</span><span class="hl-0">url</span><span class="hl-1">, </span><span class="hl-0">err</span><span class="hl-1">.</span><span class="hl-0">status</span><span class="hl-1">);</span><br/><span class="hl-1">}</span>
+</code><button type="button">Copy</button></pre>
+
+<p>Callback style (deprecated, kept for existing callers): it never rejects
+for a load failure; the failure goes to <code>onError</code>, or to <code>console.error</code>
+when there is no <code>onError</code>, and the Promise resolves <code>[]</code>.</p>
+<pre><code class="typescript"><span class="hl-0">arController</span><span class="hl-1">.</span><span class="hl-2">loadNFTMarkers</span><span class="hl-1">([</span><span class="hl-6">&quot;path/to/a&quot;</span><span class="hl-1">, </span><span class="hl-6">&quot;path/to/b&quot;</span><span class="hl-1">], (</span><span class="hl-0">ids</span><span class="hl-1">) </span><span class="hl-7">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-0">console</span><span class="hl-1">.</span><span class="hl-2">log</span><span class="hl-1">(</span><span class="hl-6">&quot;Markers loaded with IDs:&quot;</span><span class="hl-1">, </span><span class="hl-0">ids</span><span class="hl-1">);</span><br/><span class="hl-1">}, (</span><span class="hl-0">code</span><span class="hl-1">) </span><span class="hl-7">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-0">console</span><span class="hl-1">.</span><span class="hl-2">error</span><span class="hl-1">(</span><span class="hl-6">&quot;Failed to load markers:&quot;</span><span class="hl-1">, </span><span class="hl-0">code</span><span class="hl-1">);</span><br/><span class="hl-1">});</span>
+</code><button type="button">Copy</button></pre>
+
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">urls</span>: (<span class="tsd-signature-type">string</span> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span>)<span class="tsd-signature-symbol">[]</span></span>
+<div class="tsd-comment tsd-typography"><p>One entry per marker: its base URL, or the list of its file URLs.</p>
+</div></li>
+<li><span><code class="tsd-tag">Optional</code><span class="tsd-kind-parameter">onSuccess</span>: <span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">ids</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span> <span class="tsd-signature-symbol">=&gt;</span> <span class="tsd-signature-type">void</span></span>
+<div class="tsd-comment tsd-typography"><p>Deprecated. Called with the marker IDs.</p>
+</div></li>
+<li><span><code class="tsd-tag">Optional</code><span class="tsd-kind-parameter">onError</span>: <span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">code</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span> <span class="tsd-signature-symbol">=&gt;</span> <span class="tsd-signature-type">void</span></span>
+<div class="tsd-comment tsd-typography"><p>Deprecated. Called with the HTTP status, or -1.</p>
+</div></li>
+<li><span><code class="tsd-tag">Optional</code><span class="tsd-kind-parameter">opts</span>: <a href="../interfaces/abstractions_CommonInterfaces.NFTLoadOptions.html" class="tsd-signature-type tsd-kind-interface">NFTLoadOptions</a></span>
+<div class="tsd-comment tsd-typography"><p>Loading options, such as an abort <code>signal</code>.</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4><p>A Promise that resolves to the marker IDs.</p>
+<aside class="tsd-sources">
+<p>Inherited from <a href="ARControllerNFTBase.ARControllerNFTBase.html">ARControllerNFTBase</a>.<a href="ARControllerNFTBase.ARControllerNFTBase.html#loadnftmarkers">loadNFTMarkers</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/webarkit/jsartoolkitNFT/blob/887829790c68f034cec52cdb5d9d439e0b7459cd/src/ARControllerNFTBase.ts#L724">src/ARControllerNFTBase.ts:724</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="process"><span>process</span><a href="#process" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li class="tsd-is-inherited">
+<div class="tsd-signature tsd-anchor-link" id="process-1"><span class="tsd-kind-call-signature">process</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">image</span><span class="tsd-signature-symbol">:</span> <a href="../interfaces/abstractions_CommonInterfaces.IImageObj.html" class="tsd-signature-type tsd-kind-interface">IImageObj</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span><a href="#process-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Runs one tracking step on the given frame: copies the image to the WASM heap,
+detects the loaded NFT markers and updates the state of every marker registered
+with trackNFTMarkerId(). For each marker found it dispatches a &quot;getNFTMarker&quot;
+event carrying the NFTMarkerInfo and the pose; for a tracked marker that has
+not been seen for longer than the lost threshold it dispatches &quot;lostNFTMarker&quot;
+once, with the last known pose (see MarkerLostTracker).</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">image</span>: <a href="../interfaces/abstractions_CommonInterfaces.IImageObj.html" class="tsd-signature-type tsd-kind-interface">IImageObj</a></span>
+<div class="tsd-comment tsd-typography"><p>The frame to process (video, canvas, image or raw pixel data).</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
+<p>Inherited from <a href="ARControllerNFTBase.ARControllerNFTBase.html">ARControllerNFTBase</a>.<a href="ARControllerNFTBase.ARControllerNFTBase.html#process">process</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/webarkit/jsartoolkitNFT/blob/887829790c68f034cec52cdb5d9d439e0b7459cd/src/ARControllerNFTBase.ts#L186">src/ARControllerNFTBase.ts:186</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="recalculatecameralens"><span>recalculate<wbr/>Camera<wbr/>Lens</span><a href="#recalculatecameralens" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li class="tsd-is-inherited">
+<div class="tsd-signature tsd-anchor-link" id="recalculatecameralens-1"><span class="tsd-kind-call-signature">recalculateCameraLens</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span><a href="#recalculatecameralens-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Rebuilds the camera frustum from the near and far planes. Kept for compatibility:
+since WebARKitLib 0.12.0 the lens follows the planes, as setProjectionNearPlane(),
+setProjectionFarPlane() and configure() rebuild it themselves, so calling this
+changes nothing.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
+<p>Inherited from <a href="ARControllerNFTBase.ARControllerNFTBase.html">ARControllerNFTBase</a>.<a href="ARControllerNFTBase.ARControllerNFTBase.html#recalculatecameralens">recalculateCameraLens</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/webarkit/jsartoolkitNFT/blob/887829790c68f034cec52cdb5d9d439e0b7459cd/src/ARControllerNFTBase.ts#L544">src/ARControllerNFTBase.ts:544</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="removeeventlistener"><span>remove<wbr/>Event<wbr/>Listener</span><a href="#removeeventlistener" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li class="tsd-is-inherited">
+<div class="tsd-signature tsd-anchor-link" id="removeeventlistener-1"><span class="tsd-kind-call-signature">removeEventListener</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">name</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">,</span> <span class="tsd-kind-parameter">callback</span><span class="tsd-signature-symbol">:</span> <a href="../types/abstractions_CommonInterfaces.NFTEventListener.html" class="tsd-signature-type tsd-kind-type-alias">NFTEventListener</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span><a href="#removeeventlistener-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Remove an event listener from the named event. Only the first registration of
+the callback is removed; a callback registered twice needs two calls. Safe to
+call from inside a listener while the event is being dispatched: the current
+dispatch still reaches every listener that was registered when it started.</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">name</span>: <span class="tsd-signature-type">string</span></span>
+<div class="tsd-comment tsd-typography"><p>Name of the event to stop listening to.</p>
+</div></li>
+<li><span><span class="tsd-kind-parameter">callback</span>: <a href="../types/abstractions_CommonInterfaces.NFTEventListener.html" class="tsd-signature-type tsd-kind-type-alias">NFTEventListener</a></span>
+<div class="tsd-comment tsd-typography"><p>Callback function to remove from the listeners of the named event.</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
+<p>Inherited from <a href="ARControllerNFTBase.ARControllerNFTBase.html">ARControllerNFTBase</a>.<a href="ARControllerNFTBase.ARControllerNFTBase.html#removeeventlistener">removeEventListener</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/webarkit/jsartoolkitNFT/blob/887829790c68f034cec52cdb5d9d439e0b7459cd/src/ARControllerNFTBase.ts#L344">src/ARControllerNFTBase.ts:344</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="setcontinuousdetection"><span>set<wbr/>Continuous<wbr/>Detection</span><a href="#setcontinuousdetection" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li class="tsd-is-inherited">
+<div class="tsd-signature tsd-anchor-link" id="setcontinuousdetection-1"><span class="tsd-kind-call-signature">setContinuousDetection</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">enabled</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span><a href="#setcontinuousdetection-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Turn continuous detection on or off.</p>
+<p>Detection (KPM) is the expensive step that finds a marker which is not yet
+tracked; a pass costs the full detection time on the frame where it runs,
+far more than tracking an already-found marker. The policy is:</p>
+<ul>
+<li>while no marker is tracked, detection runs on every frame;</li>
+<li>while at least one marker is tracked and at least one loaded marker is
+not, detection runs at most once per detection interval (see
+<a href="ARControllerNFTBase.ARControllerNFTBase.html#setdetectioninterval" class="tsd-kind-method">setDetectionInterval</a>), so a marker that enters the view is still
+picked up;</li>
+<li>while every loaded marker is tracked, detection does not run.</li>
+</ul>
+<p>With continuous detection off, no detection runs once any marker is
+tracked, until tracking is lost: the single-marker behaviour of 1.12.0.
+That is cheapest, but a second marker entering the view is not found
+while the first one is held.</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">enabled</span>: <span class="tsd-signature-type">boolean</span></span>
+<div class="tsd-comment tsd-typography"><p>Default <code>true</code>.</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
+<p>Inherited from <a href="ARControllerNFTBase.ARControllerNFTBase.html">ARControllerNFTBase</a>.<a href="ARControllerNFTBase.ARControllerNFTBase.html#setcontinuousdetection">setContinuousDetection</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/webarkit/jsartoolkitNFT/blob/887829790c68f034cec52cdb5d9d439e0b7459cd/src/ARControllerNFTBase.ts#L794">src/ARControllerNFTBase.ts:794</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="setdebugmode"><span class="deprecated">set<wbr/>Debug<wbr/>Mode</span><a href="#setdebugmode" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li class="tsd-is-inherited">
+<div class="tsd-signature tsd-anchor-link" id="setdebugmode-1"><span class="tsd-kind-call-signature">setDebugMode</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">mode</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><a href="#setdebugmode-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Enables or disables the square-marker detector's debug mode.</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">mode</span>: <span class="tsd-signature-type">boolean</span></span>
+<div class="tsd-comment tsd-typography"><p>true to enable debug mode, false to disable it</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+<div class="tsd-comment tsd-typography">
+<div class="tsd-tag-deprecated">
+<h4 class="tsd-anchor-link" id="deprecated-6">Deprecated<a href="#deprecated-6" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h4><p>Has no effect on NFT tracking: only the square-marker labeling
+reads it, and NFT tracking never runs it. Will be removed in the next major
+version (#659).</p>
+</div></div><aside class="tsd-sources">
+<p>Inherited from <a href="ARControllerNFTBase.ARControllerNFTBase.html">ARControllerNFTBase</a>.<a href="ARControllerNFTBase.ARControllerNFTBase.html#setdebugmode">setDebugMode</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/webarkit/jsartoolkitNFT/blob/887829790c68f034cec52cdb5d9d439e0b7459cd/src/ARControllerNFTBase.ts#L445">src/ARControllerNFTBase.ts:445</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="setdetectioninterval"><span>set<wbr/>Detection<wbr/>Interval</span><a href="#setdetectioninterval" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li class="tsd-is-inherited">
+<div class="tsd-signature tsd-anchor-link" id="setdetectioninterval-1"><span class="tsd-kind-call-signature">setDetectionInterval</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">ms</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span><a href="#setdetectioninterval-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Set the minimum time from the end of one detection pass to the start of
+the next, while at least one marker is tracked and at least one is not
+(see <a href="ARControllerNFTBase.ARControllerNFTBase.html#setcontinuousdetection" class="tsd-kind-method">setContinuousDetection</a>).</p>
+<p>Detection is measured in time, not frames. A longer interval spends less
+time detecting, at the cost of noticing a newly visible marker later;
+<code>0</code> detects on every frame, which costs the full detection time on every
+frame while any loaded marker is out of view.</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">ms</span>: <span class="tsd-signature-type">number</span></span>
+<div class="tsd-comment tsd-typography"><p>Milliseconds. <code>0</code> means every frame; negative values
+are treated as <code>0</code>. Default: <code>300</code>.</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
+<p>Inherited from <a href="ARControllerNFTBase.ARControllerNFTBase.html">ARControllerNFTBase</a>.<a href="ARControllerNFTBase.ARControllerNFTBase.html#setdetectioninterval">setDetectionInterval</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/webarkit/jsartoolkitNFT/blob/887829790c68f034cec52cdb5d9d439e0b7459cd/src/ARControllerNFTBase.ts#L811">src/ARControllerNFTBase.ts:811</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="setfiltering"><span>set<wbr/>Filtering</span><a href="#setfiltering" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li class="tsd-is-inherited">
+<div class="tsd-signature tsd-anchor-link" id="setfiltering-1"><span class="tsd-kind-call-signature">setFiltering</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">enableFiltering</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span><a href="#setfiltering-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Set the filtering mode.</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">enableFiltering</span>: <span class="tsd-signature-type">boolean</span></span></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
+<p>Inherited from <a href="ARControllerNFTBase.ARControllerNFTBase.html">ARControllerNFTBase</a>.<a href="ARControllerNFTBase.ARControllerNFTBase.html#setfiltering">setFiltering</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/webarkit/jsartoolkitNFT/blob/887829790c68f034cec52cdb5d9d439e0b7459cd/src/ARControllerNFTBase.ts#L770">src/ARControllerNFTBase.ts:770</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="setgraydata"><span>set<wbr/>Gray<wbr/>Data</span><a href="#setgraydata" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li class="tsd-is-inherited">
+<div class="tsd-signature tsd-anchor-link" id="setgraydata-1"><span class="tsd-kind-call-signature">setGrayData</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">data</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Uint8Array</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span><a href="#setgraydata-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Set the custom gray data (videoLuma) in case you want to add additional
+trasnformation to gray data: for example gaussianblur or boxblur
+with external libs.</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">data</span>: <span class="tsd-signature-type">Uint8Array</span></span>
+<div class="tsd-comment tsd-typography"><p>Uint8Array</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
+<p>Inherited from <a href="ARControllerNFTBase.ARControllerNFTBase.html">ARControllerNFTBase</a>.<a href="ARControllerNFTBase.ARControllerNFTBase.html#setgraydata">setGrayData</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/webarkit/jsartoolkitNFT/blob/887829790c68f034cec52cdb5d9d439e0b7459cd/src/ARControllerNFTBase.ts#L821">src/ARControllerNFTBase.ts:821</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="setimageprocmode"><span class="deprecated">set<wbr/>Image<wbr/>Proc<wbr/>Mode</span><a href="#setimageprocmode" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li class="tsd-is-inherited">
+<div class="tsd-signature tsd-anchor-link" id="setimageprocmode-1"><span class="tsd-kind-call-signature">setImageProcMode</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">mode</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><a href="#setimageprocmode-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Sets the square-marker detector's image processing mode (frame or
+field).</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">mode</span>: <span class="tsd-signature-type">number</span></span>
+<div class="tsd-comment tsd-typography"><p>AR_IMAGE_PROC_FRAME_IMAGE or AR_IMAGE_PROC_FIELD_IMAGE.</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+<div class="tsd-comment tsd-typography">
+<div class="tsd-tag-deprecated">
+<h4 class="tsd-anchor-link" id="deprecated-7">Deprecated<a href="#deprecated-7" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h4><p>Has no effect on NFT tracking: only the square-marker labeling
+reads it, and NFT tracking never runs it. Will be removed in the next major
+version (#659).</p>
+</div></div><aside class="tsd-sources">
+<p>Inherited from <a href="ARControllerNFTBase.ARControllerNFTBase.html">ARControllerNFTBase</a>.<a href="ARControllerNFTBase.ARControllerNFTBase.html#setimageprocmode">setImageProcMode</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/webarkit/jsartoolkitNFT/blob/887829790c68f034cec52cdb5d9d439e0b7459cd/src/ARControllerNFTBase.ts#L750">src/ARControllerNFTBase.ts:750</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="setloglevel"><span>set<wbr/>Log<wbr/>Level</span><a href="#setloglevel" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li class="tsd-is-inherited">
+<div class="tsd-signature tsd-anchor-link" id="setloglevel-1"><span class="tsd-kind-call-signature">setLogLevel</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">level</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span><a href="#setloglevel-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Set the logging verbosity.</p>
+<p>Lower is more verbose: <code>ARLogLevel.Debug</code> (0) shows everything,
+<code>ARLogLevel.RelInfo</code> (4) the least. The library starts at
+<code>ARLogLevel.Info</code>.</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">level</span>: <span class="tsd-signature-type">number</span></span>
+<div class="tsd-comment tsd-typography"><p>one of the ARLogLevel values.
+Returns nothing: the native setter is <code>void</code>. Use <code>getLogLevel()</code> to read
+back the effective level, which also reveals when a negative value was
+rejected by the guard.</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
+<p>Inherited from <a href="ARControllerNFTBase.ARControllerNFTBase.html">ARControllerNFTBase</a>.<a href="ARControllerNFTBase.ARControllerNFTBase.html#setloglevel">setLogLevel</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/webarkit/jsartoolkitNFT/blob/887829790c68f034cec52cdb5d9d439e0b7459cd/src/ARControllerNFTBase.ts#L488">src/ARControllerNFTBase.ts:488</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="setprojectionfarplane"><span>set<wbr/>Projection<wbr/>Far<wbr/>Plane</span><a href="#setprojectionfarplane" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li class="tsd-is-inherited">
+<div class="tsd-signature tsd-anchor-link" id="setprojectionfarplane-1"><span class="tsd-kind-call-signature">setProjectionFarPlane</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">value</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span><a href="#setprojectionfarplane-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Sets the value of the far plane of the camera. The camera lens follows at once, and
+getCameraMatrix() returns the rebuilt matrix (WebARKitLib 0.12.0).</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">value</span>: <span class="tsd-signature-type">number</span></span>
+<div class="tsd-comment tsd-typography"><p>the value of the far plane, &gt; the near plane</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><p>0 (void)</p>
+<aside class="tsd-sources">
+<p>Inherited from <a href="ARControllerNFTBase.ARControllerNFTBase.html">ARControllerNFTBase</a>.<a href="ARControllerNFTBase.ARControllerNFTBase.html#setprojectionfarplane">setProjectionFarPlane</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/webarkit/jsartoolkitNFT/blob/887829790c68f034cec52cdb5d9d439e0b7459cd/src/ARControllerNFTBase.ts#L525">src/ARControllerNFTBase.ts:525</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="setprojectionnearplane"><span>set<wbr/>Projection<wbr/>Near<wbr/>Plane</span><a href="#setprojectionnearplane" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li class="tsd-is-inherited">
+<div class="tsd-signature tsd-anchor-link" id="setprojectionnearplane-1"><span class="tsd-kind-call-signature">setProjectionNearPlane</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">value</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span><a href="#setprojectionnearplane-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Sets the value of the near plane of the camera. The camera lens follows at once, and
+getCameraMatrix() returns the rebuilt matrix (WebARKitLib 0.12.0).</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">value</span>: <span class="tsd-signature-type">number</span></span>
+<div class="tsd-comment tsd-typography"><p>the value of the near plane, &gt; 0</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><p>0 (void)</p>
+<aside class="tsd-sources">
+<p>Inherited from <a href="ARControllerNFTBase.ARControllerNFTBase.html">ARControllerNFTBase</a>.<a href="ARControllerNFTBase.ARControllerNFTBase.html#setprojectionnearplane">setProjectionNearPlane</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/webarkit/jsartoolkitNFT/blob/887829790c68f034cec52cdb5d9d439e0b7459cd/src/ARControllerNFTBase.ts#L506">src/ARControllerNFTBase.ts:506</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="setthreshold"><span class="deprecated">set<wbr/>Threshold</span><a href="#setthreshold" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li class="tsd-is-inherited">
+<div class="tsd-signature tsd-anchor-link" id="setthreshold-1"><span class="tsd-kind-call-signature">setThreshold</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">threshold</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><a href="#setthreshold-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Sets the square-marker labeling threshold.</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">threshold</span>: <span class="tsd-signature-type">number</span></span>
+<div class="tsd-comment tsd-typography"><p>An integer in the range [0,255] (inclusive).</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+<div class="tsd-comment tsd-typography">
+<div class="tsd-tag-deprecated">
+<h4 class="tsd-anchor-link" id="deprecated-8">Deprecated<a href="#deprecated-8" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h4><p>Has no effect on NFT tracking: only the square-marker labeling
+reads it, and NFT tracking never runs it. Will be removed in the next major
+version (#659).</p>
+</div></div><aside class="tsd-sources">
+<p>Inherited from <a href="ARControllerNFTBase.ARControllerNFTBase.html">ARControllerNFTBase</a>.<a href="ARControllerNFTBase.ARControllerNFTBase.html#setthreshold">setThreshold</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/webarkit/jsartoolkitNFT/blob/887829790c68f034cec52cdb5d9d439e0b7459cd/src/ARControllerNFTBase.ts#L624">src/ARControllerNFTBase.ts:624</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="setthresholdmode"><span class="deprecated">set<wbr/>Threshold<wbr/>Mode</span><a href="#setthresholdmode" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li class="tsd-is-inherited">
+<div class="tsd-signature tsd-anchor-link" id="setthresholdmode-1"><span class="tsd-kind-call-signature">setThresholdMode</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">mode</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><a href="#setthresholdmode-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Sets the square-marker labeling threshold mode (auto/manual).</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">mode</span>: <span class="tsd-signature-type">number</span></span>
+<div class="tsd-comment tsd-typography"><p>One of the AR_LABELING_THRESH_MODE_* values.</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+<div class="tsd-comment tsd-typography">
+<div class="tsd-tag-deprecated">
+<h4 class="tsd-anchor-link" id="deprecated-9">Deprecated<a href="#deprecated-9" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h4><p>Has no effect on NFT tracking: only the square-marker labeling
+reads it, and NFT tracking never runs it. Will be removed in the next major
+version (#659).</p>
+</div></div><aside class="tsd-sources">
+<p>Inherited from <a href="ARControllerNFTBase.ARControllerNFTBase.html">ARControllerNFTBase</a>.<a href="ARControllerNFTBase.ARControllerNFTBase.html#setthresholdmode">setThresholdMode</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/webarkit/jsartoolkitNFT/blob/887829790c68f034cec52cdb5d9d439e0b7459cd/src/ARControllerNFTBase.ts#L602">src/ARControllerNFTBase.ts:602</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="tracknftmarkerid"><span>track<wbr/>NFT<wbr/>Marker<wbr/>Id</span><a href="#tracknftmarkerid" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li class="tsd-is-inherited">
+<div class="tsd-signature tsd-anchor-link" id="tracknftmarkerid-1"><span class="tsd-kind-call-signature">trackNFTMarkerId</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">id</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">,</span> <span class="tsd-kind-parameter">markerWidth</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <a href="../interfaces/abstractions_CommonInterfaces.INFTMarker.html" class="tsd-signature-type tsd-kind-interface">INFTMarker</a><a href="#tracknftmarkerid-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Adds the given NFT marker ID to the set of tracked IDs, or returns the existing
+entry if the ID is already tracked. Used by process() to implement continuous
+tracking: the entry keeps the marker's transformation matrices and its
+visibility in the current and previous frame.</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">id</span>: <span class="tsd-signature-type">number</span></span>
+<div class="tsd-comment tsd-typography"><p>ID of the NFT marker to track.</p>
+</div></li>
+<li><span><code class="tsd-tag">Optional</code><span class="tsd-kind-parameter">markerWidth</span>: <span class="tsd-signature-type">number</span></span>
+<div class="tsd-comment tsd-typography"><p>Width of the marker; overrides the width of an
+already tracked entry, and falls back to defaultMarkerWidth for a new one.</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="../interfaces/abstractions_CommonInterfaces.INFTMarker.html" class="tsd-signature-type tsd-kind-interface">INFTMarker</a></h4><p>The marker tracking object (the same object on every call for a given ID).</p>
+<aside class="tsd-sources">
+<p>Inherited from <a href="ARControllerNFTBase.ARControllerNFTBase.html">ARControllerNFTBase</a>.<a href="ARControllerNFTBase.ARControllerNFTBase.html#tracknftmarkerid">trackNFTMarkerId</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/webarkit/jsartoolkitNFT/blob/887829790c68f034cec52cdb5d9d439e0b7459cd/src/ARControllerNFTBase.ts#L270">src/ARControllerNFTBase.ts:270</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member tsd-is-inherited">
+<h3 class="tsd-anchor-link" id="transmattoglmat"><span>trans<wbr/>Mat<wbr/>To<wbr/>GL<wbr/>Mat</span><a href="#transmattoglmat" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-is-inherited">
+<li class="tsd-is-inherited">
+<div class="tsd-signature tsd-anchor-link" id="transmattoglmat-1"><span class="tsd-kind-call-signature">transMatToGLMat</span><span class="tsd-signature-symbol">(</span><br/>    <span class="tsd-kind-parameter">transMat</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Float64Array</span><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">glMat</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Float64Array</span><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">scale</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Float64Array</span><a href="#transmattoglmat-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Converts the given 3x4 marker transformation matrix in the 12-element transMat array
+into a 4x4 WebGL matrix and writes the result into the 16-element glMat array.
+If scale parameter is given, scales the transform of the glMat by the scale parameter.</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">transMat</span>: <span class="tsd-signature-type">Float64Array</span></span>
+<div class="tsd-comment tsd-typography"><p>The 3x4 marker transformation matrix.</p>
+</div></li>
+<li><span><span class="tsd-kind-parameter">glMat</span>: <span class="tsd-signature-type">Float64Array</span></span>
+<div class="tsd-comment tsd-typography"><p>The 4x4 GL transformation matrix.</p>
+</div></li>
+<li><span><code class="tsd-tag">Optional</code><span class="tsd-kind-parameter">scale</span>: <span class="tsd-signature-type">number</span></span>
+<div class="tsd-comment tsd-typography"><p>The scale for the transform.</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Float64Array</span></h4><p>the modified matrix</p>
+<aside class="tsd-sources">
+<p>Inherited from <a href="ARControllerNFTBase.ARControllerNFTBase.html">ARControllerNFTBase</a>.<a href="ARControllerNFTBase.ARControllerNFTBase.html#transmattoglmat">transMatToGLMat</a></p>
+<ul>
+<li>Defined in <a href="https://github.com/webarkit/jsartoolkitNFT/blob/887829790c68f034cec52cdb5d9d439e0b7459cd/src/ARControllerNFTBase.ts#L390">src/ARControllerNFTBase.ts:390</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="custominit"><code class="tsd-tag">Static</code><span>custom<wbr/>Init</span><a href="#custominit" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="custominit-1"><span class="tsd-kind-call-signature">customInit</span><span class="tsd-signature-symbol">(</span><br/>    <span class="tsd-kind-parameter">width</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">height</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">cameraParam</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">internalLuma</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">callback</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">()</span> <span class="tsd-signature-symbol">=&gt;</span> <span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">options</span><span class="tsd-signature-symbol">?:</span> <a href="../interfaces/abstractions_CommonInterfaces.ARInitOptions.html" class="tsd-signature-type tsd-kind-interface">ARInitOptions</a><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="" class="tsd-signature-type tsd-kind-class">ARControllerNFT</a><span class="tsd-signature-symbol">&gt;</span><a href="#custominit-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>The static method <strong>customInit</strong> is the start of your app.
+This method is only for advanced users.
+Define it with the width and height of the video stream,
+the camera parameter file path and the callback function where you define custom behaviours.
+As with <strong>initWithDimensions</strong> it return a Promise
+with the ARControllerNFT object.
+Use a thenable to load the NFT marker and all the code stuff.
+Example:</p>
+<pre><code class="js"><span class="hl-1">  </span><span class="hl-5">import</span><span class="hl-1"> </span><span class="hl-0">ARControllerNFT</span><span class="hl-1"> </span><span class="hl-5">from</span><span class="hl-1"> </span><span class="hl-6">&#39;@webarkit/jsartoolkit-nft&#39;</span><br/><span class="hl-1">  </span><span class="hl-0">ARControllerNFT</span><span class="hl-1">.</span><span class="hl-2">customInit</span><span class="hl-1">(</span><br/><span class="hl-1">  </span><span class="hl-3">640</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-3">480</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-6">&quot;camera_para.dat&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-7">true</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-7">function</span><span class="hl-1">() { </span><span class="hl-4">// your code here }</span><br/><span class="hl-1">  ).</span><span class="hl-2">then</span><span class="hl-1">(</span><br/><span class="hl-1">  (</span><span class="hl-0">nft</span><span class="hl-1">) </span><span class="hl-7">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">    </span><span class="hl-0">nft</span><span class="hl-1">.</span><span class="hl-2">loadNFTMarker</span><span class="hl-1">();</span><br/><span class="hl-1">    </span><span class="hl-4">// other code...</span><br/><span class="hl-1">  })</span>
+</code><button type="button">Copy</button></pre>
+
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">width</span>: <span class="tsd-signature-type">number</span></span></li>
+<li><span><span class="tsd-kind-parameter">height</span>: <span class="tsd-signature-type">number</span></span></li>
+<li><span><span class="tsd-kind-parameter">cameraParam</span>: <span class="tsd-signature-type">string</span></span></li>
+<li><span><span class="tsd-kind-parameter">internalLuma</span>: <span class="tsd-signature-type">boolean</span></span></li>
+<li><span><span class="tsd-kind-parameter">callback</span>: <span class="tsd-signature-symbol">()</span> <span class="tsd-signature-symbol">=&gt;</span> <span class="tsd-signature-type">void</span></span></li>
+<li><span><code class="tsd-tag">Optional</code><span class="tsd-kind-parameter">options</span>: <a href="../interfaces/abstractions_CommonInterfaces.ARInitOptions.html" class="tsd-signature-type tsd-kind-interface">ARInitOptions</a></span>
+<div class="tsd-comment tsd-typography"><p><code>logLevel</code> is applied before the core is constructed,
+so the start-up output follows it (#677). Per controller in JS.</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="" class="tsd-signature-type tsd-kind-class">ARControllerNFT</a><span class="tsd-signature-symbol">&gt;</span></h4><p>this</p>
+<aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/webarkit/jsartoolkitNFT/blob/887829790c68f034cec52cdb5d9d439e0b7459cd/src/ARControllerNFT.ts#L206">src/ARControllerNFT.ts:206</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="initwithdimensions"><code class="tsd-tag">Static</code><span>init<wbr/>With<wbr/>Dimensions</span><a href="#initwithdimensions" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="initwithdimensions-1"><span class="tsd-kind-call-signature">initWithDimensions</span><span class="tsd-signature-symbol">(</span><br/>    <span class="tsd-kind-parameter">width</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">height</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">cameraParam</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">internalLuma</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">options</span><span class="tsd-signature-symbol">?:</span> <a href="../interfaces/abstractions_CommonInterfaces.ARInitOptions.html" class="tsd-signature-type tsd-kind-interface">ARInitOptions</a><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="" class="tsd-signature-type tsd-kind-class">ARControllerNFT</a><span class="tsd-signature-symbol">&gt;</span><a href="#initwithdimensions-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>The static method <strong>initWithDimensions</strong> is the start of your app.
+Define it with the width and height of the video stream
+and the camera parameter file path. It return a Promise with the ARControllerNFT object.
+Use a thenable to load the NFT marker and all the code stuff.
+Example:</p>
+<pre><code class="js"><span class="hl-1">  </span><span class="hl-5">import</span><span class="hl-1"> </span><span class="hl-0">ARControllerNFT</span><span class="hl-1"> </span><span class="hl-5">from</span><span class="hl-1"> </span><span class="hl-6">&#39;@webarkit/jsartoolkit-nft&#39;</span><br/><span class="hl-1">  </span><span class="hl-0">ARControllerNFT</span><span class="hl-1">.</span><span class="hl-2">initWithDimensions</span><span class="hl-1">(</span><span class="hl-3">640</span><span class="hl-1">, </span><span class="hl-3">480</span><span class="hl-1">, </span><span class="hl-6">&quot;camera_para.dat&quot;</span><span class="hl-1">, </span><span class="hl-7">true</span><span class="hl-1">).</span><span class="hl-2">then</span><span class="hl-1">(</span><br/><span class="hl-1">  (</span><span class="hl-0">nft</span><span class="hl-1">) </span><span class="hl-7">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">    </span><span class="hl-0">nft</span><span class="hl-1">.</span><span class="hl-2">loadNFTMarker</span><span class="hl-1">();</span><br/><span class="hl-1">    </span><span class="hl-4">// other code...</span><br/><span class="hl-1">  })</span>
+</code><button type="button">Copy</button></pre>
+
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">width</span>: <span class="tsd-signature-type">number</span></span></li>
+<li><span><span class="tsd-kind-parameter">height</span>: <span class="tsd-signature-type">number</span></span></li>
+<li><span><span class="tsd-kind-parameter">cameraParam</span>: <span class="tsd-signature-type">string</span></span></li>
+<li><span><span class="tsd-kind-parameter">internalLuma</span>: <span class="tsd-signature-type">boolean</span></span></li>
+<li><span><code class="tsd-tag">Optional</code><span class="tsd-kind-parameter">options</span>: <a href="../interfaces/abstractions_CommonInterfaces.ARInitOptions.html" class="tsd-signature-type tsd-kind-interface">ARInitOptions</a></span>
+<div class="tsd-comment tsd-typography"><p><code>logLevel</code> is applied before the core is constructed,
+so the start-up output follows it (#677). Per controller in JS.</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="" class="tsd-signature-type tsd-kind-class">ARControllerNFT</a><span class="tsd-signature-symbol">&gt;</span></h4><p>this</p>
+<aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/webarkit/jsartoolkitNFT/blob/887829790c68f034cec52cdb5d9d439e0b7459cd/src/ARControllerNFT.ts#L115">src/ARControllerNFT.ts:115</a></li></ul></aside></div></li></ul></section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="initwithimage"><code class="tsd-tag">Static</code><span>init<wbr/>With<wbr/>Image</span><a href="#initwithimage" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul class="tsd-signatures">
+<li class="">
+<div class="tsd-signature tsd-anchor-link" id="initwithimage-1"><span class="tsd-kind-call-signature">initWithImage</span><span class="tsd-signature-symbol">(</span><br/>    <span class="tsd-kind-parameter">image</span><span class="tsd-signature-symbol">:</span> <a href="../interfaces/abstractions_CommonInterfaces.IImageObj.html" class="tsd-signature-type tsd-kind-interface">IImageObj</a><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">cameraParam</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">internalLuma</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">options</span><span class="tsd-signature-symbol">?:</span> <a href="../interfaces/abstractions_CommonInterfaces.ARInitOptions.html" class="tsd-signature-type tsd-kind-interface">ARInitOptions</a><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="" class="tsd-signature-type tsd-kind-class">ARControllerNFT</a><span class="tsd-signature-symbol">&gt;</span><a href="#initwithimage-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>The static method <strong>initWithImage</strong> is the start of your app.
+Define it with an HTML element like a video or a static Image
+and the camera parameter file path. As with <strong>initWithDimensions</strong> it return a Promise
+with the ARControllerNFT object.
+Use a thenable to load the NFT marker and all the code stuff.
+Example:</p>
+<pre><code class="js"><span class="hl-1">  </span><span class="hl-5">import</span><span class="hl-1"> </span><span class="hl-0">ARControllerNFT</span><span class="hl-1"> </span><span class="hl-5">from</span><span class="hl-1"> </span><span class="hl-6">&#39;@webarkit/jsartoolkit-nft&#39;</span><br/><span class="hl-1">  </span><span class="hl-7">const</span><span class="hl-1"> </span><span class="hl-8">image</span><span class="hl-1"> = </span><span class="hl-0">document</span><span class="hl-1">.</span><span class="hl-2">getElementById</span><span class="hl-1">(</span><span class="hl-6">&#39;image&#39;</span><span class="hl-1">)</span><br/><span class="hl-1">  </span><span class="hl-0">ARControllerNFT</span><span class="hl-1">.</span><span class="hl-2">initWithImage</span><span class="hl-1">(</span><span class="hl-0">image</span><span class="hl-1">, </span><span class="hl-6">&quot;camera_para.dat&quot;</span><span class="hl-1">, </span><span class="hl-7">true</span><span class="hl-1">).</span><span class="hl-2">then</span><span class="hl-1">(</span><br/><span class="hl-1">  (</span><span class="hl-0">nft</span><span class="hl-1">) </span><span class="hl-7">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">    </span><span class="hl-0">nft</span><span class="hl-1">.</span><span class="hl-2">loadNFTMarker</span><span class="hl-1">();</span><br/><span class="hl-1">    </span><span class="hl-4">// other code...</span><br/><span class="hl-1">  })</span>
+</code><button type="button">Copy</button></pre>
+
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li><span><span class="tsd-kind-parameter">image</span>: <a href="../interfaces/abstractions_CommonInterfaces.IImageObj.html" class="tsd-signature-type tsd-kind-interface">IImageObj</a></span></li>
+<li><span><span class="tsd-kind-parameter">cameraParam</span>: <span class="tsd-signature-type">string</span></span></li>
+<li><span><span class="tsd-kind-parameter">internalLuma</span>: <span class="tsd-signature-type">boolean</span></span></li>
+<li><span><code class="tsd-tag">Optional</code><span class="tsd-kind-parameter">options</span>: <a href="../interfaces/abstractions_CommonInterfaces.ARInitOptions.html" class="tsd-signature-type tsd-kind-interface">ARInitOptions</a></span>
+<div class="tsd-comment tsd-typography"><p><code>logLevel</code> is applied before the core is constructed,
+so the start-up output follows it (#677). Per controller in JS.</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="" class="tsd-signature-type tsd-kind-class">ARControllerNFT</a><span class="tsd-signature-symbol">&gt;</span></h4><p>this</p>
+<aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/webarkit/jsartoolkitNFT/blob/887829790c68f034cec52cdb5d9d439e0b7459cd/src/ARControllerNFT.ts#L156">src/ARControllerNFT.ts:156</a></li></ul></aside></div></li></ul></section></section></details></div>
+<div class="col-sidebar">
+<div class="page-menu">
+<div class="tsd-navigation settings">
+<details class="tsd-accordion"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>
+<h3>Settings</h3></summary>
+<div class="tsd-accordion-details">
+<div class="tsd-filter-visibility"><span class="settings-label">Member Visibility</span>
+<ul id="tsd-filter-options">
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-protected" name="protected"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Protected</span></label></li>
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-inherited" name="inherited" checked/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Inherited</span></label></li>
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-external" name="external"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>External</span></label></li></ul></div>
+<div class="tsd-theme-toggle"><label class="settings-label" for="tsd-theme">Theme</label><select id="tsd-theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div>
+<details open class="tsd-accordion tsd-page-navigation"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>
+<h3>On This Page</h3></summary>
+<div class="tsd-accordion-details">
+<details open class="tsd-accordion tsd-page-navigation-section"><summary class="tsd-accordion-summary" data-key="section-Constructors"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>Constructors</summary>
+<div><a href="#constructor"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Constructor"><use href="../assets/icons.svg#icon-512"></use></svg><span>constructor</span></a></div></details>
+<details open class="tsd-accordion tsd-page-navigation-section"><summary class="tsd-accordion-summary" data-key="section-Accessors"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>Accessors</summary>
+<div><a href="#cameraparam" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>camera<wbr/>Param</span></a><a href="#height" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>height</span></a><a href="#width" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Accessor"><use href="../assets/icons.svg#icon-262144"></use></svg><span>width</span></a></div></details>
+<details open class="tsd-accordion tsd-page-navigation-section"><summary class="tsd-accordion-summary" data-key="section-Methods"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>Methods</summary>
+<div><a href="#_initialize" class="tsd-is-protected tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>_<wbr/>initialize</span></a><a href="#addeventlistener" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>add<wbr/>Event<wbr/>Listener</span></a><a href="#arglcameraviewrhf" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>argl<wbr/>Camera<wbr/>View<wbr/>R<wbr/>Hf</span></a><a href="#configure" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>configure</span></a><a href="#debugsetup" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>debug<wbr/>Setup</span></a><a href="#detectnftmarker" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>detect<wbr/>NFT<wbr/>Marker</span></a><a href="#dispatchevent" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>dispatch<wbr/>Event</span></a><a href="#getcameramatrix" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Camera<wbr/>Matrix</span></a><a href="#getdebugmode" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Debug<wbr/>Mode</span></a><a href="#getimageprocmode" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Image<wbr/>Proc<wbr/>Mode</span></a><a href="#getloglevel" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Log<wbr/>Level</span></a><a href="#getnftdata" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>NFT<wbr/>Data</span></a><a href="#getnftmarker" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>NFT<wbr/>Marker</span></a><a href="#getprocessingimage" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Processing<wbr/>Image</span></a><a href="#getprojectionfarplane" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Projection<wbr/>Far<wbr/>Plane</span></a><a href="#getprojectionnearplane" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Projection<wbr/>Near<wbr/>Plane</span></a><a href="#getruntimesettings" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Runtime<wbr/>Settings</span></a><a href="#getthreshold" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Threshold</span></a><a href="#getthresholdmode" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Threshold<wbr/>Mode</span></a><a href="#gettransformationmatrix" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>get<wbr/>Transformation<wbr/>Matrix</span></a><a href="#loadnftmarker" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>load<wbr/>NFT<wbr/>Marker</span></a><a href="#loadnftmarkers" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>load<wbr/>NFT<wbr/>Markers</span></a><a href="#process" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>process</span></a><a href="#recalculatecameralens" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>recalculate<wbr/>Camera<wbr/>Lens</span></a><a href="#removeeventlistener" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>remove<wbr/>Event<wbr/>Listener</span></a><a href="#setcontinuousdetection" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>set<wbr/>Continuous<wbr/>Detection</span></a><a href="#setdebugmode" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>set<wbr/>Debug<wbr/>Mode</span></a><a href="#setdetectioninterval" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>set<wbr/>Detection<wbr/>Interval</span></a><a href="#setfiltering" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>set<wbr/>Filtering</span></a><a href="#setgraydata" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>set<wbr/>Gray<wbr/>Data</span></a><a href="#setimageprocmode" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>set<wbr/>Image<wbr/>Proc<wbr/>Mode</span></a><a href="#setloglevel" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>set<wbr/>Log<wbr/>Level</span></a><a href="#setprojectionfarplane" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>set<wbr/>Projection<wbr/>Far<wbr/>Plane</span></a><a href="#setprojectionnearplane" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>set<wbr/>Projection<wbr/>Near<wbr/>Plane</span></a><a href="#setthreshold" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>set<wbr/>Threshold</span></a><a href="#setthresholdmode" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>set<wbr/>Threshold<wbr/>Mode</span></a><a href="#tracknftmarkerid" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>track<wbr/>NFT<wbr/>Marker<wbr/>Id</span></a><a href="#transmattoglmat" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>trans<wbr/>Mat<wbr/>To<wbr/>GL<wbr/>Mat</span></a><a href="#custominit"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>custom<wbr/>Init</span></a><a href="#initwithdimensions"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>init<wbr/>With<wbr/>Dimensions</span></a><a href="#initwithimage"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Method"><use href="../assets/icons.svg#icon-2048"></use></svg><span>init<wbr/>With<wbr/>Image</span></a></div></details></div></details></div>
+<div class="site-menu">
+<nav class="tsd-navigation"><a href="../modules.html">@webarkit/jsartoolkit-nft</a>
+<ul class="tsd-small-nested-navigation" id="tsd-nav-container">
+<li>Loading...</li></ul></nav></div></div></div><footer>
+<p class="tsd-generator">Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></footer>
+<div class="overlay"></div></body></html>
