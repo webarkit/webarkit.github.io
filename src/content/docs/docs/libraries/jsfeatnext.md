@@ -50,7 +50,14 @@ The repository has runnable camera demos for most modules (blur, Canny, FAST, YA
 - Not every class of the original jsfeat is ported yet: the Haar-cascade and BBF object detectors are missing.
 - The `transform` module takes `matrix_t` arguments where the original used raw arrays.
 - Coming from 0.8 or older? The `jsfeatNext.jsfeatNext` double namespace and `new jsfeatNext.imgproc()` were removed in 0.9: see the [migration guide](https://github.com/webarkit/jsfeatNext/blob/main/docs/migration-0.9.md).
-- A hosted API reference is not available yet; it is tracked in [webarkit.github.io#49](https://github.com/webarkit/webarkit.github.io/issues/49). Meanwhile `npm run docs` builds it locally.
+
+## API reference
+
+:::note[Under construction]
+A hosted API reference for jsfeatNext is not available yet; publishing the WebARKit libraries' references on this site is tracked in [webarkit.github.io#49](https://github.com/webarkit/webarkit.github.io/issues/49).
+:::
+
+Meanwhile you can build it locally with TypeDoc: every public class and method has TSDoc comments. In a clone of the [repository](https://github.com/webarkit/jsfeatNext), run `npm install`, then `npm run docs`, and open `docs/api/index.html`.
 
 ## See also
 
