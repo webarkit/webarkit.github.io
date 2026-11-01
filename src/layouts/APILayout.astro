@@ -41,8 +41,17 @@ const { title, description, base } = Astro.props;
 
   // The outer URL holds the frame's page as #/<path>[#<anchor>], e.g.
   // #/classes/_webarkit_jsartoolkit-nft.ARControllerNFT.html#process. Only plain relative
-  // .html paths are accepted, so the hash cannot point the frame anywhere else.
-  const SAFE_PATH = /^(?:[\w.-]+\/)*[\w.-]+\.html(?:#[\w.-]*)?$/;
+  // paths (word characters, dots and dashes, no "..") are accepted, so the hash cannot
+  // point the frame anywhere else.
+  //
+  // The ".html" is optional: Netlify's pretty URLs redirect every .html page to a
+  // lowercase path without the extension (classes/_webarkit_jsartoolkit-nft.arcontrollernft),
+  // and that is the address the frame reports and the link carries. Netlify serves it,
+  // so a shared or reloaded link must accept it. `astro dev` keeps the .html.
+  const SAFE_PATH = /^(?:[\w.-]+\/)*[\w.-]+(?:#[\w.-]*)?$/;
+  // The reference's front page, as each server names it: Netlify serves it at the base
+  // itself (or "index"), astro dev at index.html. None of them needs a hash.
+  const INDEX = new Set(['', 'index', 'index.html']);
   function fromHash(): string | null {
     const path = location.hash.startsWith('#/') ? location.hash.slice(2) : '';
     if (!SAFE_PATH.test(path) || path.split(/[/#]/).includes('..')) return null;
@@ -63,8 +72,9 @@ const { title, description, base } = Astro.props;
   function sync() {
     const loc = frame.contentWindow?.location;
     if (!loc || !loc.pathname.startsWith(base)) return;
-    const path = loc.pathname.slice(base.length) + loc.hash;
-    const hash = path && path !== 'index.html' ? `#/${path}` : '';
+    // Empty on Netlify's front page; named, so an anchor on it still makes a valid link.
+    const page = loc.pathname.slice(base.length) || 'index.html';
+    const hash = INDEX.has(page) && !loc.hash ? '' : `#/${page}${loc.hash}`;
     history.replaceState(history.state, '', location.pathname + location.search + hash);
     open.href = loc.href;
     const inner = frame.contentDocument?.title;
