@@ -179,10 +179,16 @@ Elsewhere:
 
 ```bash
 npm test          # Vitest in Playwright's Chromium, then the Node suite
+npm run typecheck # tsc on src/ and tests/vitest/ (tsconfig.test.json)
 npm run format-check
 ```
 
 Before the first run, install the browser: `npx playwright install chromium`.
+
+Vitest strips the tests' types without checking them, so a spec that uses a type the
+library does not export, or builds an object that does not satisfy one, still passes.
+`npm run typecheck` catches that, and CI runs it before the tests (#752). It covers
+`tests/vitest/` only: `tests/node/` is plain JavaScript run against `dist/`.
 
 `npm test` runs two suites:
 
@@ -199,7 +205,11 @@ CI does not call `npm test`. It runs `npm run test:coverage` and then `npm run t
 same two suites, so that Vitest writes `coverage/lcov.info` for Codecov (#580). If you change
 the `test` script, change the Tests step in `.github/workflows/CI.yml` too. Coverage uses the
 istanbul provider, which instruments `src/` only: v8 slowed the legacy builds' tests until they
-timed out.
+timed out. Two parts of `src/` are not measured. The worker entries `src/tracker/worker/host_*.ts`
+are excluded from the report, because they run only inside a Blob-URL worker (their logic,
+`host.ts`, is measured). The Node classes stay in the report at 0 % on purpose: `tests/node/`
+runs them through the `dist/` bundles, outside istanbul, and excluding them would hide that gap.
+#762 tracks the Node part, after #734.
 
 A green run means every artifact loads and detects a marker in one fixed photo. It does not
 measure tracking quality: stability, jitter, or loss and recovery on a moving camera. When
@@ -245,6 +255,18 @@ and watch the test fail, then restore it; a test that cannot fail proves nothing
 3. Tag `X.Y.Z` (lightweight, like every tag so far) on the merge commit, or on `main.yml`'s
    commit if there is one, and push it. `publish.yml` publishes to npm with provenance; the
    registry may answer "not found" for a few minutes afterwards.
+4. The same tag runs `deploy-docs.yml`, which opens a PR on the website
+   (`webarkit/webarkit.github.io`) against its `dev` that updates the contents of
+   `public/api/jsartoolkitnft/` to the release's TypeDoc output (#764). The folder and the
+   page that shows it, `/jsartoolkitnft/api`, stay the same. Check `/jsartoolkitnft/api` on its deploy
+   preview and merge it there. It needs the `WEBSITE_DOCS_TOKEN` secret: a token with
+   Contents and Pull requests write access to the website repository only. A docs failure
+   does not affect the npm release. To redo the docs of an existing tag, run the workflow by
+   hand with that tag; it updates the open PR rather than opening another.
+
+Never push a test tag to try a workflow. A numeric tag runs `publish.yml`, a real npm
+release, and any other tag outside `python/` makes `main.yml` create a GitHub Release. Test
+release workflows from their pull request and with `workflow_dispatch` instead.
 
 The version appears in **three** places and all must agree:
 
