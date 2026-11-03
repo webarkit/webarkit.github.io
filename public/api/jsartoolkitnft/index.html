@@ -105,11 +105,12 @@ every build. <code>getRuntimeSettings()</code> returns all of them, with the val
 </code><button type="button">Copy</button></pre>
 
 <p>The patch is merged into the current settings (<code>ar2</code> field by field), checked, and applied in one
-step: if any value is wrong, nothing changes. An unknown key, a value of the wrong type or a
-non-integer for an integer setting throws a <code>TypeError</code>; this includes the square-marker keys
-<code>threshold</code>, <code>thresholdMode</code>, <code>imageProcMode</code> and <code>debugMode</code>, which do nothing on NFT. A value
-out of range throws a <code>RangeError</code>. The individual setters keep working as before.</p>
-<p>Behaviour changes in this release:</p>
+step: if any value is wrong, nothing changes. An unknown key, a value of the wrong type, a
+non-integer for an integer setting, or <code>NaN</code> or <code>±Infinity</code> for a numeric one throws a <code>TypeError</code>
+that names the key; this includes the square-marker keys <code>threshold</code>, <code>thresholdMode</code>,
+<code>imageProcMode</code> and <code>debugMode</code>, which do nothing on NFT. A value out of range throws a
+<code>RangeError</code>. The individual setters keep working as before.</p>
+<p>Behaviour changes in 1.15.0:</p>
 <ul>
 <li><code>getCameraMatrix()</code> right after initialisation is built with the near plane <code>0.1</code>, the value
 <code>ARControllerNFT</code> always reported, instead of <code>0.0001</code>. <code>setProjectionNearPlane()</code> and
@@ -139,6 +140,9 @@ checked for a <code>.zft</code> with one asynchronous request, and falls back to
 files when there is none. Any HTTP error status on that check means &quot;no <code>.zft</code>&quot;, so storage services that
 answer 403 for a missing object still work. A marker without a <code>.zft</code> logs one 404 in the console; pass
 <code>probeZFT: false</code> to skip the check (see below).</p>
+<p>In the browser builds a query string or fragment stays at the end of each file's URL, so a versioned or
+signed prefix such as <code>path/to/marker?v=2</code> loads <code>marker.zft?v=2</code>, then <code>marker.iset?v=2</code> and so on
+(since 1.16.0; before, it loaded <code>marker?v=2.iset</code>).</p>
 <h2 id="loading-nft-markers" class="tsd-anchor-link">Loading NFT markers<a href="#loading-nft-markers" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
 <p><code>loadNFTMarker</code> and <code>loadNFTMarkers</code> return a Promise that resolves with the marker ids <strong>once the files are
 downloaded and registered</strong>, so tracking can start right after the <code>await</code>:</p>
@@ -179,8 +183,9 @@ is unchanged and keeps working.</p>
 <pre><code class="javascript"><span class="hl-7">const</span><span class="hl-1"> </span><span class="hl-8">tracker</span><span class="hl-1"> = </span><span class="hl-5">await</span><span class="hl-1"> </span><span class="hl-2">createNFTTracker</span><span class="hl-1">({ </span><span class="hl-0">width:</span><span class="hl-1"> </span><span class="hl-3">320</span><span class="hl-1">, </span><span class="hl-0">height:</span><span class="hl-1"> </span><span class="hl-3">240</span><span class="hl-1">, </span><span class="hl-0">cameraParam:</span><span class="hl-1"> </span><span class="hl-6">&#39;Data/camera_para.dat&#39;</span><span class="hl-1"> })</span><br/><span class="hl-7">const</span><span class="hl-1"> [</span><span class="hl-8">load</span><span class="hl-1">] = </span><span class="hl-5">await</span><span class="hl-1"> </span><span class="hl-0">tracker</span><span class="hl-1">.</span><span class="hl-2">addNFTTargets</span><span class="hl-1">([</span><span class="hl-6">&#39;DataNFT/pinball&#39;</span><span class="hl-1">])</span><br/><span class="hl-7">const</span><span class="hl-1"> </span><span class="hl-8">result</span><span class="hl-1"> = </span><span class="hl-0">tracker</span><span class="hl-1">.</span><span class="hl-2">process</span><span class="hl-1">(</span><span class="hl-0">imageData</span><span class="hl-1">, </span><span class="hl-0">performance</span><span class="hl-1">.</span><span class="hl-2">now</span><span class="hl-1">())</span>
 </code><button type="button">Copy</button></pre>
 
-<p>In a worker, the same calls, each returning a Promise:</p>
-<pre><code class="javascript"><span class="hl-7">const</span><span class="hl-1"> </span><span class="hl-8">tracker</span><span class="hl-1"> = </span><span class="hl-5">await</span><span class="hl-1"> </span><span class="hl-2">createNFTTrackerWorker</span><span class="hl-1">(</span><br/><span class="hl-1">  { </span><span class="hl-0">width:</span><span class="hl-1"> </span><span class="hl-3">320</span><span class="hl-1">, </span><span class="hl-0">height:</span><span class="hl-1"> </span><span class="hl-3">240</span><span class="hl-1">, </span><span class="hl-0">cameraParam:</span><span class="hl-1"> </span><span class="hl-6">&#39;Data/camera_para.dat&#39;</span><span class="hl-1"> },</span><br/><span class="hl-1">  { </span><span class="hl-0">workerBase:</span><span class="hl-1"> </span><span class="hl-6">&#39;/dist/&#39;</span><span class="hl-1"> },</span><br/><span class="hl-1">)</span><br/><span class="hl-7">const</span><span class="hl-1"> [</span><span class="hl-8">load</span><span class="hl-1">] = </span><span class="hl-5">await</span><span class="hl-1"> </span><span class="hl-0">tracker</span><span class="hl-1">.</span><span class="hl-2">addNFTTargets</span><span class="hl-1">([</span><span class="hl-6">&#39;DataNFT/pinball&#39;</span><span class="hl-1">])</span><br/><span class="hl-7">const</span><span class="hl-1"> </span><span class="hl-8">result</span><span class="hl-1"> = </span><span class="hl-5">await</span><span class="hl-1"> </span><span class="hl-0">tracker</span><span class="hl-1">.</span><span class="hl-2">process</span><span class="hl-1">(</span><span class="hl-0">imageData</span><span class="hl-1">, </span><span class="hl-0">performance</span><span class="hl-1">.</span><span class="hl-2">now</span><span class="hl-1">())</span><br/><span class="hl-5">if</span><span class="hl-1"> (!</span><span class="hl-0">result</span><span class="hl-1">.</span><span class="hl-0">skipped</span><span class="hl-1">) { </span><span class="hl-4">/* use result */</span><span class="hl-1"> }</span>
+<p>In a worker, the same calls, each returning a Promise. Import it from <code>@webarkit/jsartoolkit-nft/client</code>
+(see <a href="#running-in-a-worker">Running in a worker</a>):</p>
+<pre><code class="javascript"><span class="hl-5">import</span><span class="hl-1"> { </span><span class="hl-0">createNFTTrackerWorker</span><span class="hl-1"> } </span><span class="hl-5">from</span><span class="hl-1"> </span><span class="hl-6">&#39;@webarkit/jsartoolkit-nft/client&#39;</span><br/><br/><span class="hl-7">const</span><span class="hl-1"> </span><span class="hl-8">tracker</span><span class="hl-1"> = </span><span class="hl-5">await</span><span class="hl-1"> </span><span class="hl-2">createNFTTrackerWorker</span><span class="hl-1">(</span><br/><span class="hl-1">  { </span><span class="hl-0">width:</span><span class="hl-1"> </span><span class="hl-3">320</span><span class="hl-1">, </span><span class="hl-0">height:</span><span class="hl-1"> </span><span class="hl-3">240</span><span class="hl-1">, </span><span class="hl-0">cameraParam:</span><span class="hl-1"> </span><span class="hl-6">&#39;Data/camera_para.dat&#39;</span><span class="hl-1"> },</span><br/><span class="hl-1">  { </span><span class="hl-0">workerBase:</span><span class="hl-1"> </span><span class="hl-6">&#39;/dist/&#39;</span><span class="hl-1"> },</span><br/><span class="hl-1">)</span><br/><span class="hl-7">const</span><span class="hl-1"> [</span><span class="hl-8">load</span><span class="hl-1">] = </span><span class="hl-5">await</span><span class="hl-1"> </span><span class="hl-0">tracker</span><span class="hl-1">.</span><span class="hl-2">addNFTTargets</span><span class="hl-1">([</span><span class="hl-6">&#39;DataNFT/pinball&#39;</span><span class="hl-1">])</span><br/><span class="hl-7">const</span><span class="hl-1"> </span><span class="hl-8">result</span><span class="hl-1"> = </span><span class="hl-5">await</span><span class="hl-1"> </span><span class="hl-0">tracker</span><span class="hl-1">.</span><span class="hl-2">process</span><span class="hl-1">(</span><span class="hl-0">imageData</span><span class="hl-1">, </span><span class="hl-0">performance</span><span class="hl-1">.</span><span class="hl-2">now</span><span class="hl-1">())</span><br/><span class="hl-5">if</span><span class="hl-1"> (!</span><span class="hl-0">result</span><span class="hl-1">.</span><span class="hl-0">skipped</span><span class="hl-1">) { </span><span class="hl-4">/* use result */</span><span class="hl-1"> }</span>
 </code><button type="button">Copy</button></pre>
 
 <p><a href="media/ARToolkitNFT_ES6_tracker_example.html"><code>examples/ARToolkitNFT_ES6_tracker_example.html</code></a> is a
@@ -284,6 +289,37 @@ re-bundles the library normally passes it. Serve these files from that folder:</
 <li><code>NFTTracker_td.worker.js</code></li>
 <li><code>NFTTracker_td.pthread.js</code>, which the td worker loads itself.</li>
 </ul>
+<p><strong>The light client.</strong> Every browser build exports <code>createNFTTrackerWorker</code>, but each build embeds its WASM,
+which only the worker runs. Import it from <code>@webarkit/jsartoolkit-nft/client</code> instead
+(<code>dist/NFTTracker.client.mjs</code>, an ES module of a few kB with no WASM): the page then downloads only the
+worker's build. The full entry points keep exporting it.</p>
+<ul>
+<li>
+<p><strong>Loaded as it is</strong> (a CDN, or <code>dist/</code> served as a folder): the default <code>workerBase</code> is the client's own
+folder, next to the worker files. Nothing to pass. (The example passes <code>workerBase: '../dist/'</code> anyway,
+which is the same folder.)</p>
+</li>
+<li>
+<p><strong>Bundled</strong>: the bundler moves the client, so the default no longer points at the worker files. With
+Vite it becomes <code>/assets/</code> in a build and <code>node_modules/.vite/deps/</code> in the dev server. Copy the four
+files above to a folder your app serves, e.g. <code>public/nft/</code>, and pass that folder. Only Vite has been
+checked so far; another bundler may also try to resolve the client's <code>new URL(&quot;.&quot;, import.meta.url)</code>
+at build time, so please report any build error it gives.</p>
+<pre><code class="javascript"><span class="hl-5">import</span><span class="hl-1"> { </span><span class="hl-0">createNFTTrackerWorker</span><span class="hl-1"> } </span><span class="hl-5">from</span><span class="hl-1"> </span><span class="hl-6">&#39;@webarkit/jsartoolkit-nft/client&#39;</span><br/><br/><span class="hl-7">const</span><span class="hl-1"> </span><span class="hl-8">tracker</span><span class="hl-1"> = </span><span class="hl-5">await</span><span class="hl-1"> </span><span class="hl-2">createNFTTrackerWorker</span><span class="hl-1">(</span><span class="hl-0">config</span><span class="hl-1">, { </span><span class="hl-0">workerBase:</span><span class="hl-1"> </span><span class="hl-6">&#39;/nft/&#39;</span><span class="hl-1"> })</span>
+</code><button type="button">Copy</button></pre>
+
+<p>With <code>build: 'auto'</code>, <code>NFTTracker_td.worker.js</code> and <code>NFTTracker_td.pthread.js</code> are used only when the
+page is cross-origin isolated (COOP and COEP headers); without those headers you can leave them out.</p>
+</li>
+</ul>
+<p><strong>Bounding the start.</strong> The worker's start, which compiles the WASM, otherwise has no time limit. Pass an
+<code>AbortSignal</code> as <code>signal</code> to bound it: on abort the worker is terminated and <code>createNFTTrackerWorker</code>
+rejects with the signal's reason.</p>
+<pre><code class="js"><span class="hl-7">const</span><span class="hl-1"> </span><span class="hl-8">tracker</span><span class="hl-1"> = </span><span class="hl-5">await</span><span class="hl-1"> </span><span class="hl-2">createNFTTrackerWorker</span><span class="hl-1">(</span><span class="hl-0">config</span><span class="hl-1">, {</span><br/><span class="hl-1">  </span><span class="hl-0">signal:</span><span class="hl-1"> </span><span class="hl-0">AbortSignal</span><span class="hl-1">.</span><span class="hl-2">timeout</span><span class="hl-1">(</span><span class="hl-3">30_000</span><span class="hl-1">), </span><span class="hl-4">// rejects with a TimeoutError after 30 s</span><br/><span class="hl-1">});</span>
+</code><button type="button">Copy</button></pre>
+
+<p>There is no default limit, because compiling the WASM on a slow phone takes several seconds. The signal
+only covers the start: aborting it later has no effect.</p>
 <p><strong>Skipped frames.</strong> One <code>process()</code> runs at a time. A call made while another is in flight resolves
 <code>{ skipped: true }</code> at once, and that frame is neither sent nor transferred. The frames are dropped, not
 queued, so feeding the tracker every camera frame never builds up latency. Ignore the skipped results.</p>
@@ -343,6 +379,11 @@ ARnft does. aframe-nft divides <code>minCutOff</code> by 1000 before passing it,
 aframe-nft's settings by 1000 to get the same filter here. OneEuro expects increasing timestamps, so pass
 <code>performance.now()</code>. A time that does not increase returns the previous output. <code>warmUp</code> passes the first
 <code>warmUp</code> poses after a reset through unfiltered, while still feeding them to the filter.</p>
+<p>OneEuro keeps the pose rigid: it filters the rotation on its tangent space (the step <code>log(R̂ᵀR)</code>, through
+the package's <code>filterStep()</code>) and the translation as a vector, with the same <code>minCutOff</code> and <code>beta</code>. Earlier
+releases smoothed the 16 values one by one, which gave the content a small scale and shear on a moving
+camera (<a href="https://github.com/webarkit/jsartoolkitNFT/issues/766">#766</a>), so filtered poses differ from those
+releases.</p>
 <p>To compare the poses of two cores frame by frame, pin <code>Date.now</code>: AR2 seeds <code>rand</code> with <code>time(NULL)</code>.</p>
 <h2 id="writing-a-pose-filter" class="tsd-anchor-link">Writing a pose filter<a href="#writing-a-pose-filter" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
 <p>A filter module is an <strong>ES module</strong> that exports <code>createPoseFilter</code>. The tracker creates one filter per
@@ -615,12 +656,15 @@ call that fails leaves them in place.</li>
 <p>That second step is required. The browser suite runs in a real Chromium supplied by Playwright,
 and without it you get a missing-executable error before any spec starts. It is the only browser
 the tests need.</p>
-<pre><code class="bash"><span class="hl-2">npm</span><span class="hl-1"> </span><span class="hl-6">test</span><span class="hl-1">              </span><span class="hl-4"># everything: the browser suite, then the Node suite</span><br/><span class="hl-2">npm</span><span class="hl-1"> </span><span class="hl-6">run</span><span class="hl-1"> </span><span class="hl-6">test:vitest</span><span class="hl-1">   </span><span class="hl-4"># the browser suite only</span><br/><span class="hl-2">npm</span><span class="hl-1"> </span><span class="hl-6">run</span><span class="hl-1"> </span><span class="hl-6">test:node</span><span class="hl-1">     </span><span class="hl-4"># the Node suite only</span><br/><span class="hl-2">npm</span><span class="hl-1"> </span><span class="hl-6">run</span><span class="hl-1"> </span><span class="hl-6">test:coverage</span><span class="hl-1"> </span><span class="hl-4"># the browser suite, with an lcov report scoped to src/</span>
+<pre><code class="bash"><span class="hl-2">npm</span><span class="hl-1"> </span><span class="hl-6">test</span><span class="hl-1">              </span><span class="hl-4"># everything: the browser suite, then the Node suite</span><br/><span class="hl-2">npm</span><span class="hl-1"> </span><span class="hl-6">run</span><span class="hl-1"> </span><span class="hl-6">test:vitest</span><span class="hl-1">   </span><span class="hl-4"># the browser suite only</span><br/><span class="hl-2">npm</span><span class="hl-1"> </span><span class="hl-6">run</span><span class="hl-1"> </span><span class="hl-6">test:node</span><span class="hl-1">     </span><span class="hl-4"># the Node suite only</span><br/><span class="hl-2">npm</span><span class="hl-1"> </span><span class="hl-6">run</span><span class="hl-1"> </span><span class="hl-6">test:coverage</span><span class="hl-1"> </span><span class="hl-4"># the browser suite, with an lcov report scoped to src/</span><br/><span class="hl-2">npm</span><span class="hl-1"> </span><span class="hl-6">run</span><span class="hl-1"> </span><span class="hl-6">typecheck</span><span class="hl-1">     </span><span class="hl-4"># type-checks src/ and the browser tests, which Vitest does not</span>
 </code><button type="button">Copy</button></pre>
 
 <p>CI runs the browser suite with coverage and uploads <code>coverage/lcov.info</code> to
 <a href="https://codecov.io/gh/webarkit/jsartoolkitNFT">Codecov</a>. The report covers <code>src/</code> only: the
-WebAssembly core and the committed bundles in <code>build/</code> are not instrumented. Coverage is
+WebAssembly core and the committed bundles in <code>build/</code> are not instrumented. The worker entry
+files <code>src/tracker/worker/host_*.ts</code> are left out, since they run only inside the tracker's
+worker (their logic, <code>host.ts</code>, is measured). The Node classes appear at 0 %: the Node suite runs
+them through the <code>dist/</code> bundles, which the report does not cover (#762). Coverage is
 reported, not enforced, so a drop does not fail a PR.</p>
 <p><code>npm run test:vitest:watch</code> re-runs on change while you work. To run a single file, pass its
 path:</p>
