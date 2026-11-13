@@ -42,19 +42,21 @@ const { title, description, base } = Astro.props;
   // The outer URL holds the frame's page as #/<path>[#<anchor>], e.g.
   // #/classes/_webarkit_jsartoolkit-nft.ARControllerNFT.html#process. Only plain relative
   // paths (word characters, dots and dashes, no "..") are accepted, so the hash cannot
-  // point the frame anywhere else.
+  // point the frame anywhere else. The anchor may also hold "%": location.hash is
+  // percent-encoded, and TypeDoc builds anchors from README headings that can contain
+  // emoji (#%F0%9F%93%A6-usage). An anchor only scrolls the page already chosen.
   //
   // The ".html" is optional: Netlify's pretty URLs redirect every .html page to a
   // lowercase path without the extension (classes/_webarkit_jsartoolkit-nft.arcontrollernft),
   // and that is the address the frame reports and the link carries. Netlify serves it,
   // so a shared or reloaded link must accept it. `astro dev` keeps the .html.
-  const SAFE_PATH = /^(?:[\w.-]+\/)*[\w.-]+(?:#[\w.-]*)?$/;
+  const SAFE_PATH = /^(?:[\w.-]+\/)*[\w.-]+(?:#[\w.%-]*)?$/;
   // The reference's front page, as each server names it: Netlify serves it at the base
   // itself (or "index"), astro dev at index.html. None of them needs a hash.
   const INDEX = new Set(['', 'index', 'index.html']);
   function fromHash(): string | null {
     const path = location.hash.startsWith('#/') ? location.hash.slice(2) : '';
-    if (!SAFE_PATH.test(path) || path.split(/[/#]/).includes('..')) return null;
+    if (!SAFE_PATH.test(path) || path.split('#')[0].split('/').includes('..')) return null;
     return base + path;
   }
 
