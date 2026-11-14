@@ -55,8 +55,4 @@ Start from the [first app guide](/docs/getting-started/first-app/), then see the
 
 ## API reference
 
-:::note[Under construction]
-A hosted API reference for ARnft is not available yet; publishing the WebARKit libraries' references on this site is tracked in [webarkit.github.io#49](https://github.com/webarkit/webarkit.github.io/issues/49).
-:::
-
-Meanwhile you can build it locally with TypeDoc. In a clone of the [repository](https://github.com/webarkit/ARnft), run `npm install`, then `npm run docs`, and open `docs/index.html`.
+The [ARnft API reference](/arnft/api) documents the classes, functions and types in ARnft's sources: `ARnft` and `NFTWorker`, the `CameraViewRenderer`, the HTML `Container` helper, the configuration types (`ConfigData` and its parts) and the helpers in `ARnftUtils`. It is generated with TypeDoc from the library's sources; to build it locally, run `npm run docs` in the [repository](https://github.com/webarkit/ARnft).
